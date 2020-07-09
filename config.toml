@@ -15,14 +15,14 @@
 baseURL = "https://sharleenw.rbind.io/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
-title = "Sharleen Weatherley"
+title = "Sharleen's Homepage"
 theme = "hugo-tranquilpeak-theme"
 paginate = 7
 canonifyurls = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
-  post = "/:year/:month/:slug/"
+  post = "/:year/:month/:day/:slug/"
 
 [taxonomies]
   tag = "tags"
@@ -31,17 +31,15 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [author]
   name = "Sharleen Weatherley"
-  bio = "sharleen at fastmail.com"
+  bio = "Learning about programming and data analysis"
   job = "Data Analyst"
   location = "Toronto"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
-  #gravatarEmail = "sharleen@fastmail.com"
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
   picture = "images/headshot.jpg"
   twitter = "_sharleen_w"
-  enableEmoji = true
-
+  
 # Menu Configuration
 [[menu.main]]
   weight = 1
@@ -49,12 +47,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "Home"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
   url = "/"
-#[[menu.main]]
-#  weight = 2
-#  identifier = "categories"
-#  name = "Categories"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
-#  url = "/categories"
+[[menu.main]]
+  weight = 2
+  identifier = "about"
+  name = "About"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
+  url = "/about"
 [[menu.main]]
   weight = 3
   identifier = "tags"
@@ -63,16 +61,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   url = "/tags"
 #[[menu.main]]
 #  weight = 4
-#  identifier = "archives"
-#  name = "Archives"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
-#  url = "/archives"
-[[menu.links]]
-  weight = 5
-  identifier = "resume"
-  name = "Resume"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-file\"></i>"
-  url = "https://github.com/sharleenw"
+#  identifier = "resume"
+#  name = "Resume"
+#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bars\"></i>"
+#  url = "https://github.com/sharleenw"
 
 [[menu.links]]
   weight = 1
@@ -86,6 +78,13 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "Twitter"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
   url = "https://twitter.com/_sharleen_w"
+[[menu.links]]
+  weight = 3
+  identifier = "linkedin"
+  name = "Linkedin"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
+  url = "https://ca.linkedin.com/in/sharleen-weatherley"
+  
 
 #[[menu.misc]]
 #  weight = 1
@@ -101,15 +100,15 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Default format is: January 2, 2006
   # dateFormat = "2 January 2006"
 
-  # Global keywords configuration. Following keywords will be add to every pages
-  # keywords = ["development", "next-gen"]
+  # Global s configuration. Following s will be add to every pages
+  keywords = ["data science", "R", "programming", "data analysis"]
 
   # Syntax highlighter, possible choice between: "highlight.js" (recommanded) and "prism.js" (experimental)
   # You can comment it to disable syntax highlighting
-  syntaxHighlighter = "highlight.js"
-
+  # syntaxHighlighter = "highlight.js"
+  
   # Hide sidebar on all article page to let article take full width to improve reading, and enjoy wide images and cover images. (true: enable, false: disable)
-  clearReading = true
+  clearReading = false
 
   # Define categories will create hierarchy between parents: `categories = ["foo", "bar"]` will consider "bar" a sub-category of "foo".
   # If false it will flat categories.
@@ -136,24 +135,24 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Current image is on AWS S3 and delivered by AWS CloudFront.
   # Otherwise put your image, for example `cover.jpg` in folder `static/images/`,
   # and use relative url : `images/cover.jpg`
-  coverImage = "https://images.unsplash.com/photo-1491146179969-d674118945ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"
+  coverImage = "https://images.unsplash.com/photo-1515615575935-36f6e462f56d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1367&q=80"
 
   # Display an image gallery at the end of a post which have photos variables (false: disabled, true: enabled)
-  imageGallery = true
+  imageGallery = false
 
   # Display thumbnail image of each post on index pages (false: disabled, true: enabled)
   thumbnailImage = true
   # Display thumbnail image at the right of title in index pages (`right`, `left` or `bottom`)
   # Set this value to `right` if you have old posts to keep the old style on them
   # and define `thumbnailImagePosition` on a post to overwrite this setting
-  thumbnailImagePosition = "bottom"
+  thumbnailImagePosition = "left"
   # Automatically select the cover image or the first photo from the gallery of a post if there is no thumbnail image as the thumbnail image
   # Set this value to `true` if you have old posts that use the cover image or the first photo as the thumbnail image
   # and set `autoThumbnailImage` to `false` on a post to overwrite this setting
   autoThumbnailImage = true
 
   # Your favicon path, default is "/favicon.png"
-  # favicon = "/favicon.png"
+   favicon = "/favicon.png"
 
   # Header configuration
   # The link at the right of the header is customizable
@@ -169,8 +168,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
   # Custom CSS. Put here your custom CSS files. They are loaded after the theme CSS;
   # they have to be referred from static root. Example
-  # [[params.customCSS]]
-  #   href = "css/mystyle.css"
+   [[params.customCSS]]
+     href = "css/mystyle.css"
 
   # Custom JS. Put here your custom JS files. They are loaded after the theme JS;
   # they have to be referred from static root. Example
@@ -191,15 +190,15 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     icon = "fa-twitter"
     url = "https://twitter.com/intent/tweet?text=%s"
 
-  [params.header.rightLink]
-    class = ""
-    icon = ""
-    url = "/#about"
+  #[params.header.rightLink]
+  #  class = ""
+  #  icon = ""
+  #  url = "/#about"
 
    #Customize link of author avatar in sidebar
    #[params.sidebar.profile]
-   # url = "/#about"
+   #url = "/#about"
 
   # Customize copyright value "© 2017 <CUSTOMIZATION>. All Rights Reserved"
-  # [params.footer]
-  #   copyright = "<a href=\"https://github.com/kakawait\">kakawait</a>"
+  [params.footer]
+  copyright = "Sharleen Weatherley | Theme from <a href=\"https://github.com/kakawait\">kakawait</a>"

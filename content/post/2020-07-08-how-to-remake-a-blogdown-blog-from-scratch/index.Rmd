@@ -1,0 +1,208 @@
+---
+title: How to Remake a Blogdown Blog from Scratch
+author: Sharleen Weatherley
+date: '2020-07-08'
+slug: how-to-remake-a-blogdown-blog-from-scratch
+categories: []
+tags:
+  - blogdown
+  - blog
+  - tutorial
+  - tips
+summary: What I learned rebuilding my blogdown blog.
+coverImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
+coverCaption: 'Yellow sparkly lights (Source: Public Domain Files)'
+thumbnailImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+coverSize: partial
+
+---
+
+
+```{r setup, echo = FALSE, warning = FALSE, message = FALSE}
+# Load frequently used packages and chunk settings
+
+knitr::opts_chunk$set(
+  comment = "",
+  warning = FALSE,
+  echo = TRUE,
+  message = FALSE
+)
+
+library(emo)  # for emojis
+library(devtools) # for session_info()
+library(here)
+
+# `r emo::ji("smile")`  # Function call for emojis
+```
+
+# A bit of background
+
+In early 2019, I created a `blogdown` blog with the help of Alison Hill's great article [Up & Running with blogdown](https://alison.rbind.io/post/2017-06-12-up-and-running-with-blogdown/) that had 5 posts on it.
+
+Recently, when I went to make a new blog post, I got the sense that the blog was going to break if I updated some packages.
+
+I decided I could either try to fix the blog, or make a new one (with a new theme!) and copy over my old blog posts. I chose the second option.
+
+This ended up being a lot of work (or, put another way, a great learning opportunity `r emo::ji("joy")`), so I wanted to jot down some things I've learned, in the hopes it might help someone else, or just myself, if I ever try to do anything `blogdown`-related again!
+
+So, in no particular order, here are some things I've learned!
+
+# Read the freakin' manual
+
+For whatever reason, I forget about search engines and documentation when staring at the complex file structure of a new `blogdown` blog project folder.
+
+But, as a note to my future self, read the docs! Everything got a lot easier once I remembered that `r emo::ji("sweat_smile")`.
+
+- Hugo Tranquilpeak has a great [user documentation section](https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md).
+
+- `blogdown` itself has a [book](https://bookdown.org/yihui/blogdown/) that has everything you could ever need to know about `blogdown`.
+
+- Alison Hill has a fantastic series of posts on her blog called "A Spoonful of Hugo" (with at least these four articles):
+
+  - [Page Bundles](https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/)
+  - [The netlify.toml File](https://alison.rbind.io/post/2019-02-19-hugo-netlify-toml/)
+  - [Archetypes](https://alison.rbind.io/post/2019-02-19-hugo-archetypes/)
+  - [Troubleshooting Your Build](https://alison.rbind.io/post/2019-03-04-hugo-troubleshooting)
+
+And, just generally, including search terms like "blogdown rmd", "hugo", or "hugo tranquilpeak" along with whatever my question is will get different types of answers, some that will be more geared towards R and some that will be geared more towards the website itself. I have found both types of searches to be helpful.
+
+# How can I get emojis to work`r emo::ji("exclamation")``r emo::ji("question")`
+
+Are your emojis looking like :cry: when you want them to look like `r emo::ji("smile")`?
+
+With my last blog (Academic theme), emojis just worked. If I typed ":smile:" into the text of my `.Rmd` file, the blog knew to convert it to `r emo::ji("smile")`.
+
+With my new theme (Tranquilpeak), the emojis of my posts were no longer working!
+
+I found my solution at the bottom of the page [here](https://github.com/rstudio/blogdown/issues/171): Download Hadley's [`emo`](https://github.com/hadley/emo) package and type `` `r '\u0060r emo::ji("smile")\u0060'` `` into the text of the `.Rmd` file.
+
+It takes more keystrokes to write, but this way, I think the emojis will always work no matter which theme I'm using.
+
+# Use `devtools::session_info()` at the bottom of every post
+
+When transferring over my posts, two of them no longer worked due to external package updates!
+
+So, following the great example set by David Neuzerling's [blog](https://mdneuzerling.com/) (and others), I will be adding `devtools::session_info()` to the bottom of my posts. I mean, it won't fix the fact that my code no longer works, but it adds an extra layer of proof that it did, in fact, work, at that particular time, given that particular set of described tools!
+
+# Making a template
+
+Speaking of Alison Hill's post on [Archetypes](https://alison.rbind.io/post/2019-02-19-hugo-archetypes/) (which references [this](http://lcolladotor.github.io/2018/03/08/blogdown-archetype-template/#.XwaeV-dE1hE) blog post by Leo Collado-Torres), I've added an archetype to my blog. An "archetype" being another word for template.
+
+I created an `archetype` folder in my top-level directory, and added my template (called `template.md`) to that folder. This `template` archetype now pops up as an option when I use the RStudio Addin "New Post".
+
+Here is the code that I used for my `/archetype/template.md` (modified from Leo Collado-Torres' archetype):
+
+````r
+`r paste(readLines(here::here("archetypes", "template.md")), collapse = '\n')`
+````
+
+# What to touch and what not to touch
+
+- The actual blog content goes in the `/content` folder, with posts going in the `/content/posts/` folder and any other type of content going in its own section (like `/content/about/` for the About section.)
+- Use page bundles to keep the content of the `/content` folder organized, and follow Yihui's advice to change the format of the permalinks to `"/:year/:month/:day/:slug/"` ([Page Bundles](https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/)).
+- The `/public` folder can be deleted before rebuilding your website. In fact, why not regularly restart R, delete the `/public` folder and then `blogdown:::serve_site()` to make everything start fresh! ([Troubleshooting Your Build](https://alison.rbind.io/post/2019-03-04-hugo-troubleshooting)).
+- The `/archetype` folder needs to be top-level (I had to create it myself), as does the `_output.yml` file.
+- If you have images or CSS you want to include, create the appropriate folders in the `/static` folder (`/static/images` or `/static/css`), as these will be copied into the `/public` folder once the site is built (`blogdown` [book](https://bookdown.org/yihui/blogdown/static-files.html)).
+- Don't touch the `/theme` folder! You should be able to do everything you need to do in the other folders.
+
+# Adding an "About" page
+
+The "About" page is not really a post, it's more of a standalone document. With the Tranquilpeak theme, there is actually an archetype called a "page" that you can use when creating it. The file structure I used to create it was `/content/about/index.md`.
+
+# There is a difference between `.Rmd` and `.Rmarkdown` (who knew?)
+
+Tranquilpeak theme has a pretty syntax highlighting associated with it, but I couldn't always get it to work and was mystified. Until I realized what was happening (by reading the `blogdown` [book](https://bookdown.org/yihui/blogdown/output-format.html)):
+
+- Files saved as `.Rmarkdown` get converted to `.markdown` first, before `.html`.
+- However, files saved as `.Rmd` go straight to `.html`.
+
+The fancy syntax highlighting only works in `.markdown` files (which only happens if I save the files as `.Rmarkdown` and not `.Rmd`). Some of the other CSS only works for `.markdown` files too. (See the section on adding CSS.)
+
+The `blogdown` book prefers `.Rmd` (as it allows for citations, which I have), so that's what I'm using. I figured out the syntax highlighting in the next section.
+
+# Syntax highlighting
+
+Thanks to the `blogdown` [book](https://bookdown.org/yihui/blogdown/output-format.html), I found out I could create a `_output.yml` file in the root directory, and include a `.Rmd`-specific syntax highlighting template for all my files. My `_output.yml` file looks like:
+
+````{yaml output, code = readLines("_output.yml"), message = FALSE, warning = FALSE, eval = FALSE}
+
+````
+
+Garrick Aden-Buie's blog has a nice [gallery](https://www.garrickadenbuie.com/blog/pandoc-syntax-highlighting-examples/) comparingthe different syntax-highlighting options.
+
+# Relative links
+
+On my original blog, I included all absolute links. Yikes! So now, thanks to Alison Hill's [Page Bundles](https://alison.rbind.io/post/2019-02-21-hugo-page-bundles/) post (that references the `blogdown` [book](https://bookdown.org/yihui/blogdown/configuration.html)), I now know how to make relative links. Basically, if I want to include relative posts, I just look at what the structure of the `/public` folder is, and use that as my relative link. For example, if I wanted to refer to this post, I would use `/2020/07/08/how-to-remake-a-blogdown-blog-from-scratch/` as the link.
+
+# My settings for the "New Post" Addin
+
+- Add a title. Author and Date should be filled in automatically
+- Subdirectory is "post"
+- I don't include categories on my blog
+- Add some relevant tags
+- Use the `template.md` archetype
+- Keep the default slug
+- Delete the "en-us" under Language
+- Format is `.Rmd`, not `Rmarkdown`
+
+# Adding a bit of CSS
+
+<div class="well alert alert-info text-center" role="alert">
+  <span class="fa fa-info-circle"></span>&nbsp;&nbsp;This is a notice
+</div>
+
+<div class="well alert alert-danger text-center" role="alert">
+  <span class="fa fa-minus-circle"></span>&nbsp;&nbsp;Watch out!
+</div>
+
+<div class="well alert alert-warning text-center" role="alert">
+  <span class="fa fa-exclamation-triangle"></span>&nbsp;&nbsp;Warning!
+</div>
+
+<div class="well alert alert-success text-center" role="alert">
+  <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Way to go!
+</div>
+
+I wanted to be able to add the above alert bars to my posts so, using a combination of these two sources ([Bootstrap alerts](https://getbootstrap.com/docs/4.0/components/alerts/) and [Custom CSS with Rmd](https://aurora-mareviv.github.io/talesofr/2017/08/r-blogdown-setup-in-github/)), I created a custom CSS file in `/static/css` with the following code:
+
+````{css mystyle, code = readLines(here::here("static", "css", "mystyle.css")), message = FALSE, warning = FALSE, eval = FALSE}
+
+````
+
+And in my actual posts, I will write the following `html`:
+
+```{html, eval = TRUE}
+<div class="well alert alert-info text-center" role="alert">
+  <span class="fa fa-info-circle"></span>&nbsp;&nbsp;This is a notice
+</div>
+
+<div class="well alert alert-danger text-center" role="alert">
+  <span class="fa fa-minus-circle"></span>&nbsp;&nbsp;Watch out!
+</div>
+
+<div class="well alert alert-warning text-center" role="alert">
+  <span class="fa fa-exclamation-triangle"></span>&nbsp;&nbsp;Warning!
+</div>
+
+<div class="well alert alert-success text-center" role="alert">
+  <span class="fa fa-check-circle"></span>&nbsp;&nbsp;Way to go!
+</div>
+```
+
+# Future question
+
+If I want to change my theme again, could I simply swap out the current theme in the `/theme` folder, update the `config.toml` and `/archetype/template.md` files, and be done?
+
+<hr/>
+
+# Session Info
+
+```{r reproducibility, echo = FALSE}
+# Reproducibility info
+
+options(width = 80)
+session_info()
+
+```

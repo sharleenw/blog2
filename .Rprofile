@@ -1,3 +1,4 @@
+source("renv/activate.R")
 options(
   blogdown.author = "Sharleen Weatherley",
   blogdown.ext = ".Rmd",

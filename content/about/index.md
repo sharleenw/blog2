@@ -7,10 +7,20 @@ showMeta: false
 showActions: false
 ---
 
-I am a Data Analyst currently working in the public sector in Toronto, Ontario, Canada.
+I am a Data Analyst currently working in the public sector in Toronto, Canada.
 
-In 2015, I graduated with an M.Sc. in Statistics from McMaster University in Hamilton, Ontario, Canada.
+At work, I use R, R Markdown, git and Shiny. My current favourite packages are `pointblank`, `drake` and `renv`.
+
+In 2015, I graduated with an M.Sc. in Statistics from McMaster University in Hamilton, Canada.
 
 In 2011, I graduated from McMaster University's Chemical Engineering and Bioengineering program.
 
 When not programming, I like to go birding, snowboarding, cycling, running, sailing, or practice my handstands and aerial arts.
+
+**Preferred pronouns: she/her**
+
+# Contact me
+
+If you'd like to contact me, my email is **sharleen at fastmail dot com**.
+
+

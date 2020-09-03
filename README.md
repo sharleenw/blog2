@@ -1,1 +1,4 @@
-# blog2
+# Sharleen's Analytics Blog
+
+
+Found at <https://sharleenw.rbind.io/>.

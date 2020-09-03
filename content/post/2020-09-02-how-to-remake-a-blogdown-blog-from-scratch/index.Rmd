@@ -1,7 +1,7 @@
 ---
 title: 'How to Remake a Blogdown Blog from Scratch'
 author: Sharleen Weatherley
-date: '2020-07-08'
+date: '2020-09-02'
 slug: how-to-remake-a-blogdown-blog-from-scratch
 summary: What I learned rebuilding my blogdown blog.
 draft: false
@@ -106,7 +106,7 @@ Here is the code that I used for my `/archetype/template.md` (modified from Leo 
 - The `/public` folder can be deleted before rebuilding your website. In fact, why not regularly restart R, delete the `/public` folder and then `blogdown:::serve_site()` to make everything start fresh! ([Troubleshooting Your Build](https://alison.rbind.io/post/2019-03-04-hugo-troubleshooting)).
 - The `/archetype` folder needs to be top-level (I had to create this folder myself)
 - The `_output.yml` file also needs to be top-level.
-- If you have images or CSS you want to include, create the appropriate folders in the `/static` folder (`/static/images` or `/static/css`), as these will be copied into the `/public` folder once the site is built (`blogdown` [book](https://bookdown.org/yihui/blogdown/static-files.html)).
+- If you have images or CSS you want to include, create the appropriate folders in the `/static` folder (`/static/img` or `/static/css`), as these will be copied into the `/public` folder once the site is built (`blogdown` [book](https://bookdown.org/yihui/blogdown/static-files.html)).
 - Don't touch the `/theme` folder! You should be able to do everything you need to do in the other folders.
 
 # Adding an "About" page

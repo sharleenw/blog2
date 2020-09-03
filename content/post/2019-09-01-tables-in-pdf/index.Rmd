@@ -1,10 +1,10 @@
 ---
-title: 'Making tables in PDF using R'
-subtitle: 'A guide on making tables in PDF using RMarkdown and LaTeX.'
+title: 'Making tables in a PDF using R'
+subtitle: 'A guide on making tables in a PDF using RMarkdown and kableExtra.'
 author: Sharleen Weatherley
 date: '2019-09-01'
 slug: tables-in-pdf
-summary: A guide on making tables in PDF using RMarkdown and LaTeX.
+summary: A guide on making tables in PDF using RMarkdown and kableExtra.
 draft: false
   
 tags:
@@ -44,9 +44,9 @@ library(kableExtra)
 
 # TL;DR
 
-Today we will be making this in PDF, using a tidy dataframe of city population data:
+Today we will be making this in a PDF, starting from a tidy data frame of city population data:
 
-![](/img/image_of_tables_in_pdf.PNG)
+![Image of the pdf that we will be making](/img/image_of_tables_in_pdf.PNG)
 
 # Introduction
 
@@ -203,15 +203,11 @@ So, what's the real secret to creating tables in PDF from RMarkdown?
 
 The secret is...
 
-The document `r emo::ji("sparkles")`[Create Awesome LaTeX Table with knitr::kable and kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf)`r emo::ji("sparkles")`, written by Hao Zhu! It's got everything you need in order to make fantastic tables in PDF using RMarkdown.
+The document [Create Awesome LaTeX Table with knitr::kable and kableExtra](https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf), written by Hao Zhu! It's got everything you need in order to make fantastic tables in PDF using RMarkdown.
 
-To see the final PDF of the below `.Rmd` file, click [here](https://nbviewer.jupyter.org/github/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.pdf)!
-
-
-And if you'd like to see the actual `.Rmd` file on my Github page, click [here](https://github.com/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.Rmd)!
+To see the final PDF of the below `.Rmd` file, click `r emo::ji("sparkles")`[here](https://nbviewer.jupyter.org/github/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.pdf)`r emo::ji("sparkles")`!
 
 ````
-
 `r paste(readLines(here::here("content", "post", "2019-09-01-tables-in-pdf", "largest_canadian_cities.Rmd")), collapse = '\n')`
 
 ````

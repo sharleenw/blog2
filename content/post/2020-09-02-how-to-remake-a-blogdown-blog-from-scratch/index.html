@@ -1,7 +1,7 @@
 ---
 title: 'How to Remake a Blogdown Blog from Scratch'
 author: Sharleen Weatherley
-date: '2020-07-08'
+date: '2020-09-02'
 slug: how-to-remake-a-blogdown-blog-from-scratch
 summary: What I learned rebuilding my blogdown blog.
 draft: false
@@ -205,7 +205,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li>The <code>/public</code> folder can be deleted before rebuilding your website. In fact, why not regularly restart R, delete the <code>/public</code> folder and then <code>blogdown:::serve_site()</code> to make everything start fresh! (<a href="https://alison.rbind.io/post/2019-03-04-hugo-troubleshooting">Troubleshooting Your Build</a>).</li>
 <li>The <code>/archetype</code> folder needs to be top-level (I had to create this folder myself)</li>
 <li>The <code>_output.yml</code> file also needs to be top-level.</li>
-<li>If you have images or CSS you want to include, create the appropriate folders in the <code>/static</code> folder (<code>/static/images</code> or <code>/static/css</code>), as these will be copied into the <code>/public</code> folder once the site is built (<code>blogdown</code> <a href="https://bookdown.org/yihui/blogdown/static-files.html">book</a>).</li>
+<li>If you have images or CSS you want to include, create the appropriate folders in the <code>/static</code> folder (<code>/static/img</code> or <code>/static/css</code>), as these will be copied into the <code>/public</code> folder once the site is built (<code>blogdown</code> <a href="https://bookdown.org/yihui/blogdown/static-files.html">book</a>).</li>
 <li>Don’t touch the <code>/theme</code> folder! You should be able to do everything you need to do in the other folders.</li>
 </ul>
 </div>

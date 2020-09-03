@@ -1,10 +1,10 @@
 ---
-title: 'Making tables in PDF using R'
-subtitle: 'A guide on making tables in PDF using RMarkdown and LaTeX.'
+title: 'Making tables in a PDF using R'
+subtitle: 'A guide on making tables in a PDF using RMarkdown and kableExtra.'
 author: Sharleen Weatherley
 date: '2019-09-01'
 slug: tables-in-pdf
-summary: A guide on making tables in PDF using RMarkdown and LaTeX.
+summary: A guide on making tables in PDF using RMarkdown and kableExtra.
 draft: false
   
 tags:
@@ -104,8 +104,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="tldr" class="section level1">
 <h1>TL;DR</h1>
-<p>Today we will be making this in PDF, using a tidy dataframe of city population data:</p>
-<p><img src="/img/image_of_tables_in_pdf.PNG" /></p>
+<p>Today we will be making this in a PDF, starting from a tidy data frame of city population data:</p>
+<div class="figure">
+<img src="/img/image_of_tables_in_pdf.PNG" alt="" />
+<p class="caption">Image of the pdf that we will be making</p>
+</div>
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
@@ -264,11 +267,9 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>Also, notice that in the YAML, my output format is <code>bookdown::pdf_document2</code>. This allows me to cross-reference my tables with the text of my document.</p>
 <p>So, what’s the real secret to creating tables in PDF from RMarkdown?</p>
 <p>The secret is…</p>
-<p>The document ✨<a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">Create Awesome LaTeX Table with knitr::kable and kableExtra</a>✨, written by Hao Zhu! It’s got everything you need in order to make fantastic tables in PDF using RMarkdown.</p>
-<p>To see the final PDF of the below <code>.Rmd</code> file, click <a href="https://nbviewer.jupyter.org/github/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.pdf">here</a>!</p>
-<p>And if you’d like to see the actual <code>.Rmd</code> file on my Github page, click <a href="https://github.com/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.Rmd">here</a>!</p>
-<pre><code>
----
+<p>The document <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">Create Awesome LaTeX Table with knitr::kable and kableExtra</a>, written by Hao Zhu! It’s got everything you need in order to make fantastic tables in PDF using RMarkdown.</p>
+<p>To see the final PDF of the below <code>.Rmd</code> file, click ✨<a href="https://nbviewer.jupyter.org/github/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.pdf">here</a>✨!</p>
+<pre><code>---
 output: 
   bookdown::pdf_document2:
     toc: no

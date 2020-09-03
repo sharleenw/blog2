@@ -67,9 +67,9 @@ There's some jumping around, and I think a way to prevent that might be to inter
 
 Here is the final plot:
 
-![](/img/gifimage.gif)
+![Final gif of the top bird counts since 1955](/img/gifimage.gif)
 
-And here is the code I used to create it!
+And here is the code that I used to create it!
 
 
 ```{r gganimate-plot, code = readLines(here("content", "post", "2019-05-26-hamilton-cbc-part-4", "gganimate.R")), message = FALSE, warning = FALSE, eval = FALSE}

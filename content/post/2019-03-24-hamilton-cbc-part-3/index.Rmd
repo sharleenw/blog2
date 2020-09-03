@@ -1,0 +1,87 @@
+---
+title: 'Hamilton Christmas Bird Count: Part 3'
+subtitle: 'Creating a Shiny app for the Hamilton Christmas Bird Count data'
+author: Sharleen Weatherley
+date: '2019-03-24'
+slug: hamilton-cbc-part-3
+summary: Creating a Shiny app for the Hamilton Christmas Bird Count data.
+draft: false
+
+tags:
+  - birding
+  - ggplot2
+  - shiny
+
+coverImage: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
+coverCaption: "Trumpeter Swans, Canada Geese and ducks on a pond in winter (Source: Public Domain Files)"
+thumbnailImage: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+coverSize: partial
+---
+
+
+```{r setup, echo = FALSE, warning = FALSE, message = FALSE}
+
+knitr::opts_chunk$set(
+  comment = "",
+  warning = FALSE,
+  echo = TRUE,
+  message = FALSE
+)
+
+library(emo)  # for emojis
+library(devtools) # for session_info()
+library(here)
+
+library(shiny)
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(scales)
+
+# `r emo::ji("smile")`  # Function call for emojis
+```
+
+<div class="well alert alert-info" role="alert">
+  <span class="fa fa-info-circle"></span> This is a series of five posts for this data:
+
+- [Part 1](/2019/01/07/hamilton-cbc-part-1/): data downloading and cleaning
+
+- [Part 2a](/2019/02/23/hamilton-cbc-part-2a/): more cleaning
+
+- [Part 2b](/2019/02/24/hamilton-cbc-part-2b/): visualizing
+
+- [Part 3](/2019/03/24/hamilton-cbc-part-3/): a Shiny app
+
+- [Part 4](/2019/05/26/hamilton-cbc-part-4/): a `gganimate` plot
+</div>
+
+# Introduction
+
+This post is to demonstrate a Shiny app I made so that people could look through the data themselves!
+
+I was able to make this whole app very easily thanks to the wonderful tutorial found [here](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/)!
+
+# Data visualizing using a Shiny app
+
+Here is the link to my Shiny app: https://sharleenw.shinyapps.io/hamilton_cbc_shiny/
+
+And here is the code I used to make the app:
+
+```{r shiny, code = readLines(here("content", "post", "2019-03-24-hamilton-cbc-part-3", "hamilton_cbc_shiny", "app.R")), message = FALSE, warning = FALSE, eval = FALSE}
+
+
+```
+
+And thank you to the Christmas Bird Count! The Christmas Bird Count Data was provided by [National Audubon Society](www.christmasbirdcount.org) and through the generous efforts of [Bird Studies Canada](www.bsc-eoc.org) and countless volunteers across the western hemisphere.
+
+<hr>
+
+# Session info
+
+```{r reproducibility, echo = FALSE}
+
+devtools::session_info()
+
+```

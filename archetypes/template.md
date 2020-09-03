@@ -16,8 +16,7 @@ thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial
 
-blogdown::html_page:
-  toc: no
+
 ---
 
 ```{r setup, echo = FALSE, warning = FALSE, message = FALSE}
@@ -37,10 +36,10 @@ library(devtools) # for session_info()
 
 <hr>
 
-# Session Info
+# Session info
 
 ```{r reproducibility, echo = FALSE}
 
-session_info()
+devtools::session_info()
 
 ```

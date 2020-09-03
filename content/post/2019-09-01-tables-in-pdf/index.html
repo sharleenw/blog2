@@ -1,0 +1,449 @@
+---
+title: 'Making tables in PDF using R'
+subtitle: 'A guide on making tables in PDF using RMarkdown and LaTeX.'
+author: Sharleen Weatherley
+date: '2019-09-01'
+slug: tables-in-pdf
+summary: A guide on making tables in PDF using RMarkdown and LaTeX.
+draft: false
+  
+tags:
+  - RMarkdown
+  - kable
+  - kableExtra
+  - pdf
+  
+coverImage: https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80
+coverCaption: "Aerial view of Toronto (Source: Unsplash)"
+thumbnailImage: https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-1.2.1&auto=format&fit=crop&w=701&q=80
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+coverSize: partial
+
+---
+
+<script src="/rmarkdown-libs/accessible-code-block/empty-anchor.js"></script>
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<div id="TOC">
+<ul>
+<li><a href="#tldr">TL;DR</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#how-did-i-create-the-tables-in-pdf">How did I create the tables in PDF?</a></li>
+<li><a href="#a-canadian-example">🍁 A Canadian example! 🍁</a><ul>
+<li><a href="#data-import">Data import</a></li>
+<li><a href="#data-cleaning">Data cleaning</a></li>
+<li><a href="#creating-the-tables-in-pdf">Creating the tables in PDF</a></li>
+</ul></li>
+<li><a href="#session-info">Session info</a></li>
+</ul>
+</div>
+
+<div id="tldr" class="section level1">
+<h1>TL;DR</h1>
+<p>Today we will be making this in PDF, using a tidy dataframe of city population data:</p>
+<p><img src="/img/image_of_tables_in_pdf.PNG" /></p>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>As part of my job, there is a report I create every year.</p>
+<p>Last year, I wrote the report <em>without</em> using R. My workflow went like this:</p>
+<ul>
+<li>Import the CSV file into SPSS</li>
+<li>Manually clean the data and create the tables</li>
+<li>Paste the tables into Excel for formatting</li>
+<li>Paste the tables into Word for more formatting</li>
+<li>Send it to another team to professionally graphic-design the report</li>
+<li>Send the PDF to be published on the website</li>
+</ul>
+<p>Here is what last year’s report looked like: <a href="http://ccrnr.ca/assets/2018-nclex-rn-2017-canadian-and-international-results-ccrnr-en.pdf" class="uri">http://ccrnr.ca/assets/2018-nclex-rn-2017-canadian-and-international-results-ccrnr-en.pdf</a></p>
+<p>I mean, it’s pretty good! But it’s not very reproducible…</p>
+<p>Since then, at my work, we’ve been converting all of our processes to be more reproducibly written in R! This is much more efficient, and more fun!</p>
+<p>So this year, while writing the report using R, my workflow went like this:</p>
+<ul>
+<li>Import the CSV file into R</li>
+<li>Run my <code>.R</code> script to clean the data</li>
+<li>Run my <code>.Rmd</code> script to create the PDF</li>
+<li>Commit any changes, because the report is now version-controlled thanks to Jenny Bryan’s <a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a>! 😍</li>
+<li>Send the PDF to be published on the website</li>
+</ul>
+<p>This is much more reproducible and will make the creation of next year’s report so much faster! Click here to see what this year’s report looked like: <a href="http://ccrnr.ca/assets/2018-ccrnr-nclex-canadian-and-international-results-report-en.pdf" class="uri">http://ccrnr.ca/assets/2018-ccrnr-nclex-canadian-and-international-results-report-en.pdf</a></p>
+</div>
+<div id="how-did-i-create-the-tables-in-pdf" class="section level1">
+<h1>How did I create the tables in PDF?</h1>
+<p>After posting on Twitter about this updated process, some people asked how I created the tables in PDF using R.</p>
+<p>Well, the first few set-up steps in order to create tables in PDF are as follows:</p>
+<ul>
+<li>First, I downloaded the <a href="https://yihui.name/tinytex/"><code>tinytex</code></a> package in R</li>
+<li>I also installed the <code>bookdown</code> package in R, in order to be able to cross-reference tables (then the YAML output document type is <code>bookdown::pdf_document2</code>)</li>
+<li>I also installed the <code>knitr</code> and <code>kableExtra</code> packages, in order to be able to create the tables themselves using the <code>kable()</code> function</li>
+</ul>
+</div>
+<div id="a-canadian-example" class="section level1">
+<h1>🍁 A Canadian example! 🍁</h1>
+<p>Now I’ll go through an example that uses all of the techniques I used while I was writing the report!</p>
+<p>The Wikipedia page <a href="https://en.wikipedia.org/wiki/List_of_the_100_largest_population_centres_in_Canada">List of the 100 largest population centres in Canada</a> has a table containing the largest 100 population centres (“cities”) in Canada, along with their populations in 2011 and 2016.</p>
+<p>My goal is to make a table that shows:</p>
+<ul>
+<li>the number of cities in each province that are in the top 100</li>
+<li>the population of each province in 2011 and 2016 (including the populations of the top 100 cities only)</li>
+<li>a “Total” row for Canada that shows the total number of cities (this number should equal 100)</li>
+<li>the population of Canada in 2011 and 2016 (including the populations of the top 100 cities only)</li>
+</ul>
+<p>I used the website <a href="https://wikitable2csv.ggor.de/">Convert Wiki Tables to CSV</a> to turn the table on the Wikipedia page into a CSV file. Click <a href="https://github.com/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/wiki_data.csv">here</a> to see the full raw file on my Github page.</p>
+<div id="data-import" class="section level2">
+<h2>Data import</h2>
+<p>Here is the R code where I import the CSV file I created (<code>"wiki_data.csv"</code>). Underneath the code, I’ve displayed what the raw data file looks like.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(janitor)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(stringr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(kableExtra)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">library</span>(readr)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>wiki_data_raw &lt;-<span class="st"> </span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;content&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9"></a>                                     <span class="st">&quot;post&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10"></a>                                     <span class="st">&quot;2019-09-01-tables-in-pdf&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>                                     <span class="st">&quot;wiki_data.csv&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="st">  </span><span class="kw">clean_names</span>()</span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a>wiki_data_raw <span class="op">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
+<pre><code># A tibble: 6 x 7
+   rank population_cent~ province population_in_2~ population_in_2~
+  &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;               &lt;dbl&gt;            &lt;dbl&gt;
+1     1 &quot;Toronto&quot;        Ontario           5429524          5144412
+2     2 &quot;Montreal&quot;       Quebec            3519595          3387653
+3     3 &quot;Vancouver&quot;      British~          2264823          2124443
+4     4 &quot;Calgary&quot;        Alberta           1237656          1094379
+5     5 &quot;Edmonton&quot;       Alberta           1062643           935361
+6     6 &quot;Ottawa\x96Gati~ Ontario~           989657           945592
+# ... with 2 more variables: percent_change &lt;chr&gt;, class &lt;chr&gt;</code></pre>
+</div>
+<div id="data-cleaning" class="section level2">
+<h2>Data cleaning</h2>
+<p>I am only interested in the province of each city and what its population was in 2011 and 2016, so my first step in cleaning will be to select only those three columns. I will then use <code>group_by</code> and <code>summarize</code> to get the number of cities and populations on a per-province basis.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>wiki_data_by_province &lt;-<span class="st"> </span>wiki_data_raw <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">select</span>(province,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>         <span class="dt">population_2016 =</span> population_in_<span class="dv">2016</span>,</span>
+<span id="cb3-4"><a href="#cb3-4"></a>         <span class="dt">population_2011 =</span> population_in_<span class="dv">2011</span>) <span class="op">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="st">   </span><span class="co"># Since some provinces were actually two provinces put together</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="st">   </span><span class="co"># (e.g., &quot;Alberta/Saskatchewan&quot;), I used regex code from this website</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="st">   </span><span class="co"># (https://www.perlmonks.org/?node_id=908348) to get everything before</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="st">   </span><span class="co"># the first forward slash in the string</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">province =</span> <span class="kw">str_extract</span>(province, <span class="st">&quot;^([^</span><span class="ch">\\</span><span class="st">/]+)&quot;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="st">  </span><span class="kw">group_by</span>(province) <span class="op">%&gt;%</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">number_of_cities_in_top_100 =</span> <span class="kw">n</span>(),</span>
+<span id="cb3-12"><a href="#cb3-12"></a>            <span class="dt">pop_of_largest_cities_2011 =</span> <span class="kw">sum</span>(population_<span class="dv">2011</span>),</span>
+<span id="cb3-13"><a href="#cb3-13"></a>            <span class="dt">pop_of_largest_cities_2016 =</span> <span class="kw">sum</span>(population_<span class="dv">2016</span>))</span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a>wiki_data_by_province</span></code></pre></div>
+<pre><code># A tibble: 10 x 4
+   province        number_of_cities_in_~ pop_of_largest_cit~ pop_of_largest_cit~
+   &lt;chr&gt;                           &lt;int&gt;               &lt;dbl&gt;               &lt;dbl&gt;
+ 1 Alberta                            13             2538547             2891712
+ 2 British Columb~                    14             3254203             3471292
+ 3 Manitoba                            2              715649              760249
+ 4 New Brunswick                       4              244910              250811
+ 5 Newfoundland a~                     1              172312              178427
+ 6 Nova Scotia                         2              335154              346605
+ 7 Ontario                            39            10140286            10659522
+ 8 Prince Edward ~                     1               41613               44739
+ 9 Quebec                             20             5140554             5337846
+10 Saskatchewan                        4              479228              527638</code></pre>
+<p>Since I also want a “Total” row for all of Canada, I will take the above <code>wiki_data_by_province</code> tibble and I will <code>summarize</code> the three columns in a new tibble to get the total sums for the number of cities and their populations in 2011 and 2016. Since using <code>summarize</code> means I lose the <code>province</code> variable, I will recreate it using <code>mutate</code> to have a value of “Canada”.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>wiki_data_total_row &lt;-<span class="st"> </span>wiki_data_by_province <span class="op">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">number_of_cities_in_top_100 =</span> <span class="kw">sum</span>(number_of_cities_in_top_<span class="dv">100</span>),</span>
+<span id="cb5-3"><a href="#cb5-3"></a>            <span class="dt">pop_of_largest_cities_2011 =</span> <span class="kw">sum</span>(pop_of_largest_cities_<span class="dv">2011</span>),</span>
+<span id="cb5-4"><a href="#cb5-4"></a>            <span class="dt">pop_of_largest_cities_2016 =</span> <span class="kw">sum</span>(pop_of_largest_cities_<span class="dv">2016</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">province =</span> <span class="st">&quot;Canada&quot;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>wiki_data_total_row</span></code></pre></div>
+<pre><code># A tibble: 1 x 4
+  number_of_cities_in_to~ pop_of_largest_cities~ pop_of_largest_cities~ province
+                    &lt;int&gt;                  &lt;dbl&gt;                  &lt;dbl&gt; &lt;chr&gt;   
+1                     100               23062456               24468841 Canada  </code></pre>
+<p>Now I want to merge both the <code>wiki_data_by_province</code> tibble and the <code>wiki_data_total_row</code> tibble on top of one another (using <code>bind_rows</code>). This will be the table that I will save and then read into my <code>.Rmd</code> file in order to create the table in PDF.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>wiki_data_final_table &lt;-<span class="st"> </span>wiki_data_by_province <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">bind_rows</span>(wiki_data_total_row) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="st">  </span><span class="co"># This mutate_at</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="st">  </span><span class="co"># (created using code from https://suzan.rbind.io/2018/02/dplyr-tutorial-2/#mutate-at-to-change-specific-columns)</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="st">  </span><span class="co"># converts all variables containing the word &quot;pop&quot; to have commas separating the thousands.</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="st">  </span><span class="kw">mutate_at</span>(<span class="kw">vars</span>(<span class="kw">contains</span>(<span class="st">&quot;pop&quot;</span>)),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>            <span class="kw">list</span>(. <span class="op">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="st">                   </span>scales<span class="op">::</span><span class="kw">comma</span>()))</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a>wiki_data_final_table</span></code></pre></div>
+<pre><code># A tibble: 11 x 4
+   province        number_of_cities_in_~ pop_of_largest_cit~ pop_of_largest_cit~
+   &lt;chr&gt;                           &lt;int&gt; &lt;chr&gt;               &lt;chr&gt;              
+ 1 Alberta                            13 2,538,547           2,891,712          
+ 2 British Columb~                    14 3,254,203           3,471,292          
+ 3 Manitoba                            2 715,649             760,249            
+ 4 New Brunswick                       4 244,910             250,811            
+ 5 Newfoundland a~                     1 172,312             178,427            
+ 6 Nova Scotia                         2 335,154             346,605            
+ 7 Ontario                            39 10,140,286          10,659,522         
+ 8 Prince Edward ~                     1 41,613              44,739             
+ 9 Quebec                             20 5,140,554           5,337,846          
+10 Saskatchewan                        4 479,228             527,638            
+11 Canada                            100 23,062,456          24,468,841         </code></pre>
+<p>Now I will save the <code>wiki_data_final_table</code> tibble as an <code>.rds</code> file so that I can read it into my <code>.Rmd</code> file.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>wiki_data_final_table <span class="op">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">saveRDS</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;content&quot;</span>,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>                     <span class="st">&quot;post&quot;</span>,</span>
+<span id="cb9-4"><a href="#cb9-4"></a>                     <span class="st">&quot;2019-09-01-tables-in-pdf&quot;</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>                     <span class="st">&quot;cleaned_wiki_data_for_table.rds&quot;</span>))</span></code></pre></div>
+</div>
+<div id="creating-the-tables-in-pdf" class="section level2">
+<h2>Creating the tables in PDF</h2>
+<p>Below is the <code>.Rmd</code> file that reads in the <code>wiki_data_final_table</code> tibble and uses the <code>kable</code> and <code>kableExtra</code> packages in order to get the table to look the way I want it to.</p>
+<p>Also, notice that in the YAML, my output format is <code>bookdown::pdf_document2</code>. This allows me to cross-reference my tables with the text of my document.</p>
+<p>So, what’s the real secret to creating tables in PDF from RMarkdown?</p>
+<p>The secret is…</p>
+<p>The document ✨<a href="https://haozhu233.github.io/kableExtra/awesome_table_in_pdf.pdf">Create Awesome LaTeX Table with knitr::kable and kableExtra</a>✨, written by Hao Zhu! It’s got everything you need in order to make fantastic tables in PDF using RMarkdown.</p>
+<p>To see the final PDF of the below <code>.Rmd</code> file, click <a href="https://nbviewer.jupyter.org/github/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.pdf">here</a>!</p>
+<p>And if you’d like to see the actual <code>.Rmd</code> file on my Github page, click <a href="https://github.com/sharleenw/my_blog/blob/master/content/post/tables_in_pdf/largest_canadian_cities.Rmd">here</a>!</p>
+<pre><code>
+---
+output: 
+  bookdown::pdf_document2:
+    toc: no
+    number_sections: FALSE
+    keep_tex: TRUE
+always_allow_html: yes
+geometry: &quot;left=1.5cm,right=7cm,top=2cm,bottom=2cm&quot;
+
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE,
+                      out.width= &quot;8.5in&quot;)
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+# Colours for the table
+blue_table_colour &lt;- &quot;#9BD4F5&quot;
+
+orange_table_colour &lt;- &quot;#FF9000&quot;
+
+light_striping_table_colour &lt;- &quot;#DDDDDD&quot;
+
+```
+
+```{r import-cleaned-data}
+
+wiki_data_final_table &lt;- readRDS(here::here(&quot;content&quot;,
+                                            &quot;post&quot;,
+                                            &quot;2019-09-01-tables-in-pdf&quot;,
+                                            &quot;cleaned_wiki_data_for_table.rds&quot;))
+
+```
+
+# The top 100 cities in Canada
+
+Table \@ref(tab:table-population-by-province) shows the populations of each province and of Canada in total for the years 2011 and 2016 (this data includes only the top 100 largest cities in Canada).
+
+```{r table-population-by-province}
+
+wiki_data_final_table %&gt;%
+  knitr::kable(
+    &quot;latex&quot;,
+    booktabs = TRUE,
+    linesep = &quot;&quot;,
+    caption = &quot;Number of cities and population of each province (including only the largest 100 cities in Canada)&quot;,
+    col.names = c(&quot;Province&quot;, &quot;Number of largest 100 cities in this province&quot;, rep(c(&quot;2011&quot;, &quot;2016&quot;), 1)),
+    align = c(&quot;l&quot;, rep(&quot;r&quot;, 3))) %&gt;%
+  kable_styling(latex_options = &quot;HOLD_position&quot;) %&gt;%  # This line holds the table where you want it, so LaTeX won&#39;t move it around
+  add_header_above(
+    c(&quot; &quot; = 1,  # There has to be a space here, like this &quot; &quot;, and not like this &quot;&quot;
+      &quot; &quot; = 1,
+      &quot;Population&quot; = 2),
+    bold = TRUE,
+    line = FALSE,
+    background = blue_table_colour
+  ) %&gt;%
+  column_spec(1,
+              width = &quot;6cm&quot;) %&gt;%
+  column_spec(2:4,
+              width = &quot;3cm&quot;) %&gt;%
+  footnote(general = &quot;There are other cities in Canada not included in this table; the excluded cities are those smaller than the 100 largest cities in Canada.&quot;,
+           threeparttable = TRUE,
+           general_title = &quot;Footnote:&quot;) %&gt;%
+  row_spec(
+    row = 0,
+    background = blue_table_colour,
+    bold = TRUE,
+    align = &quot;c&quot;
+  ) %&gt;%
+  row_spec(
+    row = c(2,4,6,8,10),
+    background = light_striping_table_colour
+  ) %&gt;%
+  row_spec(
+    row = 11,
+    background = orange_table_colour,
+    bold = TRUE
+  ) %&gt;%
+  row_spec(
+    row = 10,
+    hline_after = TRUE)  # This hline unfortunately gets hidden by the orange colouring of the final row, so this line of code doesn&#39;t really do anything :(
+
+```
+</code></pre>
+<hr>
+</div>
+</div>
+<div id="session-info" class="section level1">
+<h1>Session info</h1>
+<pre><code>- Session info ---------------------------------------------------------------
+ setting  value                       
+ version  R version 4.0.2 (2020-06-22)
+ os       Windows 10 x64              
+ system   x86_64, mingw32             
+ ui       RTerm                       
+ language (EN)                        
+ collate  English_Canada.1252         
+ ctype    English_Canada.1252         
+ tz       America/New_York            
+ date     2020-09-02                  
+
+- Packages -------------------------------------------------------------------
+ package     * version    date       lib source                     
+ assertthat    0.2.1      2019-03-21 [1] CRAN (R 4.0.0)             
+ backports     1.1.8      2020-06-17 [1] CRAN (R 4.0.0)             
+ blogdown      0.20       2020-06-23 [1] CRAN (R 4.0.2)             
+ bookdown      0.20       2020-06-23 [1] CRAN (R 4.0.0)             
+ callr         3.4.3      2020-03-28 [1] CRAN (R 4.0.0)             
+ cli           2.0.2      2020-02-28 [1] CRAN (R 4.0.0)             
+ colorspace    1.4-1      2019-03-18 [1] CRAN (R 4.0.0)             
+ crayon        1.3.4      2017-09-16 [1] CRAN (R 4.0.0)             
+ desc          1.2.0      2018-05-01 [1] CRAN (R 4.0.0)             
+ devtools    * 2.3.1      2020-07-21 [1] CRAN (R 4.0.2)             
+ digest        0.6.25     2020-02-23 [1] CRAN (R 4.0.0)             
+ dplyr       * 1.0.1      2020-07-31 [1] CRAN (R 4.0.2)             
+ ellipsis      0.3.1      2020-05-15 [1] CRAN (R 4.0.2)             
+ emo         * 0.0.0.9000 2020-07-07 [1] Github (hadley/emo@3f03b11)
+ evaluate      0.14       2019-05-28 [1] CRAN (R 4.0.0)             
+ fansi         0.4.1      2020-01-08 [1] CRAN (R 4.0.0)             
+ fs            1.5.0      2020-07-31 [1] CRAN (R 4.0.2)             
+ generics      0.0.2      2018-11-29 [1] CRAN (R 4.0.0)             
+ glue          1.4.1      2020-05-13 [1] CRAN (R 4.0.2)             
+ here          0.1        2017-05-28 [1] CRAN (R 4.0.2)             
+ hms           0.5.3      2020-01-08 [1] CRAN (R 4.0.0)             
+ htmltools     0.5.0      2020-06-16 [1] CRAN (R 4.0.2)             
+ httr          1.4.2      2020-07-20 [1] CRAN (R 4.0.2)             
+ janitor     * 2.0.1      2020-04-12 [1] CRAN (R 4.0.0)             
+ kableExtra  * 1.1.0      2019-03-16 [1] CRAN (R 4.0.0)             
+ knitr       * 1.29       2020-06-23 [1] CRAN (R 4.0.2)             
+ lifecycle     0.2.0      2020-03-06 [1] CRAN (R 4.0.0)             
+ lubridate     1.7.9      2020-06-08 [1] CRAN (R 4.0.2)             
+ magrittr      1.5        2014-11-22 [1] CRAN (R 4.0.0)             
+ memoise       1.1.0      2017-04-21 [1] CRAN (R 4.0.0)             
+ munsell       0.5.0      2018-06-12 [1] CRAN (R 4.0.0)             
+ pillar        1.4.6      2020-07-10 [1] CRAN (R 4.0.2)             
+ pkgbuild      1.1.0      2020-07-13 [1] CRAN (R 4.0.2)             
+ pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 4.0.0)             
+ pkgload       1.1.0      2020-05-29 [1] CRAN (R 4.0.2)             
+ prettyunits   1.1.1      2020-01-24 [1] CRAN (R 4.0.0)             
+ processx      3.4.3      2020-07-05 [1] CRAN (R 4.0.2)             
+ ps            1.3.4      2020-08-11 [1] CRAN (R 4.0.2)             
+ purrr         0.3.4      2020-04-17 [1] CRAN (R 4.0.0)             
+ R6            2.4.1      2019-11-12 [1] CRAN (R 4.0.0)             
+ Rcpp          1.0.5      2020-07-06 [1] CRAN (R 4.0.2)             
+ readr       * 1.3.1      2018-12-21 [1] CRAN (R 4.0.0)             
+ remotes       2.2.0      2020-07-21 [1] CRAN (R 4.0.2)             
+ rlang         0.4.7      2020-07-09 [1] CRAN (R 4.0.2)             
+ rmarkdown     2.3        2020-06-18 [1] CRAN (R 4.0.2)             
+ rprojroot     1.3-2      2018-01-03 [1] CRAN (R 4.0.0)             
+ rstudioapi    0.11       2020-02-07 [1] CRAN (R 4.0.0)             
+ rvest         0.3.6      2020-07-25 [1] CRAN (R 4.0.2)             
+ scales        1.1.1      2020-05-11 [1] CRAN (R 4.0.2)             
+ sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 4.0.0)             
+ snakecase     0.11.0     2019-05-25 [1] CRAN (R 4.0.0)             
+ stringi       1.4.6      2020-02-17 [1] CRAN (R 4.0.0)             
+ stringr     * 1.4.0      2019-02-10 [1] CRAN (R 4.0.0)             
+ testthat      2.3.2      2020-03-02 [1] CRAN (R 4.0.0)             
+ tibble        3.0.3      2020-07-10 [1] CRAN (R 4.0.2)             
+ tidyselect    1.1.0      2020-05-11 [1] CRAN (R 4.0.2)             
+ usethis     * 1.6.1      2020-04-29 [1] CRAN (R 4.0.2)             
+ utf8          1.1.4      2018-05-24 [1] CRAN (R 4.0.0)             
+ vctrs         0.3.2      2020-07-15 [1] CRAN (R 4.0.2)             
+ viridisLite   0.3.0      2018-02-01 [1] CRAN (R 4.0.0)             
+ webshot       0.5.2      2019-11-22 [1] CRAN (R 4.0.2)             
+ withr         2.2.0      2020-04-20 [1] CRAN (R 4.0.0)             
+ xfun          0.16       2020-07-24 [1] CRAN (R 4.0.2)             
+ xml2          1.3.2      2020-04-23 [1] CRAN (R 4.0.2)             
+ yaml          2.2.1      2020-02-01 [1] CRAN (R 4.0.0)             
+
+[1] C:/Users/shw/Documents/R/win-library/4.0
+[2] C:/Program Files/R/R-4.0.2/library</code></pre>
+</div>

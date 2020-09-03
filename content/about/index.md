@@ -17,10 +17,10 @@ In 2011, I graduated from McMaster University's Chemical Engineering and Bioengi
 
 When not programming, I like to go birding, snowboarding, cycling, running, sailing, or practice my handstands and aerial arts.
 
-**Preferred pronouns: she/her**
-
 # Contact me
 
 If you'd like to contact me, my email is **sharleen at fastmail dot com**.
+
+Preferred pronouns: she/her
 
 

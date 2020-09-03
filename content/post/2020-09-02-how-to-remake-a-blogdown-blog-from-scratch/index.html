@@ -3,6 +3,7 @@ title: 'How to Remake a Blogdown Blog from Scratch'
 author: Sharleen Weatherley
 date: '2020-09-02'
 slug: how-to-remake-a-blogdown-blog-from-scratch
+description: What I learned rebuilding my blogdown blog.
 summary: What I learned rebuilding my blogdown blog.
 draft: false
 
@@ -10,10 +11,11 @@ tags:
   - blogdown
   - tutorial
 
+image: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 coverCaption: 'Yellow sparkly lights (Source: Public Domain Files)'
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
-thumbnailImagePosition: left
+thumbnailImagePosition: right
 autoThumbnailImage: yes
 coverSize: partial
 
@@ -293,7 +295,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-27"><a href="#cb3-27"></a><span class="fu">.alert-warning</span> {</span>
 <span id="cb3-28"><a href="#cb3-28"></a>  <span class="kw">background-color</span>: <span class="cn">#fffcbb</span><span class="op">;</span></span>
 <span id="cb3-29"><a href="#cb3-29"></a>  <span class="kw">border-color</span>: <span class="cn">#ffed83</span><span class="op">;</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a>}</span></code></pre></div>
+<span id="cb3-30"><a href="#cb3-30"></a>}</span>
+<span id="cb3-31"><a href="#cb3-31"></a></span>
+<span id="cb3-32"><a href="#cb3-32"></a></span>
+<span id="cb3-33"><a href="#cb3-33"></a></span>
+<span id="cb3-34"><a href="#cb3-34"></a>{{ if eq <span class="fu">.URL</span> &quot;/&quot; }}</span>
+<span id="cb3-35"><a href="#cb3-35"></a>&lt;title<span class="op">&gt;</span>{{ <span class="fu">.Site.Title</span> }}&lt;/title<span class="op">&gt;</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a>&lt;meta property=&quot;og<span class="in">:title</span>&quot; content=&quot;{{ <span class="fu">.Site.Title</span> }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a>&lt;meta property=&quot;og<span class="in">:type</span>&quot; content=&quot;website&quot;<span class="op">&gt;</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a>&lt;meta property=&quot;description&quot; content=&quot;{{ <span class="fu">.Site.Params.description</span> }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a>&lt;meta property=&quot;og<span class="in">:description</span>&quot; content=&quot;{{ <span class="fu">.Site.Params.description</span> }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a>&lt;meta name=&quot;twitter<span class="in">:card</span>&quot; content=&quot;summary&quot;<span class="op">&gt;</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a>{{ else }}</span>
+<span id="cb3-42"><a href="#cb3-42"></a>&lt;title<span class="op">&gt;</span>{{ <span class="fu">.Title</span> }}{{ with <span class="fu">.Params.subtitle</span> }} - {{ <span class="fu">.</span> }} {{ end }} - {{ <span class="fu">.Site.Title</span> }}&lt;/title<span class="op">&gt;</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a>&lt;meta property=&quot;og<span class="in">:title</span>&quot; content=&quot;{{ <span class="fu">.Title</span> }} - {{ <span class="fu">.Site.Title</span> }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a>&lt;meta property=&quot;og<span class="in">:type</span>&quot; content=&quot;article&quot;<span class="op">&gt;</span></span>
+<span id="cb3-45"><a href="#cb3-45"></a></span>
+<span id="cb3-46"><a href="#cb3-46"></a></span>
+<span id="cb3-47"><a href="#cb3-47"></a>{{ $defaultDescription := printf <span class="st">&quot;Article posted by %s, on %s&quot;</span> <span class="dv">.</span>Params<span class="dv">.</span>author (<span class="dv">.</span>Date<span class="dv">.</span>Format <span class="st">&quot;Monday, January 2nd, 2006&quot;</span>) }}</span>
+<span id="cb3-48"><a href="#cb3-48"></a>&lt;meta property=&quot;description&quot; content=&quot;{{ <span class="fu">.Description</span> <span class="op">|</span> default $defaultDescription }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-49"><a href="#cb3-49"></a>&lt;meta property=&quot;og<span class="in">:description</span>&quot; content=&quot;{{ <span class="fu">.Description</span> <span class="op">|</span> default $defaultDescription }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-50"><a href="#cb3-50"></a>{{ end }}</span>
+<span id="cb3-51"><a href="#cb3-51"></a></span>
+<span id="cb3-52"><a href="#cb3-52"></a>&lt;meta name=&quot;twitter<span class="in">:creator</span>&quot; content=&quot;{{ <span class="fu">.Params.twitterAuthor</span> }}&quot;<span class="op">&gt;</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a>&lt;meta name=&quot;twitter<span class="in">:site</span>&quot; content=&quot;{{ <span class="fu">.Params.twitterSite</span> }}&quot;<span class="op">&gt;</span></span></code></pre></div>
 <p>And in my actual posts, I need to write the following <code>html</code>:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode html"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">&lt;div</span><span class="ot"> class=</span><span class="st">&quot;well alert alert-info text-center&quot;</span><span class="ot"> role=</span><span class="st">&quot;alert&quot;</span><span class="kw">&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="kw">&lt;span</span><span class="ot"> class=</span><span class="st">&quot;fa fa-info-circle&quot;</span><span class="kw">&gt;&lt;/span&gt;</span><span class="dv">&amp;nbsp;&amp;nbsp;</span>This is a notice</span>
@@ -329,54 +354,57 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
  collate  English_Canada.1252         
  ctype    English_Canada.1252         
  tz       America/New_York            
- date     2020-09-02                  
+ date     2020-09-03                  
 
 - Packages -------------------------------------------------------------------
- package     * version    date       lib source                     
- assertthat    0.2.1      2019-03-21 [1] CRAN (R 4.0.0)             
- backports     1.1.8      2020-06-17 [1] CRAN (R 4.0.0)             
- blogdown      0.20       2020-06-23 [1] CRAN (R 4.0.2)             
- bookdown      0.20       2020-06-23 [1] CRAN (R 4.0.0)             
- callr         3.4.3      2020-03-28 [1] CRAN (R 4.0.0)             
- cli           2.0.2      2020-02-28 [1] CRAN (R 4.0.0)             
- crayon        1.3.4      2017-09-16 [1] CRAN (R 4.0.0)             
- desc          1.2.0      2018-05-01 [1] CRAN (R 4.0.0)             
- devtools    * 2.3.1      2020-07-21 [1] CRAN (R 4.0.2)             
- digest        0.6.25     2020-02-23 [1] CRAN (R 4.0.0)             
- ellipsis      0.3.1      2020-05-15 [1] CRAN (R 4.0.2)             
- emo         * 0.0.0.9000 2020-07-07 [1] Github (hadley/emo@3f03b11)
- evaluate      0.14       2019-05-28 [1] CRAN (R 4.0.0)             
- fansi         0.4.1      2020-01-08 [1] CRAN (R 4.0.0)             
- fs            1.5.0      2020-07-31 [1] CRAN (R 4.0.2)             
- generics      0.0.2      2018-11-29 [1] CRAN (R 4.0.0)             
- glue          1.4.1      2020-05-13 [1] CRAN (R 4.0.2)             
- here        * 0.1        2017-05-28 [1] CRAN (R 4.0.2)             
- htmltools     0.5.0      2020-06-16 [1] CRAN (R 4.0.2)             
- knitr         1.29       2020-06-23 [1] CRAN (R 4.0.2)             
- lubridate     1.7.9      2020-06-08 [1] CRAN (R 4.0.2)             
- magrittr      1.5        2014-11-22 [1] CRAN (R 4.0.0)             
- memoise       1.1.0      2017-04-21 [1] CRAN (R 4.0.0)             
- pkgbuild      1.1.0      2020-07-13 [1] CRAN (R 4.0.2)             
- pkgload       1.1.0      2020-05-29 [1] CRAN (R 4.0.2)             
- prettyunits   1.1.1      2020-01-24 [1] CRAN (R 4.0.0)             
- processx      3.4.3      2020-07-05 [1] CRAN (R 4.0.2)             
- ps            1.3.4      2020-08-11 [1] CRAN (R 4.0.2)             
- purrr         0.3.4      2020-04-17 [1] CRAN (R 4.0.0)             
- R6            2.4.1      2019-11-12 [1] CRAN (R 4.0.0)             
- Rcpp          1.0.5      2020-07-06 [1] CRAN (R 4.0.2)             
- remotes       2.2.0      2020-07-21 [1] CRAN (R 4.0.2)             
- rlang         0.4.7      2020-07-09 [1] CRAN (R 4.0.2)             
- rmarkdown     2.3        2020-06-18 [1] CRAN (R 4.0.2)             
- rprojroot     1.3-2      2018-01-03 [1] CRAN (R 4.0.0)             
- sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 4.0.0)             
- stringi       1.4.6      2020-02-17 [1] CRAN (R 4.0.0)             
- stringr       1.4.0      2019-02-10 [1] CRAN (R 4.0.0)             
- testthat      2.3.2      2020-03-02 [1] CRAN (R 4.0.0)             
- usethis     * 1.6.1      2020-04-29 [1] CRAN (R 4.0.2)             
- withr         2.2.0      2020-04-20 [1] CRAN (R 4.0.0)             
- xfun          0.16       2020-07-24 [1] CRAN (R 4.0.2)             
- yaml          2.2.1      2020-02-01 [1] CRAN (R 4.0.0)             
+ ! package     * version    date       lib source                     
+ P assertthat    0.2.1      2019-03-21 [?] CRAN (R 4.0.0)             
+ P backports     1.1.8      2020-06-17 [?] CRAN (R 4.0.0)             
+ P blogdown      0.20       2020-06-23 [?] CRAN (R 4.0.2)             
+ P bookdown      0.20       2020-06-23 [?] CRAN (R 4.0.0)             
+ P callr         3.4.3      2020-03-28 [?] CRAN (R 4.0.0)             
+ P cli           2.0.2      2020-02-28 [?] CRAN (R 4.0.0)             
+ P crayon        1.3.4      2017-09-16 [?] CRAN (R 4.0.0)             
+ P desc          1.2.0      2018-05-01 [?] CRAN (R 4.0.0)             
+ P devtools    * 2.3.1      2020-07-21 [?] CRAN (R 4.0.2)             
+ P digest        0.6.25     2020-02-23 [?] CRAN (R 4.0.0)             
+ P ellipsis      0.3.1      2020-05-15 [?] CRAN (R 4.0.2)             
+ P emo         * 0.0.0.9000 2020-07-07 [?] Github (hadley/emo@3f03b11)
+ P evaluate      0.14       2019-05-28 [?] CRAN (R 4.0.0)             
+ P fansi         0.4.1      2020-01-08 [?] CRAN (R 4.0.0)             
+ P fs            1.5.0      2020-07-31 [?] CRAN (R 4.0.2)             
+ P generics      0.0.2      2018-11-29 [?] CRAN (R 4.0.0)             
+ P glue          1.4.1      2020-05-13 [?] CRAN (R 4.0.2)             
+ P here        * 0.1        2017-05-28 [?] CRAN (R 4.0.2)             
+ P htmltools     0.5.0      2020-06-16 [?] CRAN (R 4.0.2)             
+ P knitr         1.29       2020-06-23 [?] CRAN (R 4.0.2)             
+ P lubridate     1.7.9      2020-06-08 [?] CRAN (R 4.0.2)             
+ P magrittr      1.5        2014-11-22 [?] CRAN (R 4.0.0)             
+ P memoise       1.1.0      2017-04-21 [?] CRAN (R 4.0.0)             
+ P pkgbuild      1.1.0      2020-07-13 [?] CRAN (R 4.0.2)             
+ P pkgload       1.1.0      2020-05-29 [?] CRAN (R 4.0.2)             
+ P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.0.0)             
+ P processx      3.4.3      2020-07-05 [?] CRAN (R 4.0.2)             
+ P ps            1.3.4      2020-08-11 [?] CRAN (R 4.0.2)             
+ P purrr         0.3.4      2020-04-17 [?] CRAN (R 4.0.0)             
+ P R6            2.4.1      2019-11-12 [?] CRAN (R 4.0.0)             
+ P Rcpp          1.0.5      2020-07-06 [?] CRAN (R 4.0.2)             
+ P remotes       2.2.0      2020-07-21 [?] CRAN (R 4.0.2)             
+   renv          0.11.0     2020-06-26 [1] CRAN (R 4.0.2)             
+ P rlang         0.4.7      2020-07-09 [?] CRAN (R 4.0.2)             
+ P rmarkdown     2.3        2020-06-18 [?] CRAN (R 4.0.2)             
+ P rprojroot     1.3-2      2018-01-03 [?] CRAN (R 4.0.0)             
+ P sessioninfo   1.1.1      2018-11-05 [?] CRAN (R 4.0.0)             
+ P stringi       1.4.6      2020-02-17 [?] CRAN (R 4.0.0)             
+ P stringr       1.4.0      2019-02-10 [?] CRAN (R 4.0.0)             
+ P testthat      2.3.2      2020-03-02 [?] CRAN (R 4.0.0)             
+ P usethis     * 1.6.1      2020-04-29 [?] CRAN (R 4.0.2)             
+ P withr         2.2.0      2020-04-20 [?] CRAN (R 4.0.0)             
+ P xfun          0.16       2020-07-24 [?] CRAN (R 4.0.2)             
+ P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.0.0)             
 
-[1] C:/Users/shw/Documents/R/win-library/4.0
-[2] C:/Program Files/R/R-4.0.2/library</code></pre>
+[1] C:/Users/shw/Desktop/blog2/renv/library/R-4.0/x86_64-w64-mingw32
+[2] C:/Users/shw/AppData/Local/Temp/RtmpINjcXA/renv-system-library
+
+ P -- Loaded and on-disk path mismatch.</code></pre>
 </div>

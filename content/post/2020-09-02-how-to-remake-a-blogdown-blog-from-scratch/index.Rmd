@@ -3,6 +3,7 @@ title: 'How to Remake a Blogdown Blog from Scratch'
 author: Sharleen Weatherley
 date: '2020-09-02'
 slug: how-to-remake-a-blogdown-blog-from-scratch
+description: What I learned rebuilding my blogdown blog.
 summary: What I learned rebuilding my blogdown blog.
 draft: false
 
@@ -10,10 +11,11 @@ tags:
   - blogdown
   - tutorial
 
+image: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 coverCaption: 'Yellow sparkly lights (Source: Public Domain Files)'
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
-thumbnailImagePosition: left
+thumbnailImagePosition: right
 autoThumbnailImage: yes
 coverSize: partial
 

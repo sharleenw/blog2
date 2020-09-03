@@ -4,6 +4,7 @@ subtitle: 'Creating a Shiny app for the Hamilton Christmas Bird Count data'
 author: Sharleen Weatherley
 date: '2019-03-24'
 slug: hamilton-cbc-part-3
+description: Creating a Shiny app for the Hamilton Christmas Bird Count data.
 summary: Creating a Shiny app for the Hamilton Christmas Bird Count data.
 draft: false
 
@@ -12,9 +13,11 @@ tags:
   - ggplot2
   - shiny
 
+twitterImg: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
-coverCaption: "Trumpeter Swans, Canada Geese and ducks on a pond in winter (Source: Public Domain Files)"
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
+
+coverCaption: "Trumpeter Swans, Canada Geese and ducks on a pond in winter (Source: Public Domain Files)"
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial

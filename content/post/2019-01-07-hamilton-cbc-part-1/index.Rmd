@@ -3,6 +3,7 @@ title: 'Hamilton Christmas Bird Count: Part 1'
 author: Sharleen Weatherley
 date: '2019-01-07'
 slug: hamilton-cbc-part-1
+description: Importing and cleaning 100 years of the Hamilton Christmas Bird Count data.
 summary: Importing and cleaning 100 years of the Hamilton Christmas Bird Count data.
 draft: false
 
@@ -10,10 +11,12 @@ tags:
   - data cleaning
   - birding
 
+twitterImg: https://www.publicdomainpictures.net/pictures/250000/velka/black-capped-chickadee-on-branch-3.jpg
 coverImage: https://www.publicdomainpictures.net/pictures/250000/velka/black-capped-chickadee-on-branch-3.jpg
-coverCaption: "A Black-capped Chickadee on a branch (Source: Public Domain Pictures)"
 thumbnailImage: https://www.publicdomainpictures.net/pictures/250000/velka/black-capped-chickadee-on-branch-3.jpg
-thumbnailImagePosition: left
+
+coverCaption: "A Black-capped Chickadee on a branch (Source: Public Domain Pictures)"
+thumbnailImagePosition: right
 autoThumbnailImage: yes
 coverSize: partial
 

@@ -17,7 +17,7 @@ languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "Sharleen's Website"
 theme = "hugo-tranquilpeak-theme"
-paginate = 7
+paginate = 5
 canonifyurls = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
@@ -100,7 +100,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Default format is: January 2, 2006
   # dateFormat = "2 January 2006"
 
-  description = "Website showcasing analytics projects using R"
+  description = "Website showcasing data analytics projects using R."
   
   # Global s configuration. Following s will be add to every pages
   keywords = ["data science", "R", "programming", "data analysis"]

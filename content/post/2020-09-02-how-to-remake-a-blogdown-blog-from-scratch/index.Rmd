@@ -11,10 +11,11 @@ tags:
   - blogdown
   - tutorial
 
-image: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
+twitterImg: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
-coverCaption: 'Yellow sparkly lights (Source: Public Domain Files)'
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
+
+coverCaption: 'Yellow sparkly lights (Source: Public Domain Files)'
 thumbnailImagePosition: right
 autoThumbnailImage: yes
 coverSize: partial

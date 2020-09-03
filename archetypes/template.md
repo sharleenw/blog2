@@ -3,15 +3,18 @@ title: "{{ replace .TranslationBaseName "-" " " | title }}"
 date: "{{ .Date }}"
 author: Sharleen Weatherley
 summary: "This is the summary that will appear on the main page."
+description: "This is the description that will appear on Twitter."
 draft: false
 
 tags:
 - tag1
 - tag2
 
+twitterImg: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-coverCaption: "A short caption (Source: The source)"
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+
+coverCaption: "A short caption (Source: Source)"
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial

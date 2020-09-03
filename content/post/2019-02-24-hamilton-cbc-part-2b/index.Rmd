@@ -3,6 +3,7 @@ title: 'Hamilton Christmas Bird Count: Part 2b'
 author: Sharleen Weatherley
 date: '2019-02-24'
 slug: hamilton-cbc-part-2b
+description: Visualizing the Hamilton Christmas Bird Count data.
 summary: Visualizing the Hamilton Christmas Bird Count data.
 draft: false
   
@@ -10,10 +11,12 @@ tags:
   - birding
   - visualization
 
+twitterImg: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-coverCaption: "A Dark-eyed Junco on a branch (Source: Public Domain Files)"
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-thumbnailImagePosition: left
+
+coverCaption: "A Dark-eyed Junco on a branch (Source: Public Domain Files)"
+thumbnailImagePosition: right
 autoThumbnailImage: yes
 coverSize: partial
 

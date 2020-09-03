@@ -4,18 +4,19 @@ subtitle: 'A guide on making tables in a PDF using RMarkdown and kableExtra.'
 author: Sharleen Weatherley
 date: '2019-09-01'
 slug: tables-in-pdf
+description: A guide on making tables in PDF using RMarkdown and kableExtra.
 summary: A guide on making tables in PDF using RMarkdown and kableExtra.
 draft: false
   
 tags:
   - RMarkdown
-  - kable
   - kableExtra
-  - pdf
-  
+
+twitterImg: https://images.unsplash.com/photo-1507992781348-310259076fe0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80
 coverImage: https://images.unsplash.com/photo-1507992781348-310259076fe0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80
-coverCaption: "View of Toronto from the water (Source: Unsplash)"
 thumbnailImage: https://images.unsplash.com/photo-1507992781348-310259076fe0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80
+
+coverCaption: "View of Toronto from the water (Source: Unsplash)"
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial

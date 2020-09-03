@@ -3,6 +3,7 @@ title: 'Hamilton Christmas Bird Count: Part 2a'
 author: Sharleen Weatherley
 date: '2019-02-23'
 slug: hamilton-cbc-part-2a
+description: Further cleaning of the Hamilton Christmas Bird Count data.
 summary: Further cleaning of the Hamilton Christmas Bird Count data.
 draft: false
   
@@ -10,9 +11,11 @@ tags:
   - data cleaning
   - birding
 
+twitterImg: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
-coverCaption: "A Northern Cardinal in winter (Source: Public Domain Files)"
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+
+coverCaption: "A Northern Cardinal in winter (Source: Public Domain Files)"
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial

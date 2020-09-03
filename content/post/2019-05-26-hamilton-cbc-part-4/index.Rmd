@@ -4,6 +4,7 @@ subtitle: 'Creating a gganimate plot for the Hamilton Christmas Bird Count data'
 author: Sharleen Weatherley
 date: '2019-05-26'
 slug: hamilton-cbc-part-4
+description: Creating a gganimate plot for the Hamilton Christmas Bird Count data.
 summary: Creating a gganimate plot for the Hamilton Christmas Bird Count data.
 draft: false
 
@@ -12,10 +13,12 @@ tags:
   - ggplot2
   - birding
 
+twitterImg: http://res.publicdomainfiles.com/pdf_view/125/13965704414279.jpg
 coverImage: http://res.publicdomainfiles.com/pdf_view/125/13965704414279.jpg
-coverCaption: "A Snow Bunting in the snow (Source: Public Domain Files)"
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/125/13965704414279.jpg
-thumbnailImagePosition: left
+
+coverCaption: "A Snow Bunting in the snow (Source: Public Domain Files)"
+thumbnailImagePosition: right
 autoThumbnailImage: yes
 coverSize: partial
 

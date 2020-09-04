@@ -83,7 +83,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   identifier = "resume"
   name = "Resume"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bars\"></i>"
-  url = "files/resume.pdf"
+  url = "files/resume_sharleen.pdf"
 
 #[[menu.misc]]
 #  weight = 1

@@ -19,6 +19,7 @@ title = "Sharleen's Website"
 theme = "hugo-tranquilpeak-theme"
 paginate = 5
 canonifyurls = true
+enableEmoji = false # This works when true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]
@@ -37,7 +38,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
-  picture = "images/headshot.jpg"
+  # picture = "images/headshot.jpg"
   twitter = "_sharleen_w"
   
 # Menu Configuration
@@ -59,13 +60,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "Tags"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
   url = "/tags"
-#[[menu.main]]
-#  weight = 4
-#  identifier = "resume"
-#  name = "Resume"
-#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bars\"></i>"
-#  url = "https://github.com/sharleenw"
-
 [[menu.main]]
   weight = 4
   identifier = "github"
@@ -84,7 +78,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "Linkedin"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
   url = "https://ca.linkedin.com/in/sharleen-weatherley"
-  
+[[menu.main]]
+  weight = 7
+  identifier = "resume"
+  name = "Resume"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bars\"></i>"
+  url = "files/resume.pdf"
 
 #[[menu.misc]]
 #  weight = 1

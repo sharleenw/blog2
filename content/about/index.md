@@ -9,7 +9,9 @@ showActions: false
 
 I am a Data Analyst currently working in the public sector in Toronto, Canada.
 
-At work, I use R, R Markdown, git and Shiny. My current favourite packages are `pointblank`, `drake` and `renv`.
+At work, I use R, R Markdown, git, SQL and Shiny.
+
+My current favourite packages are `pointblank`, `drake` and `renv`.
 
 In 2015, I graduated with an M.Sc. in Statistics from McMaster University in Hamilton, Canada.
 
@@ -19,7 +21,7 @@ When not programming, I like to go birding, snowboarding, cycling, running, sail
 
 # Contact me
 
-If you'd like to contact me, my email is **sharleen at fastmail dot com**.
+If you'd like to contact me, my email is **sharleen** at **fastmail** dot **com**.
 
 Preferred pronouns: she/her
 

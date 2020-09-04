@@ -16,7 +16,7 @@ coverImage: https://www.publicdomainpictures.net/pictures/250000/velka/black-cap
 thumbnailImage: https://www.publicdomainpictures.net/pictures/250000/velka/black-capped-chickadee-on-branch-3.jpg
 
 coverCaption: "A Black-capped Chickadee on a branch (Source: Public Domain Pictures)"
-thumbnailImagePosition: right
+thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial
 

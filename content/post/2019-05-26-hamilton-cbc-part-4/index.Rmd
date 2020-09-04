@@ -18,7 +18,7 @@ coverImage: http://res.publicdomainfiles.com/pdf_view/125/13965704414279.jpg
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/125/13965704414279.jpg
 
 coverCaption: "A Snow Bunting in the snow (Source: Public Domain Files)"
-thumbnailImagePosition: right
+thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial
 

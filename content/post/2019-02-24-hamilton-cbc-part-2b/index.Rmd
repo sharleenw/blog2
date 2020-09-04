@@ -16,7 +16,7 @@ coverImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
 
 coverCaption: "A Dark-eyed Junco on a branch (Source: Public Domain Files)"
-thumbnailImagePosition: right
+thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial
 

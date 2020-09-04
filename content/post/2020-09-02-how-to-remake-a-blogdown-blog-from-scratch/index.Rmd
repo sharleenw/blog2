@@ -16,7 +16,7 @@ coverImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 thumbnailImage: http://res.publicdomainfiles.com/pdf_view/141/13975810211265.jpg
 
 coverCaption: 'Yellow sparkly lights (Source: Public Domain Files)'
-thumbnailImagePosition: right
+thumbnailImagePosition: left
 autoThumbnailImage: yes
 coverSize: partial
 
@@ -76,7 +76,7 @@ With my new theme (Tranquilpeak), the emojis of my posts were no longer working!
 
 I found my solution at the bottom of this [page](https://github.com/rstudio/blogdown/issues/171): Download Hadley Wickham's [`emo`](https://github.com/hadley/emo) package and type `` `r '\u0060r emo::ji("smile")\u0060'` `` into the text of the `.Rmd` file.
 
-It takes more keystrokes to write, but this way, I think the emojis will always work no matter which theme I'm using.
+Another option is to set `enableEmoji = false` in the `config.toml` to `true`.
 
 # Use `devtools::session_info()` at the bottom of every post
 

@@ -137,7 +137,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <p>With my last blog (Academic theme), emojis just worked. If I typed “:smile:” into the text of my <code>.Rmd</code> file, the blog knew to convert it to 😄.</p>
 <p>With my new theme (Tranquilpeak), the emojis of my posts were no longer working!</p>
 <p>I found my solution at the bottom of this <a href="https://github.com/rstudio/blogdown/issues/171">page</a>: Download Hadley Wickham’s <a href="https://github.com/hadley/emo"><code>emo</code></a> package and type <code>`r emo::ji("smile")`</code> into the text of the <code>.Rmd</code> file.</p>
-<p>It takes more keystrokes to write, but this way, I think the emojis will always work no matter which theme I’m using.</p>
+<p>Another option is to set <code>enableEmoji = false</code> in the <code>config.toml</code> to <code>true</code>.</p>
 </div>
 <div id="use-devtoolssession_info-at-the-bottom-of-every-post" class="section level1">
 <h1>Use <code>devtools::session_info()</code> at the bottom of every post</h1>
@@ -385,7 +385,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
  P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.0.0)             
 
 [1] C:/Users/shw/Desktop/blog2/renv/library/R-4.0/x86_64-w64-mingw32
-[2] C:/Users/shw/AppData/Local/Temp/RtmponF5QV/renv-system-library
+[2] C:/Users/shw/AppData/Local/Temp/Rtmpi2AUud/renv-system-library
 
  P -- Loaded and on-disk path mismatch.</code></pre>
 </div>

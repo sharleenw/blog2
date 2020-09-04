@@ -31,10 +31,8 @@ knitr::opts_chunk$set(
   message = FALSE
 )
 
-library(emo)  # for emojis
 library(devtools) # for session_info()
 
-# `r emo::ji("smile")`  # Function call for emojis
 ```
 
 <hr>

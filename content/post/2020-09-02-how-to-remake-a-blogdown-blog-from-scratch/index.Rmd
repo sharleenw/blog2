@@ -68,15 +68,11 @@ So, in no particular order, here are some things I've learned! (Please let me kn
 
 # How can I get emojis to work`r emo::ji("exclamation")``r emo::ji("question")`
 
-Are your emojis looking like :cry: when you want them to look like `r emo::ji("smile")`?
+There are two options:
 
-With my last blog (Academic theme), emojis just worked. If I typed ":smile:" into the text of my `.Rmd` file, the blog knew to convert it to `r emo::ji("smile")`.
+1. Solution found [here](https://github.com/rstudio/blogdown/issues/171): Download Hadley Wickham's [`emo`](https://github.com/hadley/emo) package and type `` `r '\u0060r emo::ji("smile")\u0060'` `` into the text of the `.Rmd` file.
 
-With my new theme (Tranquilpeak), the emojis of my posts were no longer working!
-
-I found my solution at the bottom of this [page](https://github.com/rstudio/blogdown/issues/171): Download Hadley Wickham's [`emo`](https://github.com/hadley/emo) package and type `` `r '\u0060r emo::ji("smile")\u0060'` `` into the text of the `.Rmd` file.
-
-Another option is to set `enableEmoji = false` in the `config.toml` to `true`.
+2. Another solution is to set `enableEmoji = true` in the `config.toml`.
 
 # Use `devtools::session_info()` at the bottom of every post
 

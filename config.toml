@@ -19,7 +19,7 @@ title = "Sharleen's Website"
 theme = "hugo-tranquilpeak-theme"
 paginate = 5
 canonifyurls = true
-enableEmoji = false # This works when true
+enableEmoji = true # This works when true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [permalinks]

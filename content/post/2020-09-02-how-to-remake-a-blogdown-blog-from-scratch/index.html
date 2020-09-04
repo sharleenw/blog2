@@ -133,11 +133,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="how-can-i-get-emojis-to-work" class="section level1">
 <h1>How can I get emojis to work❗❓</h1>
-<p>Are your emojis looking like :cry: when you want them to look like 😄?</p>
-<p>With my last blog (Academic theme), emojis just worked. If I typed “:smile:” into the text of my <code>.Rmd</code> file, the blog knew to convert it to 😄.</p>
-<p>With my new theme (Tranquilpeak), the emojis of my posts were no longer working!</p>
-<p>I found my solution at the bottom of this <a href="https://github.com/rstudio/blogdown/issues/171">page</a>: Download Hadley Wickham’s <a href="https://github.com/hadley/emo"><code>emo</code></a> package and type <code>`r emo::ji("smile")`</code> into the text of the <code>.Rmd</code> file.</p>
-<p>Another option is to set <code>enableEmoji = false</code> in the <code>config.toml</code> to <code>true</code>.</p>
+<p>There are two options:</p>
+<ol style="list-style-type: decimal">
+<li><p>Solution found <a href="https://github.com/rstudio/blogdown/issues/171">here</a>: Download Hadley Wickham’s <a href="https://github.com/hadley/emo"><code>emo</code></a> package and type <code>`r emo::ji("smile")`</code> into the text of the <code>.Rmd</code> file.</p></li>
+<li><p>Another solution is to set <code>enableEmoji = true</code> in the <code>config.toml</code>.</p></li>
+</ol>
 </div>
 <div id="use-devtoolssession_info-at-the-bottom-of-every-post" class="section level1">
 <h1>Use <code>devtools::session_info()</code> at the bottom of every post</h1>
@@ -187,21 +187,19 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-31"><a href="#cb1-31"></a><span class="dt">  message = FALSE</span></span>
 <span id="cb1-32"><a href="#cb1-32"></a><span class="dt">)</span></span>
 <span id="cb1-33"><a href="#cb1-33"></a></span>
-<span id="cb1-34"><a href="#cb1-34"></a><span class="dt">library(emo)  # for emojis</span></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="dt">library(devtools) # for session_info()</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="dt"># </span><span class="st">`</span>r emo<span class="op">::</span><span class="kw">ji</span>(<span class="st">&quot;smile&quot;</span>)<span class="st">`</span><span class="dt">  # Function call for emojis</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="st">```</span></span>
+<span id="cb1-34"><a href="#cb1-34"></a><span class="dt">library(devtools) # for session_info()</span></span>
+<span id="cb1-35"><a href="#cb1-35"></a></span>
+<span id="cb1-36"><a href="#cb1-36"></a><span class="st">```</span></span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a><span class="op">&lt;</span>hr<span class="op">&gt;</span></span>
 <span id="cb1-39"><a href="#cb1-39"></a></span>
-<span id="cb1-40"><a href="#cb1-40"></a><span class="op">&lt;</span>hr<span class="op">&gt;</span></span>
+<span id="cb1-40"><a href="#cb1-40"></a><span class="co"># Session info</span></span>
 <span id="cb1-41"><a href="#cb1-41"></a></span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="co"># Session info</span></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="st">```</span><span class="dt">{r reproducibility, echo = FALSE}</span></span>
 <span id="cb1-43"><a href="#cb1-43"></a></span>
-<span id="cb1-44"><a href="#cb1-44"></a><span class="st">```</span><span class="dt">{r reproducibility, echo = FALSE}</span></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="dt">devtools::session_info()</span></span>
 <span id="cb1-45"><a href="#cb1-45"></a></span>
-<span id="cb1-46"><a href="#cb1-46"></a><span class="dt">devtools::session_info()</span></span>
-<span id="cb1-47"><a href="#cb1-47"></a></span>
-<span id="cb1-48"><a href="#cb1-48"></a><span class="st">```</span></span></code></pre></div>
+<span id="cb1-46"><a href="#cb1-46"></a><span class="st">```</span></span></code></pre></div>
 </div>
 <div id="what-to-touch-and-what-not-to-touch" class="section level1">
 <h1>What to touch and what not to touch</h1>
@@ -385,7 +383,7 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
  P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.0.0)             
 
 [1] C:/Users/shw/Desktop/blog2/renv/library/R-4.0/x86_64-w64-mingw32
-[2] C:/Users/shw/AppData/Local/Temp/Rtmpi2AUud/renv-system-library
+[2] C:/Users/shw/AppData/Local/Temp/RtmpmIaJJp/renv-system-library
 
  P -- Loaded and on-disk path mismatch.</code></pre>
 </div>

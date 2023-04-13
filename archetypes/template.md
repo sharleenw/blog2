@@ -10,9 +10,9 @@ tags:
 - tag1
 - tag2
 
-twitterImg: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-coverImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-thumbnailImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+twitterImg: https://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+coverImage: https://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+thumbnailImage: https://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
 
 coverCaption: "A short caption (Source: Source)"
 thumbnailImagePosition: left

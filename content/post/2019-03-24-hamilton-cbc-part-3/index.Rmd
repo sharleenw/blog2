@@ -13,9 +13,9 @@ tags:
   - ggplot2
   - shiny
 
-twitterImg: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
-coverImage: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
-thumbnailImage: http://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
+twitterImg: https://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
+coverImage: https://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
+thumbnailImage: https://res.publicdomainfiles.com/pdf_view/120/13962679218561.jpg
 
 coverCaption: "Trumpeter Swans, Canada Geese and ducks on a pond in winter (Source: Public Domain Files)"
 thumbnailImagePosition: left

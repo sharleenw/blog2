@@ -11,9 +11,9 @@ tags:
   - data cleaning
   - birding
 
-twitterImg: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
-coverImage: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
-thumbnailImage: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+twitterImg: https://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+coverImage: https://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+thumbnailImage: https://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
 
 coverCaption: "A Northern Cardinal in winter (Source: Public Domain Files)"
 thumbnailImagePosition: left

@@ -33,8 +33,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [author]
   name = "Sharleen Weatherley"
   bio = "Learning about programming and data analysis"
-  job = "Data Analyst"
-  location = "Toronto"
+  job = "Data Scientist"
+  location = "British Columbia"
   # Your Gravatar email. Overwrite `author.picture` everywhere in the blog
   # Your profile picture
   # Overwritten by your gravatar image if `author.gravatarEmail` is filled
@@ -72,18 +72,12 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   name = "Twitter"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-twitter\"></i>"
   url = "https://twitter.com/_sharleen_w"
-[[menu.main]]
-  weight = 6
-  identifier = "linkedin"
-  name = "Linkedin"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-linkedin\"></i>"
-  url = "https://ca.linkedin.com/in/sharleen-weatherley"
-[[menu.main]]
-  weight = 7
-  identifier = "resume"
-  name = "Resume"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bars\"></i>"
-  url = "files/resume_sharleen.pdf"
+#[[menu.main]]
+#  weight = 6
+#  identifier = "resume"
+#  name = "Resume"
+#  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bars\"></i>"
+#  url = "files/resume_sharleen.pdf"
 
 #[[menu.misc]]
 #  weight = 1

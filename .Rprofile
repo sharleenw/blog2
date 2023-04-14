@@ -7,3 +7,6 @@ options(
   blogdown.new_bundle = TRUE,
   blogdown.title_case = TRUE
 )
+
+# fix Hugo version
+options(blogdown.hugo.version = "0.111.3")

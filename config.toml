@@ -20,7 +20,7 @@ theme = "hugo-tranquilpeak-theme"
 paginate = 5
 canonifyurls = true
 enableEmoji = true # This works when true
-ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "(^|/)renv$", "renv\\.lock$", "_cache$"]
 
 [permalinks]
   post = "/:year/:month/:day/:slug/"
@@ -197,3 +197,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Customize copyright value "© 2017 <CUSTOMIZATION>. All Rights Reserved"
   [params.footer]
   copyright = "Sharleen Weatherley | Theme from <a href=\"https://github.com/kakawait\">kakawait</a>"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

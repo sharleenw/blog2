@@ -22,21 +22,20 @@ coverSize: partial
 
 ---
 
-<script src="/rmarkdown-libs/accessible-code-block/empty-anchor.js"></script>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -56,7 +55,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -90,11 +89,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#data-import">Data import</a></li>
-<li><a href="#data-cleaning">Data cleaning</a></li>
-<li><a href="#final-dataset">Final dataset</a></li>
-<li><a href="#session-info">Session info</a></li>
+<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+<li><a href="#data-import" id="toc-data-import">Data import</a></li>
+<li><a href="#data-cleaning" id="toc-data-cleaning">Data cleaning</a></li>
+<li><a href="#final-dataset" id="toc-final-dataset">Final dataset</a></li>
+<li><a href="#session-info" id="toc-session-info">Session info</a></li>
 </ul>
 </div>
 
@@ -123,63 +122,63 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-import" class="section level1">
 <h1>Data import</h1>
 <p>I started by loading all of the packages I will be using and reading in the data using the <a href="https://readr.tidyverse.org/"><code>readr</code></a> and <a href="https://malco.io/2018/11/05/why-should-i-use-the-here-package/"><code>here</code></a> packages.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(janitor)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(readr)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(naniar)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">library</span>(stringr)</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="kw">library</span>(here)</span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a>hamilton_cbc &lt;-<span class="st"> </span><span class="kw">read_csv</span>(here<span class="op">::</span><span class="kw">here</span>(</span>
-<span id="cb1-11"><a href="#cb1-11"></a>  <span class="st">&quot;content&quot;</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>  <span class="st">&quot;post&quot;</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>  <span class="st">&quot;2019-01-07-hamilton-cbc-part-1&quot;</span>,</span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="st">&quot;hamilton-cbc-all-years-csv.csv&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(naniar)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;content&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;post&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;2019-01-07-hamilton-cbc-part-1&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;hamilton-cbc-all-years-csv.csv&quot;</span>))</span></code></pre></div>
 </div>
 <div id="data-cleaning" class="section level1">
 <h1>Data cleaning</h1>
 <p>As shown below, it turns out that the first row just gives information about the count name and latitude/longitude, so I extracted those two pieces of information as <code>current_circle_name</code> and <code>lat_long</code> and then <a href="https://dplyr.tidyverse.org/reference/slice.html"><code>slice</code></a>d the file so that the first two lines were excluded from the dataset. I then used <code>clean_names</code> from the <a href="https://www.rdocumentation.org/packages/janitor/versions/1.1.1/topics/clean_names"><code>janitor</code></a> package.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
-<pre><code># A tibble: 6 x 9
-  CircleName Abbrev    LatLong        X4      X5      X6    X7       X8    X9   
-  &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;          &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;
-1 Hamilton   ONHA      43.2678790000~ &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt; 
-2 &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;           &lt;NA&gt;    &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt; 
-3 CountYear3 LowTemp   HighTemp       AMCloud PMClou~ AMRa~ &quot;PMRain&quot; AMSn~ PMSn~
-4 118        -18.0 Ce~ -13.0 Celsius  Clear   Clear   None  &quot;None&quot;   None  None 
-5 117        -2.0 Cel~ 11.0 Celsius   Cloudy  Cloudy  Light &quot;Heavy\~ None  None 
-6 116        -2.0 Cel~ 5.0 Celsius    Partly~ Partly~ None  &quot;Light&quot;  None  None </code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>current_circle_name &lt;-<span class="st"> </span>hamilton_cbc[<span class="dv">1</span>, <span class="dv">1</span>]</span>
-<span id="cb4-2"><a href="#cb4-2"></a>lat_long &lt;-<span class="st"> </span>hamilton_cbc[<span class="dv">1</span>, <span class="dv">3</span>]</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">3</span> <span class="op">:</span><span class="st"> </span><span class="kw">n</span>())</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code># A tibble: 6 × 9
+  CircleName Abbrev        LatLong           ...4  ...5  ...6  ...7  ...8  ...9 
+  &lt;chr&gt;      &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 Hamilton   ONHA          43.2678790000/-7… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; 
+2 &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;              &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;   &lt;NA&gt; &lt;NA&gt;  &lt;NA&gt; 
+3 CountYear3 LowTemp       HighTemp          AMCl… PMCl… AMRa… &quot;PMR… AMSn… PMSn…
+4 118        -18.0 Celsius -13.0 Celsius     Clear Clear None  &quot;Non… None  None 
+5 117        -2.0 Celsius  11.0 Celsius      Clou… Clou… Light &quot;Hea… None  None 
+6 116        -2.0 Celsius  5.0 Celsius       Part… Part… None  &quot;Lig… None  None </code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>current_circle_name <span class="ot">&lt;-</span> hamilton_cbc[<span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>lat_long <span class="ot">&lt;-</span> hamilton_cbc[<span class="dv">1</span>, <span class="dv">3</span>]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">3</span> <span class="sc">:</span> <span class="fu">n</span>())</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>()</span></code></pre></div>
 <p>Since I played around with the data before writing this, I know that there are actually six tables in this dataset.</p>
 <p>The first three tables contain count day weather data. A lot of the weather data is missing and inconsistent. I will remove these three tables from <code>hamilton_cbc</code>.</p>
 <p>Here is the end of the first table and the start of the second table. Notice the line of <code>NA</code>s between the two tables:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">47</span><span class="op">:</span><span class="dv">54</span>)</span></code></pre></div>
-<pre><code># A tibble: 8 x 9
-  circle_name abbrev    lat_long  x4       x5       x6      x7     x8     x9    
-  &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
-1 66          10        25        Clear    Clear    Unknown Unkno~ Unkno~ Unkno~
-2 65          18        31        Cloudy   Cloudy   Unknown Unkno~ Unkno~ Unkno~
-3 64          26        34        Cloudy   Cloudy   Unknown Unkno~ Unkno~ Unkno~
-4 63          21        36        Cloudy   Cloudy   Unknown Unkno~ Unkno~ Unkno~
-5 &lt;NA&gt;        &lt;NA&gt;      &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  
-6 CountYear5  LowTemp3  HighTemp2 AMCloud2 PMCloud~ &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  
-7 118         12/26/20~ 85        198.75   100      &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  
-8 117         12/26/20~ 95        216.65   97       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;  </code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">47</span><span class="sc">:</span><span class="dv">54</span>)</span></code></pre></div>
+<pre><code># A tibble: 8 × 9
+  circle_name abbrev     lat_long  x4       x5        x6      x7     x8    x9   
+  &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;
+1 66          10         25        Clear    Clear     Unknown Unkno… Unkn… Unkn…
+2 65          18         31        Cloudy   Cloudy    Unknown Unkno… Unkn… Unkn…
+3 64          26         34        Cloudy   Cloudy    Unknown Unkno… Unkn… Unkn…
+4 63          21         36        Cloudy   Cloudy    Unknown Unkno… Unkn… Unkn…
+5 &lt;NA&gt;        &lt;NA&gt;       &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;      &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt; 
+6 CountYear5  LowTemp3   HighTemp2 AMCloud2 PMClouds2 &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt; 
+7 118         12/26/2017 85        198.75   100       &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt; 
+8 117         12/26/2016 95        216.65   97        &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt; </code></pre>
 <p>Here is the end of the second table and the start of the third table. Notice the line of <code>NA</code>s between the two tables:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>hamilton_cbc <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">143</span><span class="op">:</span><span class="dv">150</span>)</span></code></pre></div>
-<pre><code># A tibble: 8 x 9
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">143</span><span class="sc">:</span><span class="dv">150</span>)</span></code></pre></div>
+<pre><code># A tibble: 8 × 9
   circle_name abbrev                lat_long x4    x5    x6    x7    x8    x9   
   &lt;chr&gt;       &lt;chr&gt;                 &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
 1 26          12/26/1925            10       &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
@@ -188,30 +187,30 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 4 22          12/23/1921            2        8     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
 5 &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
 6 CountYear4  LowTemp2              &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-7 118         Hamilton Naturalists~ &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-8 117         Hamilton Naturalists~ &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
+7 118         Hamilton Naturalists… &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+8 117         Hamilton Naturalists… &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
 <p>Here is the end of the third table and the start of the fourth table. Notice that there is a line of <code>NA</code>s between the two tables. The fourth table is where the bird count data actually starts!</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">239</span><span class="op">:</span><span class="dv">246</span>)</span></code></pre></div>
-<pre><code># A tibble: 8 x 9
-  circle_name     abbrev           lat_long x4     x5    x6    x7    x8    x9   
-  &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 &quot;26&quot;             &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-2 &quot;25&quot;             &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-3 &quot;23&quot;             &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-4 &quot;22&quot;             &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-5  &lt;NA&gt;            &lt;NA&gt;            &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-6 &quot;COM_NAME&quot;      &quot;CountYear&quot;      how_man~ Numbe~ Flags &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-7 &quot;Snow Goose\r\~ &quot;1921 [22]\r\nC~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-8 &quot;Snow Goose\r\~ &quot;1922 [23]\r\nC~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">239</span><span class="sc">:</span><span class="dv">246</span>)</span></code></pre></div>
+<pre><code># A tibble: 8 × 9
+  circle_name                abbrev lat_long x4    x5    x6    x7    x8    x9   
+  &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 &quot;26&quot;                        &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+2 &quot;25&quot;                        &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+3 &quot;23&quot;                        &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+4 &quot;22&quot;                        &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+5  &lt;NA&gt;                       &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+6 &quot;COM_NAME&quot;                 &quot;Coun… how_man… Numb… Flags &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+7 &quot;Snow Goose\r\n[Chen caer… &quot;1921… &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+8 &quot;Snow Goose\r\n[Chen caer… &quot;1922… &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
 <p>The last two tables of the six tables contain the names of the people who went out counting each year. I will also remove these two tables.</p>
 <p>Since the tables are separated by having a line of <code>NA</code>’s in between each table, I will first figure out which rows are a line of NAs. Then I will only keep the rows of the fourth table.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>blank_lines &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">row_num =</span> <span class="kw">row_number</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(circle_name))</span>
-<span id="cb11-4"><a href="#cb11-4"></a></span>
-<span id="cb11-5"><a href="#cb11-5"></a>blank_lines</span></code></pre></div>
-<pre><code># A tibble: 5 x 10
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>blank_lines <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">row_num =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(circle_name))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>blank_lines</span></code></pre></div>
+<pre><code># A tibble: 5 × 10
   circle_name abbrev lat_long x4    x5    x6    x7    x8    x9    row_num
   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;   &lt;int&gt;
 1 &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;       51
@@ -219,54 +218,54 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 3 &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;      243
 4 &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;    23463
 5 &lt;NA&gt;        &lt;NA&gt;   &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;    23473</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>starting_line &lt;-<span class="st"> </span>blank_lines <span class="op">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="st">  </span><span class="kw">pull</span>(row_num)</span>
-<span id="cb13-4"><a href="#cb13-4"></a></span>
-<span id="cb13-5"><a href="#cb13-5"></a>ending_line &lt;-<span class="st"> </span>blank_lines <span class="op">%&gt;%</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="st">  </span><span class="kw">pull</span>(row_num)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>starting_line <span class="ot">&lt;-</span> blank_lines <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(row_num)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>ending_line <span class="ot">&lt;-</span> blank_lines <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(row_num)</span></code></pre></div>
 <p>So, with those values of <code>starting_line</code> and <code>ending_line</code>, we can <code>slice</code> our dataset to only have the rows between those two values. Here’s what it looks like:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="co"># Only keep the rows within the fourth table</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">slice</span>((starting_line <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">:</span>(ending_line <span class="op">-</span><span class="st"> </span><span class="dv">1</span>))</span>
-<span id="cb14-4"><a href="#cb14-4"></a></span>
-<span id="cb14-5"><a href="#cb14-5"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="st">  </span><span class="kw">head</span>(<span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code># A tibble: 3 x 9
-  circle_name     abbrev           lat_long x4     x5    x6    x7    x8    x9   
-  &lt;chr&gt;           &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 &quot;COM_NAME&quot;      &quot;CountYear&quot;      how_man~ Numbe~ Flags &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-2 &quot;Snow Goose\r\~ &quot;1921 [22]\r\nC~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-3 &quot;Snow Goose\r\~ &quot;1922 [23]\r\nC~ &lt;NA&gt;     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw">tail</span>(<span class="dt">n =</span> <span class="dv">3</span>)</span></code></pre></div>
-<pre><code># A tibble: 3 x 9
-  circle_name      abbrev           lat_long x4    x5    x6    x7    x8    x9   
-  &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-1 &quot;House Sparrow\~ &quot;2015 [116]\r\n~ 2326     10.5~ &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-2 &quot;House Sparrow\~ &quot;2016 [117]\r\n~ 2565     11.8~ &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
-3 &quot;House Sparrow\~ &quot;2017 [118]\r\n~ 2731     13.7~ &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Only keep the rows within the fourth table</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>((starting_line <span class="sc">+</span> <span class="dv">1</span>)<span class="sc">:</span>(ending_line <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code># A tibble: 3 × 9
+  circle_name                abbrev lat_long x4    x5    x6    x7    x8    x9   
+  &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 &quot;COM_NAME&quot;                 &quot;Coun… how_man… Numb… Flags &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+2 &quot;Snow Goose\r\n[Chen caer… &quot;1921… &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+3 &quot;Snow Goose\r\n[Chen caer… &quot;1922… &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>(<span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code># A tibble: 3 × 9
+  circle_name                abbrev lat_long x4    x5    x6    x7    x8    x9   
+  &lt;chr&gt;                      &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 &quot;House Sparrow\r\n[Passer… &quot;2015… 2326     10.5… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+2 &quot;House Sparrow\r\n[Passer… &quot;2016… 2565     11.8… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+3 &quot;House Sparrow\r\n[Passer… &quot;2017… 2731     13.7… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </code></pre>
 <p>You can see that the table starts with Snow Goose data from 1921 and goes until House Sparrow data in 2017.</p>
 <p>Now we can clean this dataset up a bit more using the <code>janitor</code> package ❤️! This package will remove any empty columns, convert the top row to the column names of the dataset and it will clean the names.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Janitor package to the rescue!</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">remove_empty</span>(<span class="dt">which =</span> <span class="st">&quot;cols&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span></span>
-<span id="cb18-4"><a href="#cb18-4"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">row_to_names</span>(<span class="dt">row_number =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>() <span class="op">%&gt;%</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">species =</span> com_name)</span>
-<span id="cb18-7"><a href="#cb18-7"></a></span>
-<span id="cb18-8"><a href="#cb18-8"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb18-9"><a href="#cb18-9"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
-<pre><code># A tibble: 6 x 5
-  species        count_year                  how_many_cw number_by_party_~ flags
-  &lt;chr&gt;          &lt;chr&gt;                       &lt;chr&gt;       &lt;chr&gt;             &lt;chr&gt;
-1 &quot;Snow Goose\r~ &quot;1921 [22]\r\nCount Date: ~ &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt; 
-2 &quot;Snow Goose\r~ &quot;1922 [23]\r\nCount Date: ~ &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt; 
-3 &quot;Snow Goose\r~ &quot;1924 [25]\r\nCount Date: ~ &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt; 
-4 &quot;Snow Goose\r~ &quot;1925 [26]\r\nCount Date: ~ &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt; 
-5 &quot;Snow Goose\r~ &quot;1926 [27]\r\nCount Date: ~ &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt; 
-6 &quot;Snow Goose\r~ &quot;1928 [29]\r\nCount Date: ~ &lt;NA&gt;        &lt;NA&gt;              &lt;NA&gt; </code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Janitor package to the rescue!</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">remove_empty</span>(<span class="at">which =</span> <span class="st">&quot;cols&quot;</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">row_to_names</span>(<span class="at">row_number =</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">species =</span> com_name)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code># A tibble: 6 × 5
+  species                     count_year how_many_cw number_by_party_hours flags
+  &lt;chr&gt;                       &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;                 &lt;chr&gt;
+1 &quot;Snow Goose\r\n[Chen caeru… &quot;1921 [22… &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt; 
+2 &quot;Snow Goose\r\n[Chen caeru… &quot;1922 [23… &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt; 
+3 &quot;Snow Goose\r\n[Chen caeru… &quot;1924 [25… &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt; 
+4 &quot;Snow Goose\r\n[Chen caeru… &quot;1925 [26… &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt; 
+5 &quot;Snow Goose\r\n[Chen caeru… &quot;1926 [27… &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt; 
+6 &quot;Snow Goose\r\n[Chen caeru… &quot;1928 [29… &lt;NA&gt;        &lt;NA&gt;                  &lt;NA&gt; </code></pre>
 <ul>
 <li><code>species</code> gives the species name in English and the scientific name, in parentheses</li>
 <li><code>count_year</code> data has a lot of information that we will parse out in a moment</li>
@@ -284,19 +283,19 @@ s</p>
 </blockquote>
 <p>For the second mutate:
 As you can see in the code below, there is a line break (<code>\n</code>) between every English name and every scientific name in <code>species</code>. We will use that to parse out the scientific name:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>hamilton_cbc <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb20-3"><a href="#cb20-3"></a><span class="st">  </span><span class="kw">pull</span>(species)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(species)</span></code></pre></div>
 <pre><code>[1] &quot;Snow Goose\r\n[Chen caerulescens]&quot;</code></pre>
 <p>Here are the two <code>mutate</code>s together:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Putting it together: Mutating the two variables</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">species_latin =</span> <span class="kw">str_extract</span>(species, <span class="st">&quot;(?&lt;=</span><span class="ch">\\</span><span class="st">[).+?(?=</span><span class="ch">\\</span><span class="st">])&quot;</span>),</span>
-<span id="cb22-4"><a href="#cb22-4"></a>         <span class="dt">species =</span> <span class="kw">word</span>(species, <span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">sep =</span> <span class="kw">fixed</span>(<span class="st">&#39;</span><span class="ch">\n</span><span class="st">[&#39;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Putting it together: Mutating the two variables</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species_latin =</span> <span class="fu">str_extract</span>(species, <span class="st">&quot;(?&lt;=</span><span class="sc">\\</span><span class="st">[).+?(?=</span><span class="sc">\\</span><span class="st">])&quot;</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">species =</span> <span class="fu">word</span>(species, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">sep =</span> <span class="fu">fixed</span>(<span class="st">&#39;</span><span class="sc">\n</span><span class="st">[&#39;</span>)))</span></code></pre></div>
 <p>Now we will look at the <code>count_year</code> variable. Let’s get a sense of what the variable looks like, using the White-Breasted Nuthatch count in 2016:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>hamilton_cbc <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb23-2"><a href="#cb23-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">15133</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">pull</span>(count_year)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">15133</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(count_year)</span></code></pre></div>
 <pre><code>[1] &quot;2016 [117]\r\nCount Date: 12/26/2016\r\n# Participants: 1\r\n# Species Reported: 97\r\nTotal Hrs.: 216.65&quot;</code></pre>
 <p>The <code>count_year</code> variable is actually several variables in one:</p>
 <ul>
@@ -309,38 +308,38 @@ As you can see in the code below, there is a line break (<code>\n</code>) betwee
 </ul>
 <p>This is all metadata and we can take most of it out of this dataset. The only variable we will keep in the <code>hamilton_cbc</code> dataset is the calendar year.</p>
 <p>And where are we at with the <code>hamilton_cbc</code> dataset?</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="st">  </span><span class="kw">tail</span>()</span></code></pre></div>
-<pre><code># A tibble: 6 x 6
-  species   count_year          how_many_cw number_by_party~ flags species_latin
-  &lt;chr&gt;     &lt;chr&gt;               &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt; &lt;chr&gt;        
-1 &quot;House S~ &quot;2012 [113]\r\nCou~ 1473        7.5713           &lt;NA&gt;  Passer domes~
-2 &quot;House S~ &quot;2013 [114]\r\nCou~ 1802        9.8902           &lt;NA&gt;  Passer domes~
-3 &quot;House S~ &quot;2014 [115]\r\nCou~ 1318        7.3529           &lt;NA&gt;  Passer domes~
-4 &quot;House S~ &quot;2015 [116]\r\nCou~ 2326        10.5249          &lt;NA&gt;  Passer domes~
-5 &quot;House S~ &quot;2016 [117]\r\nCou~ 2565        11.8394          &lt;NA&gt;  Passer domes~
-6 &quot;House S~ &quot;2017 [118]\r\nCou~ 2731        13.7409          &lt;NA&gt;  Passer domes~</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code></pre></div>
+<pre><code># A tibble: 6 × 6
+  species       count_year how_many_cw number_by_party_hours flags species_latin
+  &lt;chr&gt;         &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt;                 &lt;chr&gt; &lt;chr&gt;        
+1 &quot;House Sparr… &quot;2012 [11… 1473        7.5713                &lt;NA&gt;  Passer domes…
+2 &quot;House Sparr… &quot;2013 [11… 1802        9.8902                &lt;NA&gt;  Passer domes…
+3 &quot;House Sparr… &quot;2014 [11… 1318        7.3529                &lt;NA&gt;  Passer domes…
+4 &quot;House Sparr… &quot;2015 [11… 2326        10.5249               &lt;NA&gt;  Passer domes…
+5 &quot;House Sparr… &quot;2016 [11… 2565        11.8394               &lt;NA&gt;  Passer domes…
+6 &quot;House Sparr… &quot;2017 [11… 2731        13.7409               &lt;NA&gt;  Passer domes…</code></pre>
 <p>Let’s clean up the variables a bit more:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">participant_info =</span> count_year,</span>
-<span id="cb27-3"><a href="#cb27-3"></a>         <span class="dt">how_many_counted =</span> how_many_cw) <span class="op">%&gt;%</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">as.integer</span>(<span class="kw">word</span>(participant_info)),  <span class="co"># We will keep year and total_hours</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>         <span class="dt">total_hours =</span> <span class="kw">as.double</span>(</span>
-<span id="cb27-6"><a href="#cb27-6"></a>           <span class="kw">str_extract</span>(</span>
-<span id="cb27-7"><a href="#cb27-7"></a>             participant_info, <span class="st">&quot;(?&lt;=Hrs</span><span class="ch">\\</span><span class="st">.:</span><span class="ch">\\</span><span class="st">s).*$&quot;</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">participant_info =</span> count_year,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">how_many_counted =</span> how_many_cw) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">as.integer</span>(<span class="fu">word</span>(participant_info)),  <span class="co"># We will keep year and total_hours</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">total_hours =</span> <span class="fu">as.double</span>(</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>           <span class="fu">str_extract</span>(</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>             participant_info, <span class="st">&quot;(?&lt;=Hrs</span><span class="sc">\\</span><span class="st">.:</span><span class="sc">\\</span><span class="st">s).*$&quot;</span>)))</span></code></pre></div>
 <p>We almost have a clean dataset! 🔜 ✨✨✨🎉</p>
 <p>I am going to remove the <code>flags</code> variable. I am also going to remove <code>number_by_party_hours</code> and derive it myself instead.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="st">  </span><span class="kw">select</span>(year, species, species_latin, how_many_counted, total_hours)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, species, species_latin, how_many_counted, total_hours)</span></code></pre></div>
 <p>It turns out that <code>how_many_counted</code> also has a <code>cw</code> value, which means the bird was not seen on count day itself, but was seen on a day close to the count. I am going to set these bird counts to be <code>NA</code>, as they don’t have a specified value.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">how_many_counted =</span> <span class="kw">ifelse</span>(how_many_counted <span class="op">==</span><span class="st"> &quot;cw&quot;</span>, <span class="ot">NA</span>, how_many_counted),</span>
-<span id="cb29-3"><a href="#cb29-3"></a>         <span class="dt">how_many_counted =</span> <span class="kw">as.integer</span>(how_many_counted))</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">how_many_counted =</span> <span class="fu">ifelse</span>(how_many_counted <span class="sc">==</span> <span class="st">&quot;cw&quot;</span>, <span class="cn">NA</span>, how_many_counted),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">how_many_counted =</span> <span class="fu">as.integer</span>(how_many_counted))</span></code></pre></div>
 <p>In the <code>species</code> variable, there are some rows that are identified only to the genus level (and not to the species level). I will exclude these records, as I believe <a href="https://ebird.org/home">eBird</a> excludes them too.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="kw">filter</span>(<span class="kw">str_detect</span>(species, <span class="st">&quot;sp</span><span class="ch">\\</span><span class="st">.&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="kw">distinct</span>(species)</span></code></pre></div>
-<pre><code># A tibble: 25 x 1
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">&quot;sp</span><span class="sc">\\</span><span class="st">.&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(species)</span></code></pre></div>
+<pre><code># A tibble: 25 × 1
    species            
    &lt;chr&gt;              
  1 &quot;scoter sp.\r&quot;     
@@ -353,123 +352,146 @@ As you can see in the code below, there is a line break (<code>\n</code>) betwee
  8 &quot;gull sp.\r&quot;       
  9 &quot;screech-owl sp.\r&quot;
 10 &quot;owl sp.\r&quot;        
-# ... with 15 more rows</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(<span class="kw">str_detect</span>(species, <span class="st">&quot;sp</span><span class="ch">\\</span><span class="st">.&quot;</span>)))</span></code></pre></div>
+# ℹ 15 more rows</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">str_detect</span>(species, <span class="st">&quot;sp</span><span class="sc">\\</span><span class="st">.&quot;</span>)))</span></code></pre></div>
 <p>Two final mutates:</p>
 <ul>
 <li>Using <code>tidyr</code>’s <a href="https://rdrr.io/cran/tidyr/man/replace_na.html"><code>replace_na</code></a> function, let’s make all of the <code>NA</code>s equal to 0 for <code>how_many_counted</code>. That means we are assuming that all birds in the area were successfully counted on count day.</li>
 <li>Let’s also calculate the number of birds counted (within each species) divided by the total number of count hours that happened that year.</li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">how_many_counted =</span> <span class="kw">replace_na</span>(how_many_counted, <span class="dv">0</span>),</span>
-<span id="cb33-3"><a href="#cb33-3"></a>         <span class="dt">how_many_counted_by_hour =</span> <span class="kw">as.double</span>(how_many_counted) <span class="op">/</span><span class="st"> </span>total_hours)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">how_many_counted =</span> <span class="fu">replace_na</span>(how_many_counted, <span class="dv">0</span>),</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">how_many_counted_by_hour =</span> <span class="fu">as.double</span>(how_many_counted) <span class="sc">/</span> total_hours)</span></code></pre></div>
 <p>And that’s it! 😄 🎉 We have cleaned the dataset and are ready to do some visualizing 👀 in Part 2!</p>
 </div>
 <div id="final-dataset" class="section level1">
 <h1>Final dataset</h1>
 <p>Here is a glimpse of our final dataset:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="st">  </span><span class="kw">tail</span>()</span></code></pre></div>
-<pre><code># A tibble: 6 x 6
-   year species    species_latin  how_many_counted total_hours how_many_counted~
-  &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;                     &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
-1  2012 &quot;House Sp~ Passer domest~             1473        195.              7.57
-2  2013 &quot;House Sp~ Passer domest~             1802        182.              9.89
-3  2014 &quot;House Sp~ Passer domest~             1318        179.              7.35
-4  2015 &quot;House Sp~ Passer domest~             2326        221              10.5 
-5  2016 &quot;House Sp~ Passer domest~             2565        217.             11.8 
-6  2017 &quot;House Sp~ Passer domest~             2731        199.             13.7 </code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>()</span></code></pre></div>
+<pre><code># A tibble: 6 × 6
+   year species           species_latin     how_many_counted total_hours
+  &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;                        &lt;int&gt;       &lt;dbl&gt;
+1  2012 &quot;House Sparrow\r&quot; Passer domesticus             1473        195.
+2  2013 &quot;House Sparrow\r&quot; Passer domesticus             1802        182.
+3  2014 &quot;House Sparrow\r&quot; Passer domesticus             1318        179.
+4  2015 &quot;House Sparrow\r&quot; Passer domesticus             2326        221 
+5  2016 &quot;House Sparrow\r&quot; Passer domesticus             2565        217.
+6  2017 &quot;House Sparrow\r&quot; Passer domesticus             2731        199.
+# ℹ 1 more variable: how_many_counted_by_hour &lt;dbl&gt;</code></pre>
 <p>And thank you to the CBC! The CBC Data was provided by <a href="www.christmasbirdcount.org">National Audubon Society</a> and through the generous efforts of <a href="www.bsc-eoc.org">Bird Studies Canada</a> and countless volunteers across the western hemisphere.</p>
 <hr>
 </div>
 <div id="session-info" class="section level1">
 <h1>Session info</h1>
-<pre><code>- Session info ---------------------------------------------------------------
- setting  value                       
- version  R version 4.0.2 (2020-06-22)
- os       Windows 10 x64              
- system   x86_64, mingw32             
- ui       RTerm                       
- language (EN)                        
- collate  English_Canada.1252         
- ctype    English_Canada.1252         
- tz       America/New_York            
- date     2020-09-04                  
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.3 (2023-03-15 ucrt)
+ os       Windows 10 x64 (build 19045)
+ system   x86_64, mingw32
+ ui       RTerm
+ language (EN)
+ collate  English_Canada.utf8
+ ctype    English_Canada.utf8
+ tz       America/New_York
+ date     2023-04-14
+ pandoc   2.19.2 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
 
-- Packages -------------------------------------------------------------------
- ! package     * version    date       lib source                     
- P assertthat    0.2.1      2019-03-21 [?] CRAN (R 4.0.0)             
- P backports     1.1.8      2020-06-17 [?] CRAN (R 4.0.0)             
- P blogdown      0.20       2020-06-23 [?] CRAN (R 4.0.2)             
- P bookdown      0.20       2020-06-23 [?] CRAN (R 4.0.0)             
- P callr         3.4.3      2020-03-28 [?] CRAN (R 4.0.0)             
- P cli           2.0.2      2020-02-28 [?] CRAN (R 4.0.0)             
- P colorspace    1.4-1      2019-03-18 [?] CRAN (R 4.0.0)             
- P crayon        1.3.4      2017-09-16 [?] CRAN (R 4.0.0)             
- P desc          1.2.0      2018-05-01 [?] CRAN (R 4.0.0)             
- P devtools    * 2.3.1      2020-07-21 [?] CRAN (R 4.0.2)             
- P digest        0.6.25     2020-02-23 [?] CRAN (R 4.0.0)             
- P dplyr       * 1.0.1      2020-07-31 [?] CRAN (R 4.0.2)             
- P ellipsis      0.3.1      2020-05-15 [?] CRAN (R 4.0.2)             
- P emo         * 0.0.0.9000 2020-07-07 [?] Github (hadley/emo@3f03b11)
- P evaluate      0.14       2019-05-28 [?] CRAN (R 4.0.0)             
- P fansi         0.4.1      2020-01-08 [?] CRAN (R 4.0.0)             
- P fs            1.5.0      2020-07-31 [?] CRAN (R 4.0.2)             
- P generics      0.0.2      2018-11-29 [?] CRAN (R 4.0.0)             
- P ggplot2       3.3.2      2020-06-19 [?] CRAN (R 4.0.2)             
- P glue          1.4.1      2020-05-13 [?] CRAN (R 4.0.2)             
- P gtable        0.3.0      2019-03-25 [?] CRAN (R 4.0.0)             
- P here        * 0.1        2017-05-28 [?] CRAN (R 4.0.2)             
- P hms           0.5.3      2020-01-08 [?] CRAN (R 4.0.0)             
- P htmltools     0.5.0      2020-06-16 [?] CRAN (R 4.0.2)             
- P janitor     * 2.0.1      2020-04-12 [?] CRAN (R 4.0.0)             
- P knitr         1.29       2020-06-23 [?] CRAN (R 4.0.2)             
- P lifecycle     0.2.0      2020-03-06 [?] CRAN (R 4.0.0)             
- P lubridate   * 1.7.9      2020-06-08 [?] CRAN (R 4.0.2)             
- P magrittr      1.5        2014-11-22 [?] CRAN (R 4.0.0)             
- P memoise       1.1.0      2017-04-21 [?] CRAN (R 4.0.0)             
- P munsell       0.5.0      2018-06-12 [?] CRAN (R 4.0.0)             
- P naniar      * 0.5.2      2020-06-29 [?] CRAN (R 4.0.0)             
- P pillar        1.4.6      2020-07-10 [?] CRAN (R 4.0.2)             
- P pkgbuild      1.1.0      2020-07-13 [?] CRAN (R 4.0.2)             
- P pkgconfig     2.0.3      2019-09-22 [?] CRAN (R 4.0.0)             
- P pkgload       1.1.0      2020-05-29 [?] CRAN (R 4.0.2)             
- P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.0.0)             
- P processx      3.4.3      2020-07-05 [?] CRAN (R 4.0.2)             
- P ps            1.3.4      2020-08-11 [?] CRAN (R 4.0.2)             
- P purrr         0.3.4      2020-04-17 [?] CRAN (R 4.0.0)             
- P R6            2.4.1      2019-11-12 [?] CRAN (R 4.0.0)             
- P Rcpp          1.0.5      2020-07-06 [?] CRAN (R 4.0.2)             
- P readr       * 1.3.1      2018-12-21 [?] CRAN (R 4.0.0)             
- P remotes       2.2.0      2020-07-21 [?] CRAN (R 4.0.2)             
-   renv          0.11.0     2020-06-26 [1] CRAN (R 4.0.2)             
- P rlang         0.4.7      2020-07-09 [?] CRAN (R 4.0.2)             
- P rmarkdown     2.3        2020-06-18 [?] CRAN (R 4.0.2)             
- P rprojroot     1.3-2      2018-01-03 [?] CRAN (R 4.0.0)             
- P scales        1.1.1      2020-05-11 [?] CRAN (R 4.0.2)             
- P sessioninfo   1.1.1      2018-11-05 [?] CRAN (R 4.0.0)             
- P snakecase     0.11.0     2019-05-25 [?] CRAN (R 4.0.0)             
- P stringi       1.4.6      2020-02-17 [?] CRAN (R 4.0.0)             
- P stringr     * 1.4.0      2019-02-10 [?] CRAN (R 4.0.0)             
- P testthat      2.3.2      2020-03-02 [?] CRAN (R 4.0.0)             
- P tibble        3.0.3      2020-07-10 [?] CRAN (R 4.0.2)             
- P tidyr       * 1.1.1      2020-07-31 [?] CRAN (R 4.0.2)             
- P tidyselect    1.1.0      2020-05-11 [?] CRAN (R 4.0.2)             
- P usethis     * 1.6.1      2020-04-29 [?] CRAN (R 4.0.2)             
- P utf8          1.1.4      2018-05-24 [?] CRAN (R 4.0.0)             
- P vctrs         0.3.2      2020-07-15 [?] CRAN (R 4.0.2)             
- P visdat        0.5.3      2019-02-15 [?] CRAN (R 4.0.2)             
- P withr         2.2.0      2020-04-20 [?] CRAN (R 4.0.0)             
- P xfun          0.16       2020-07-24 [?] CRAN (R 4.0.2)             
- P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.0.0)             
+─ Packages ───────────────────────────────────────────────────────────────────
+ ! package     * version    date (UTC) lib source
+   assertthat    0.2.1      2019-03-21 [1] CRAN (R 4.2.3)
+ P bit           4.0.5      2022-11-15 [?] CRAN (R 4.2.3)
+ P bit64         4.0.5      2020-08-30 [?] CRAN (R 4.2.3)
+ P blogdown      1.16       2022-12-13 [?] CRAN (R 4.2.3)
+ P bookdown      0.33       2023-03-06 [?] CRAN (R 4.2.3)
+ P bslib         0.4.2      2022-12-16 [?] CRAN (R 4.2.3)
+ P cachem        1.0.7      2023-02-24 [?] CRAN (R 4.2.3)
+ P callr         3.7.3      2022-11-02 [?] CRAN (R 4.2.3)
+ P cli           3.6.1      2023-03-23 [?] CRAN (R 4.2.3)
+ P colorspace    2.1-0      2023-01-23 [?] CRAN (R 4.2.3)
+ P crayon        1.5.2      2022-09-29 [?] CRAN (R 4.2.3)
+ P devtools    * 2.4.5      2022-10-11 [?] CRAN (R 4.2.3)
+ P digest        0.6.31     2022-12-11 [?] CRAN (R 4.2.3)
+ P dplyr       * 1.1.1      2023-03-22 [?] CRAN (R 4.2.3)
+ P ellipsis      0.3.2      2021-04-29 [?] CRAN (R 4.2.3)
+   emo         * 0.0.0.9000 2023-04-13 [1] Github (hadley/emo@3f03b11)
+ P evaluate      0.20       2023-01-17 [?] CRAN (R 4.2.3)
+ P fansi         1.0.4      2023-01-22 [?] CRAN (R 4.2.3)
+ P fastmap       1.1.1      2023-02-24 [?] CRAN (R 4.2.3)
+ P fs            1.6.1      2023-02-06 [?] CRAN (R 4.2.3)
+ P generics      0.1.3      2022-07-05 [?] CRAN (R 4.2.3)
+ P ggplot2       3.4.2      2023-04-03 [?] CRAN (R 4.2.3)
+ P glue          1.6.2      2022-02-24 [?] CRAN (R 4.2.3)
+ P gtable        0.3.3      2023-03-21 [?] CRAN (R 4.2.3)
+ P here        * 1.0.1      2020-12-13 [?] CRAN (R 4.2.3)
+ P hms           1.1.3      2023-03-21 [?] CRAN (R 4.2.3)
+ P htmltools     0.5.5      2023-03-23 [?] CRAN (R 4.2.3)
+ P htmlwidgets   1.6.2      2023-03-17 [?] CRAN (R 4.2.3)
+ P httpuv        1.6.9      2023-02-14 [?] CRAN (R 4.2.3)
+ P janitor     * 2.2.0      2023-02-02 [?] CRAN (R 4.2.3)
+ P jquerylib     0.1.4      2021-04-26 [?] CRAN (R 4.2.3)
+ P jsonlite      1.8.4      2022-12-06 [?] CRAN (R 4.2.3)
+ P knitr         1.42       2023-01-25 [?] CRAN (R 4.2.3)
+ P later         1.3.0      2021-08-18 [?] CRAN (R 4.2.3)
+ P lifecycle     1.0.3      2022-10-07 [?] CRAN (R 4.2.3)
+ P lubridate   * 1.9.2      2023-02-10 [?] CRAN (R 4.2.3)
+ P magrittr      2.0.3      2022-03-30 [?] CRAN (R 4.2.3)
+ P memoise       2.0.1      2021-11-26 [?] CRAN (R 4.2.3)
+ P mime          0.12       2021-09-28 [?] CRAN (R 4.2.0)
+ P miniUI        0.1.1.1    2018-05-18 [?] CRAN (R 4.2.3)
+ P munsell       0.5.0      2018-06-12 [?] CRAN (R 4.2.3)
+ P naniar      * 1.0.0      2023-02-02 [?] CRAN (R 4.2.3)
+ P pillar        1.9.0      2023-03-22 [?] CRAN (R 4.2.3)
+ P pkgbuild      1.4.0      2022-11-27 [?] CRAN (R 4.2.3)
+ P pkgconfig     2.0.3      2019-09-22 [?] CRAN (R 4.2.3)
+ P pkgload       1.3.2      2022-11-16 [?] CRAN (R 4.2.3)
+ P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.2.3)
+ P processx      3.8.0      2022-10-26 [?] CRAN (R 4.2.3)
+ P profvis       0.3.7      2020-11-02 [?] CRAN (R 4.2.3)
+ P promises      1.2.0.1    2021-02-11 [?] CRAN (R 4.2.3)
+ P ps            1.7.4      2023-04-02 [?] CRAN (R 4.2.3)
+ P purrr         1.0.1      2023-01-10 [?] CRAN (R 4.2.3)
+ P R6            2.5.1      2021-08-19 [?] CRAN (R 4.2.3)
+ P Rcpp          1.0.10     2023-01-22 [?] CRAN (R 4.2.3)
+ P readr       * 2.1.4      2023-02-10 [?] CRAN (R 4.2.3)
+ P remotes       2.4.2      2021-11-30 [?] CRAN (R 4.2.3)
+   renv          0.11.0     2020-06-26 [1] CRAN (R 4.2.3)
+ P rlang         1.1.0      2023-03-14 [?] CRAN (R 4.2.3)
+ P rmarkdown     2.21       2023-03-26 [?] CRAN (R 4.2.3)
+ P rprojroot     2.0.3      2022-04-02 [?] CRAN (R 4.2.3)
+ P rstudioapi    0.14       2022-08-22 [?] CRAN (R 4.2.3)
+ P sass          0.4.5      2023-01-24 [?] CRAN (R 4.2.3)
+ P scales        1.2.1      2022-08-20 [?] CRAN (R 4.2.3)
+ P sessioninfo   1.2.2      2021-12-06 [?] CRAN (R 4.2.3)
+ P shiny         1.7.4      2022-12-15 [?] CRAN (R 4.2.3)
+ P snakecase     0.11.0     2019-05-25 [?] CRAN (R 4.2.3)
+ P stringi       1.7.12     2023-01-11 [?] CRAN (R 4.2.2)
+ P stringr     * 1.5.0      2022-12-02 [?] CRAN (R 4.2.3)
+ P tibble        3.2.1      2023-03-20 [?] CRAN (R 4.2.3)
+ P tidyr       * 1.3.0      2023-01-24 [?] CRAN (R 4.2.3)
+ P tidyselect    1.2.0      2022-10-10 [?] CRAN (R 4.2.3)
+ P timechange    0.2.0      2023-01-11 [?] CRAN (R 4.2.3)
+ P tzdb          0.3.0      2022-03-28 [?] CRAN (R 4.2.3)
+ P urlchecker    1.0.1      2021-11-30 [?] CRAN (R 4.2.3)
+ P usethis     * 2.1.6      2022-05-25 [?] CRAN (R 4.2.3)
+ P utf8          1.2.3      2023-01-31 [?] CRAN (R 4.2.3)
+ P vctrs         0.6.1      2023-03-22 [?] CRAN (R 4.2.3)
+ P visdat        0.6.0      2023-02-02 [?] CRAN (R 4.2.3)
+ P vroom         1.6.1      2023-01-22 [?] CRAN (R 4.2.3)
+ P withr         2.5.0      2022-03-03 [?] CRAN (R 4.2.3)
+ P xfun          0.38       2023-03-24 [?] CRAN (R 4.2.3)
+ P xtable        1.8-4      2019-04-21 [?] CRAN (R 4.2.3)
+ P yaml          2.3.7      2023-01-23 [?] CRAN (R 4.2.3)
 
-[1] C:/Users/shw/Desktop/blog2/renv/library/R-4.0/x86_64-w64-mingw32
-[2] C:/Users/shw/AppData/Local/Temp/Rtmp0kFpWz/renv-system-library
+ [1] C:/Users/Randy/Desktop/R Projects/Sharleen Blog/blog2/renv/library/R-4.2/x86_64-w64-mingw32
+ [2] C:/Users/Randy/AppData/Local/Temp/RtmpIdpsu5/renv-system-library
 
- P -- Loaded and on-disk path mismatch.</code></pre>
+ P ── Loaded and on-disk path mismatch.
+
+──────────────────────────────────────────────────────────────────────────────</code></pre>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p><a href="https://news.nationalgeographic.com/news/2014/12/141227-christmas-bird-count-anniversary-audubon-animals-science/" class="uri">https://news.nationalgeographic.com/news/2014/12/141227-christmas-bird-count-anniversary-audubon-animals-science/</a><a href="#fnref1" class="footnote-back">↩︎</a></p></li>

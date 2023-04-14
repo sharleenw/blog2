@@ -11,9 +11,9 @@ tags:
   - birding
   - visualization
 
-twitterImg: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-coverImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
-thumbnailImage: http://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+twitterImg: https://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+coverImage: https://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
+thumbnailImage: https://res.publicdomainfiles.com/pdf_view/145/13978843819386.jpg
 
 coverCaption: "A Dark-eyed Junco on a branch (Source: Public Domain Files)"
 thumbnailImagePosition: left
@@ -24,21 +24,20 @@ bibliography: part_2.bib
 link-citations: true
 ---
 
-<script src="/rmarkdown-libs/accessible-code-block/empty-anchor.js"></script>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -58,7 +57,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -92,23 +91,25 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#visualizing">Visualizing</a><ul>
-<li><a href="#comparing-the-counts-first-and-latest-year">Comparing the count’s first and latest year</a></li>
-<li><a href="#number-of-species-counted-each-year">Number of species counted each year</a></li>
-<li><a href="#highlighting-specific-species">Highlighting specific species</a><ul>
-<li><a href="#introduced-species">Introduced species</a></li>
-<li><a href="#eastern-bluebird">Eastern Bluebird</a></li>
-<li><a href="#ducks">Ducks</a></li>
-<li><a href="#canada-goose">Canada Goose</a></li>
-<li><a href="#effects-of-ddt">Effects of DDT</a></li>
-<li><a href="#west-nile-virus">West Nile virus</a></li>
-<li><a href="#snow-bunting">Snow Bunting</a></li>
-<li><a href="#ruffed-grouse">Ruffed Grouse</a></li>
-<li><a href="#northern-cardinal">Northern Cardinal</a></li>
+<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+<li><a href="#visualizing" id="toc-visualizing">Visualizing</a>
+<ul>
+<li><a href="#comparing-the-counts-first-and-latest-year" id="toc-comparing-the-counts-first-and-latest-year">Comparing the count’s first and latest year</a></li>
+<li><a href="#number-of-species-counted-each-year" id="toc-number-of-species-counted-each-year">Number of species counted each year</a></li>
+<li><a href="#highlighting-specific-species" id="toc-highlighting-specific-species">Highlighting specific species</a>
+<ul>
+<li><a href="#introduced-species" id="toc-introduced-species">Introduced species</a></li>
+<li><a href="#eastern-bluebird" id="toc-eastern-bluebird">Eastern Bluebird</a></li>
+<li><a href="#ducks" id="toc-ducks">Ducks</a></li>
+<li><a href="#canada-goose" id="toc-canada-goose">Canada Goose</a></li>
+<li><a href="#effects-of-ddt" id="toc-effects-of-ddt">Effects of DDT</a></li>
+<li><a href="#west-nile-virus" id="toc-west-nile-virus">West Nile virus</a></li>
+<li><a href="#snow-bunting" id="toc-snow-bunting">Snow Bunting</a></li>
+<li><a href="#ruffed-grouse" id="toc-ruffed-grouse">Ruffed Grouse</a></li>
+<li><a href="#northern-cardinal" id="toc-northern-cardinal">Northern Cardinal</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#session-info">Session info</a></li>
+<li><a href="#session-info" id="toc-session-info">Session info</a></li>
 </ul>
 </div>
 
@@ -131,18 +132,18 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Highlight certain species to look at any changes over time</p></li>
 </ol>
 <p>To start, we’ll load all of the packages we’ll be using, set the plot theme and load the data:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(readr)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(here)</span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>())</span>
-<span id="cb1-7"><a href="#cb1-7"></a></span>
-<span id="cb1-8"><a href="#cb1-8"></a>hamilton_cbc &lt;-<span class="st"> </span><span class="kw">read_rds</span>(<span class="kw">here</span>(<span class="st">&quot;content&quot;</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>                              <span class="st">&quot;post&quot;</span>,</span>
-<span id="cb1-10"><a href="#cb1-10"></a>                              <span class="st">&quot;2019-03-24-hamilton-cbc-part-3&quot;</span>,</span>
-<span id="cb1-11"><a href="#cb1-11"></a>                              <span class="st">&quot;hamilton_cbc_shiny&quot;</span>,</span>
-<span id="cb1-12"><a href="#cb1-12"></a>                              <span class="st">&quot;hamilton_cbc_output_part_2.rds&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> <span class="fu">read_rds</span>(<span class="fu">here</span>(<span class="st">&quot;content&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;post&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;2019-03-24-hamilton-cbc-part-3&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;hamilton_cbc_shiny&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;hamilton_cbc_output_part_2.rds&quot;</span>))</span></code></pre></div>
 <p>A wonderful reference I’ve been using for this post is the book <strong>Birds of Hamilton and Surrounding Areas</strong> by Robert Curry and the Hamilton Naturalists’ Club, particularly the chapter called <em>Hamilton Christmas Bird Count</em> by Ian Richards.</p>
 </div>
 <div id="visualizing" class="section level1">
@@ -150,14 +151,14 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="comparing-the-counts-first-and-latest-year" class="section level2">
 <h2>Comparing the count’s first and latest year</h2>
 <p>Let’s start by looking at the first year anyone went out to do the count, in 1921. In <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>, Ian Richards mentions that 2 observers went out that year for 8 hours, and they saw 9 species.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(year),</span>
-<span id="cb2-3"><a href="#cb2-3"></a>         how_many_counted <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="st">  </span><span class="kw">select</span>(species, how_many_counted) <span class="op">%&gt;%</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>how_many_counted, species)</span></code></pre></div>
-<pre><code># A tibble: 9 x 2
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         how_many_counted <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, how_many_counted) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>how_many_counted, species)</span></code></pre></div>
+<pre><code># A tibble: 9 × 2
   species                 how_many_counted
-  &lt;chr&gt;                              &lt;dbl&gt;
+  &lt;chr&gt;                              &lt;int&gt;
 1 American Tree Sparrow                 12
 2 Black-capped Chickadee                 9
 3 Blue Jay                               3
@@ -168,167 +169,169 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 8 Gray Jay                               1
 9 Ruffed Grouse                          1</code></pre>
 <p>Oh wow, they saw a Gray Jay! How many times have Gray Jays been seen on Hamilton Christmas Bird Counts?</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">filter</span>(species <span class="op">==</span><span class="st"> &quot;Gray Jay&quot;</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>         how_many_counted <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
-<pre><code># A tibble: 1 x 6
-   year species  species_latin   how_many_counted total_hours how_many_counted_~
-  &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;                      &lt;dbl&gt;       &lt;dbl&gt;              &lt;dbl&gt;
-1  1921 Gray Jay Perisoreus can~                1           8              0.125</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Gray Jay&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         how_many_counted <span class="sc">!=</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 × 6
+   year species  species_latin         how_many_counted total_hours
+  &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;                            &lt;int&gt;       &lt;dbl&gt;
+1  1921 Gray Jay Perisoreus canadensis                1           8
+# ℹ 1 more variable: how_many_counted_by_hour &lt;dbl&gt;</code></pre>
 <p>That was the only time! At first I thought it might have been a mistake, but <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span> mentions, in the Gray Jay historical records section, that at least two Gray Jays were seen that winter. (This book is so thorough!)</p>
 <p>How does the first year’s count compare to the most recent year’s count?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year),</span>
-<span id="cb6-3"><a href="#cb6-3"></a>         how_many_counted <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>how_many_counted, species) <span class="op">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="st">  </span><span class="kw">head</span>(<span class="dv">15</span>)</span></code></pre></div>
-<pre><code># A tibble: 15 x 6
-    year species   species_latin  how_many_counted total_hours how_many_counted~
-   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;                     &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
- 1  2017 Canada G~ Branta canade~             6665        199.             33.5 
- 2  2017 Mallard   Anas platyrhy~             5034        199.             25.3 
- 3  2017 Long-tai~ Clangula hyem~             3465        199.             17.4 
- 4  2017 European~ Sturnus vulga~             2844        199.             14.3 
- 5  2017 House Sp~ Passer domest~             2731        199.             13.7 
- 6  2017 Common G~ Bucephala cla~             2180        199.             11.0 
- 7  2017 Greater ~ Aythya marila              1378        199.              6.93
- 8  2017 Dark-eye~ Junco hyemalis             1068        199.              5.37
- 9  2017 Black-ca~ Poecile atric~              935        199.              4.70
-10  2017 Rock Pig~ Columba livia               875        199.              4.40
-11  2017 White-wi~ Melanitta fus~              725        199.              3.65
-12  2017 Mourning~ Zenaida macro~              699        199.              3.52
-13  2017 Ring-bil~ Larus delawar~              629        199.              3.16
-14  2017 Northern~ Cardinalis ca~              550        199.              2.77
-15  2017 American~ Spinus tristis              473        199.              2.38</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">max</span>(year),</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         how_many_counted <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>how_many_counted, species) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code># A tibble: 15 × 6
+    year species                species_latin       how_many_counted total_hours
+   &lt;int&gt; &lt;chr&gt;                  &lt;chr&gt;                          &lt;int&gt;       &lt;dbl&gt;
+ 1  2017 Canada Goose           Branta canadensis               6665        199.
+ 2  2017 Mallard                Anas platyrhynchos              5034        199.
+ 3  2017 Long-tailed Duck       Clangula hyemalis               3465        199.
+ 4  2017 European Starling      Sturnus vulgaris                2844        199.
+ 5  2017 House Sparrow          Passer domesticus               2731        199.
+ 6  2017 Common Goldeneye       Bucephala clangula              2180        199.
+ 7  2017 Greater Scaup          Aythya marila                   1378        199.
+ 8  2017 Dark-eyed Junco        Junco hyemalis                  1068        199.
+ 9  2017 Black-capped Chickadee Poecile atricapill…              935        199.
+10  2017 Rock Pigeon            Columba livia                    875        199.
+11  2017 White-winged Scoter    Melanitta fusca                  725        199.
+12  2017 Mourning Dove          Zenaida macroura                 699        199.
+13  2017 Ring-billed Gull       Larus delawarensis               629        199.
+14  2017 Northern Cardinal      Cardinalis cardina…              550        199.
+15  2017 American Goldfinch     Spinus tristis                   473        199.
+# ℹ 1 more variable: how_many_counted_by_hour &lt;dbl&gt;</code></pre>
 <p>Those species look more familiar! And almost 200 person-hours were put in, amazing!</p>
 <p>In 2017, how many species were seen in total?</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year),</span>
-<span id="cb8-3"><a href="#cb8-3"></a>         how_many_counted <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw">pull</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">max</span>(year),</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>         how_many_counted <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>()</span></code></pre></div>
 <pre><code>[1] 100</code></pre>
 <p>100 species, nice! It’s not easy to get 100 species during a Christmas Bird Count. Only four other Ontario Christmas Bird Counts have done it, at least by 2004 (the latest year of Christmas Bird Count data in <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>).</p>
 </div>
 <div id="number-of-species-counted-each-year" class="section level2">
 <h2>Number of species counted each year</h2>
 <p>Below is a re-creation of a plot found in <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>. It’s a plot of the number of species seen and the number of person-hours put in each year. Person-hours are the total number of hours the counters put in during that count. For example, if 3 people went out for four hours, there were 12 person-hours (4 * 3).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, total_hours) <span class="op">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="co"># Bringing total_hours along for the grouping.</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="co"># Adding it won&#39;t affect the grouping because its value is constant within</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="st">  </span><span class="co"># the grouping of each year, and this way we can use it for plotting</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="st">  </span><span class="co"># after we use summarise</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="st">  </span><span class="kw">filter</span>(how_many_counted <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">number_of_species_that_year =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year,</span>
-<span id="cb10-12"><a href="#cb10-12"></a>                <span class="dt">y =</span> number_of_species_that_year,</span>
-<span id="cb10-13"><a href="#cb10-13"></a>                <span class="dt">color =</span> <span class="st">&quot;Number of species heard or seen&quot;</span>),</span>
-<span id="cb10-14"><a href="#cb10-14"></a>            <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb10-15"><a href="#cb10-15"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> total_hours, <span class="dt">color =</span> <span class="st">&quot;Number of person-hours&quot;</span>),</span>
-<span id="cb10-16"><a href="#cb10-16"></a>            <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb10-17"><a href="#cb10-17"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb10-18"><a href="#cb10-18"></a>       <span class="dt">y =</span> <span class="st">&quot;Number of species and person-hours&quot;</span>) <span class="op">+</span></span>
-<span id="cb10-19"><a href="#cb10-19"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;Number of person-hours&quot;</span> =<span class="st"> &quot;orange&quot;</span>, </span>
-<span id="cb10-20"><a href="#cb10-20"></a>                                <span class="st">&quot;Number of species heard or seen&quot;</span> =<span class="st"> &quot;blue&quot;</span>)) <span class="op">+</span></span>
-<span id="cb10-21"><a href="#cb10-21"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.title =</span> <span class="kw">element_blank</span>(),</span>
-<span id="cb10-22"><a href="#cb10-22"></a>        <span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
-<span id="cb10-23"><a href="#cb10-23"></a>        <span class="dt">legend.direction =</span> <span class="st">&quot;vertical&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/species_and_person_hours-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, total_hours) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Bringing total_hours along for the grouping.</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Adding it won&#39;t affect the grouping because its value is constant within</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the grouping of each year, and this way we can use it for plotting</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># after we use summarise</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(how_many_counted <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_species_that_year =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> number_of_species_that_year,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;Number of species heard or seen&quot;</span>),</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> total_hours, <span class="at">color =</span> <span class="st">&quot;Number of person-hours&quot;</span>),</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Number of species and person-hours&quot;</span>) <span class="sc">+</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Number of person-hours&quot;</span> <span class="ot">=</span> <span class="st">&quot;orange&quot;</span>, </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;Number of species heard or seen&quot;</span> <span class="ot">=</span> <span class="st">&quot;blue&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.direction =</span> <span class="st">&quot;vertical&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/species_and_person_hours-1.png" width="672" /></p>
 <p>As the number of hours of person-hours increases, so does the number of species counted. But only up to a point, after which the number of species levels off. This probably means that, as long as there are at least 200 or so person-hours in a count, the Hamilton Christmas Bird Count counters will be finding all or almost all of the species in the Hamilton area on count day.</p>
 <p>Here is a plot of the cumulative number of species seen during each count. I think the main take-away of this plot is that it is getting harder to see new species every year, which makes sense.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">filter</span>(how_many_counted <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">group_by</span>(species) <span class="op">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(year)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># What&#39;s the first year any species was counted?</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">number_of_new_species_that_year =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cumulative_new_species =</span> <span class="kw">cumsum</span>(number_of_new_species_that_year)) <span class="op">%&gt;%</span></span>
-<span id="cb11-9"><a href="#cb11-9"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> cumulative_new_species), <span class="dt">col =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb11-11"><a href="#cb11-11"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb11-12"><a href="#cb11-12"></a>       <span class="dt">y =</span> <span class="st">&quot;Cumulative number of species counted&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/cumulative_total_number_of_birds-1.png" width="672" /></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(how_many_counted <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">min</span>(year)) <span class="sc">%&gt;%</span> <span class="co"># What&#39;s the first year any species was counted?</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">number_of_new_species_that_year =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">cumulative_new_species =</span> <span class="fu">cumsum</span>(number_of_new_species_that_year)) <span class="sc">%&gt;%</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> cumulative_new_species), <span class="at">col =</span> <span class="st">&quot;orange&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cumulative number of species counted&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/cumulative_total_number_of_birds-1.png" width="672" /></p>
 </div>
 <div id="highlighting-specific-species" class="section level2">
 <h2>Highlighting specific species</h2>
 <p>I now want to look at some of the species and how their counts have changed over the course of the count’s history. There is a lot to look at!</p>
 <p><span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span> mentions that the Hamilton Christmas Bird Count count circle was a different size before 1955, so, for most of the plots, I will only show information starting after 1955. But sometimes I think it’s interesting to look at all years of the data, so I might do that too! 😄</p>
 <p>Since the code of these plots will be very similar, I am going to make a function for the plotting, where only the species plotted and the start year will vary:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>plot_species &lt;-<span class="st"> </span><span class="cf">function</span>(cbc_df, start_year, species_to_plot) {</span>
-<span id="cb12-2"><a href="#cb12-2"></a>  </span>
-<span id="cb12-3"><a href="#cb12-3"></a>  cbc_df <span class="op">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="st">    </span><span class="kw">filter</span>(species <span class="op">%in%</span><span class="st"> </span>species_to_plot,</span>
-<span id="cb12-5"><a href="#cb12-5"></a>           year <span class="op">&gt;=</span><span class="st"> </span>start_year) <span class="op">%&gt;%</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="st">    </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(</span>
-<span id="cb12-8"><a href="#cb12-8"></a>      <span class="dt">x =</span> year, </span>
-<span id="cb12-9"><a href="#cb12-9"></a>      <span class="dt">y =</span> how_many_counted,</span>
-<span id="cb12-10"><a href="#cb12-10"></a>      <span class="dt">color =</span> species),</span>
-<span id="cb12-11"><a href="#cb12-11"></a>      <span class="co"># Put the size of the line outside of the aes because we&#39;re not varying it</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a>      <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb12-14"><a href="#cb12-14"></a>         <span class="dt">y =</span> <span class="st">&quot;Number counted&quot;</span>,</span>
-<span id="cb12-15"><a href="#cb12-15"></a>         <span class="dt">color =</span> <span class="st">&quot;Species&quot;</span>) <span class="op">+</span></span>
-<span id="cb12-16"><a href="#cb12-16"></a><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="kw">vars</span>(species),</span>
-<span id="cb12-17"><a href="#cb12-17"></a>               <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>,</span>
-<span id="cb12-18"><a href="#cb12-18"></a>               <span class="dt">dir =</span> <span class="st">&quot;v&quot;</span>) <span class="op">+</span></span>
-<span id="cb12-19"><a href="#cb12-19"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">label =</span> scales<span class="op">::</span>comma) <span class="op">+</span><span class="st"> </span><span class="co"># Add commas for thousands where necessary</span></span>
-<span id="cb12-20"><a href="#cb12-20"></a><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb12-21"><a href="#cb12-21"></a>          <span class="dt">plot.margin =</span> <span class="kw">margin</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb12-22"><a href="#cb12-22"></a></span>
-<span id="cb12-23"><a href="#cb12-23"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_species <span class="ot">&lt;-</span> <span class="cf">function</span>(cbc_df, start_year, species_to_plot) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  cbc_df <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(species <span class="sc">%in%</span> species_to_plot,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>           year <span class="sc">&gt;=</span> start_year) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> year, </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> how_many_counted,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> species),</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Put the size of the line outside of the aes because we&#39;re not varying it</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">&quot;Number counted&quot;</span>,</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">&quot;Species&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(species),</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>               <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">dir =</span> <span class="st">&quot;v&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">label =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span> <span class="co"># Add commas for thousands where necessary</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <div id="introduced-species" class="section level3">
 <h3>Introduced species</h3>
 <p>Everyone is interested in introduced species. The four I will be plotting are the European Starling, the House Sparrow, the Rock Pigeon, and the Ring-Necked Pheasant.</p>
 <p>According to <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>, Rock Pigeons only started being counted in 1973 and House Sparrows in 1931 (I think due to them being introduced species).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>introduced &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;European Starling&quot;</span>,</span>
-<span id="cb13-2"><a href="#cb13-2"></a>                <span class="st">&quot;House Sparrow&quot;</span>,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>                <span class="st">&quot;Rock Pigeon&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>                <span class="st">&quot;Ring-necked Pheasant&quot;</span>)</span>
-<span id="cb13-5"><a href="#cb13-5"></a></span>
-<span id="cb13-6"><a href="#cb13-6"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="st">  </span><span class="co"># Make Rock Pigeon values pre-1973 to be NA as they were not counted</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">how_many_counted =</span> <span class="kw">ifelse</span>(species <span class="op">==</span><span class="st"> &quot;Rock Pigeon&quot;</span> <span class="op">&amp;</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a><span class="st">                                     </span>year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1973</span>,</span>
-<span id="cb13-10"><a href="#cb13-10"></a>                                   <span class="ot">NA</span>,</span>
-<span id="cb13-11"><a href="#cb13-11"></a>                                   how_many_counted)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb13-12"><a href="#cb13-12"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb13-13"><a href="#cb13-13"></a>               <span class="dt">species_to_plot =</span> introduced)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/introduced_species-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>introduced <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;European Starling&quot;</span>,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;House Sparrow&quot;</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;Rock Pigeon&quot;</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">&quot;Ring-necked Pheasant&quot;</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Make Rock Pigeon values pre-1973 to be NA as they were not counted</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">how_many_counted =</span> <span class="fu">ifelse</span>(species <span class="sc">==</span> <span class="st">&quot;Rock Pigeon&quot;</span> <span class="sc">&amp;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                                     year <span class="sc">&lt;</span> <span class="dv">1973</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="cn">NA</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                                   how_many_counted)) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> introduced)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/introduced_species-1.png" width="672" /></p>
 <p>Look at the number of European Starlings! It’s so interesting that the numbers peaked in the 60,000’s in the 1980’s and have since seen a sharp decrease. House Sparrow counts have been pretty consistent. Pigeon numbers have slowly increased, and there was one year, in 2005, with over double the expected number. And the Ring-necked Pheasants have declined to be almost non-existent. <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>, referencing a 1973 <em>Waterdown Review</em> article, says that a change in urbanization pattern, with areas now going directly from intensive farming to sub-divisions, with no scrubby brush period in between (which is where the pheasants like to live), is the main reason for the decline.</p>
 </div>
 <div id="eastern-bluebird" class="section level3">
 <h3>Eastern Bluebird</h3>
 <p>The next species I want to look at is the Eastern Bluebird. I volunteer with a local group that maintains bluebird nest boxes and wanted to see if the Hamilton Christmas Bird Count numbers showed any changes in Eastern Bluebird numbers since the Ontario Eastern Bluebird Society started in 1988.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb14-3"><a href="#cb14-3"></a>               <span class="dt">species_to_plot =</span> <span class="st">&quot;Eastern Bluebird&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/bluebird-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="st">&quot;Eastern Bluebird&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/bluebird-1.png" width="672" /></p>
 <p>Perhaps the nest boxes are helping! Bluebird numbers have certainly increased since the 1980’s. Although I’m not sure what would cause such interesting cyclical increases and decreases since the late 1990’s!</p>
 <p>However, in <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>, there is a chapter by Bill Read called <em>History of the Eastern Bluebird in the Hamilton Study Area</em>, where he writes that the reason more bluebirds are overwintering now is mainly due to warming winter weather patterns. So maybe it’s not the nest boxes! 🤷‍♀</p>
 </div>
 <div id="ducks" class="section level3">
 <h3>Ducks</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb15-3"><a href="#cb15-3"></a>               <span class="dt">species_to_plot =</span> <span class="kw">c</span>(<span class="st">&quot;Ruddy Duck&quot;</span>, </span>
-<span id="cb15-4"><a href="#cb15-4"></a>                                   <span class="st">&quot;Long-tailed Duck&quot;</span>, </span>
-<span id="cb15-5"><a href="#cb15-5"></a>                                   <span class="st">&quot;Greater Scaup&quot;</span>, </span>
-<span id="cb15-6"><a href="#cb15-6"></a>                                   <span class="st">&quot;Lesser Scaup&quot;</span>, </span>
-<span id="cb15-7"><a href="#cb15-7"></a>                                   <span class="st">&quot;Mallard&quot;</span>)) </span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/duck-1.png" width="672" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb16-3"><a href="#cb16-3"></a>               <span class="dt">species_to_plot =</span> <span class="kw">c</span>(<span class="st">&quot;Common Goldeneye&quot;</span>,</span>
-<span id="cb16-4"><a href="#cb16-4"></a>                                   <span class="st">&quot;Northern Shoveler&quot;</span>,</span>
-<span id="cb16-5"><a href="#cb16-5"></a>                                   <span class="st">&quot;Ring-necked Duck&quot;</span>,</span>
-<span id="cb16-6"><a href="#cb16-6"></a>                                   <span class="st">&quot;Surf Scoter&quot;</span>,</span>
-<span id="cb16-7"><a href="#cb16-7"></a>                                   <span class="st">&quot;Bufflehead&quot;</span>))</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/duck-2.png" width="672" /></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="fu">c</span>(<span class="st">&quot;Ruddy Duck&quot;</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Long-tailed Duck&quot;</span>, </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Greater Scaup&quot;</span>, </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Lesser Scaup&quot;</span>, </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Mallard&quot;</span>)) </span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/duck-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="fu">c</span>(<span class="st">&quot;Common Goldeneye&quot;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Northern Shoveler&quot;</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Ring-necked Duck&quot;</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Surf Scoter&quot;</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Bufflehead&quot;</span>))</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/duck-2.png" width="672" /></p>
 <p>I picked a sampling of ducks that show a trend of increasing since about the mid-1990’s. Ian Richards in <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span> believes that these increases are due to warmer winters (with an increase in open water), and, for ducks like the Greater and Lesser Scaup, due to the introduced Zebra Mussel in Lake Ontario, which they feed on.</p>
 <p>Some of these increases are absolutely incredible! The Long-tailed Duck went from practically non-existent up to 25,000 in the mid-2000’s!</p>
 <p>This is also a good reminder for me that the winter birds I think are “normal” in Hamilton (like Mallards and Long-tailed Ducks) may actually be quite recent phenomena.</p>
@@ -336,10 +339,10 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <div id="canada-goose" class="section level3">
 <h3>Canada Goose</h3>
 <p>In fact, another bird that is very common now is the Canada Goose, which I learned, as I looked through the data, was not always so common!</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb17-3"><a href="#cb17-3"></a>               <span class="dt">species_to_plot =</span> <span class="st">&quot;Canada Goose&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/canada_goose-1.png" width="672" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="st">&quot;Canada Goose&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/canada_goose-1.png" width="672" /></p>
 <p><span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span> talks about the Canada Goose’s history. The Canada Goose was originally considered a “symbol of wild, untamed Canada” and in the late 1800’s, Canada Geese actually avoided the Hamilton area due to “their haunts [being] invaded by trolley cars, electric lights, telegraph wires and other innovations” (Thomas McIlwraith, 1886). 🚎😄</p>
 <p>However, in the 1960’s, people decided to introduce the largest, heaviest sub-species of the Canada Goose into southern Ontario, because it would supposedly make Ontario “richer”. However, with few natural predators, the Giant Canada Goose has now increased in numbers and degrades habitat and competes with other, migratory sub-species.😑</p>
 </div>
@@ -347,29 +350,29 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h3>Effects of DDT</h3>
 <p>Two species I had often heard of having been affected by the pesticide DDT were the Double-crested Cormorant and the Bald Eagle. DDT was first used in 1947 and was finally banned in Canada in 1973. According to <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>, by 1980, Bald Eagles were experiencing complete reproductive failure in southern Ontario (due to the thin eggshells).</p>
 <p>So, do the numbers match up with DDT use?</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb18-3"><a href="#cb18-3"></a>               <span class="dt">species_to_plot =</span> <span class="kw">c</span>(<span class="st">&quot;Double-crested Cormorant&quot;</span>,</span>
-<span id="cb18-4"><a href="#cb18-4"></a>                                   <span class="st">&quot;Bald Eagle&quot;</span>)) <span class="op">+</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">1973</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">x =</span> <span class="dv">1980</span>,</span>
-<span id="cb18-7"><a href="#cb18-7"></a>            <span class="dt">y =</span> <span class="dv">90</span>,</span>
-<span id="cb18-8"><a href="#cb18-8"></a>            <span class="dt">label =</span> <span class="st">&quot;1973: DDT was </span><span class="ch">\n</span><span class="st">banned in Canada&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/ddt-1.png" width="672" /></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="fu">c</span>(<span class="st">&quot;Double-crested Cormorant&quot;</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Bald Eagle&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">1973</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">1980</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="dv">90</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&quot;1973: DDT was </span><span class="sc">\n</span><span class="st">banned in Canada&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/ddt-1.png" width="672" /></p>
 <p>Cool! The numbers of Double-crested Cormorants and Bald Eagles did increase after DDT was banned in Canada. Yay for fewer dangerous 💀pesticides💀!</p>
 </div>
 <div id="west-nile-virus" class="section level3">
 <h3>West Nile virus</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1955</span>,</span>
-<span id="cb19-3"><a href="#cb19-3"></a>               <span class="dt">species_to_plot =</span> <span class="kw">c</span>(<span class="st">&quot;American Crow&quot;</span>,</span>
-<span id="cb19-4"><a href="#cb19-4"></a>                                   <span class="st">&quot;Common Raven&quot;</span>,</span>
-<span id="cb19-5"><a href="#cb19-5"></a>                                   <span class="st">&quot;Blue Jay&quot;</span>)) <span class="op">+</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="dv">2003</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">x =</span> <span class="dv">2010</span>,</span>
-<span id="cb19-8"><a href="#cb19-8"></a>            <span class="dt">y =</span> <span class="dv">4000</span>,</span>
-<span id="cb19-9"><a href="#cb19-9"></a>            <span class="dt">label =</span> <span class="st">&quot;2003: Height of </span><span class="ch">\n</span><span class="st">West Nile virus&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/corvids-1.png" width="672" /></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1955</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="fu">c</span>(<span class="st">&quot;American Crow&quot;</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Common Raven&quot;</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Blue Jay&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">2003</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">2010</span>,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="dv">4000</span>,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&quot;2003: Height of </span><span class="sc">\n</span><span class="st">West Nile virus&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/corvids-1.png" width="672" /></p>
 <p>I decided to plot some corvids to see how their numbers have been doing, especially given that the West Nile virus happened in the early 2000’s.</p>
 <p>When I was younger, I remember having thousands of crows in my neighbourhood. Our neighbourhood even paid a guy to come with a trained hawk to scare them away. Nothing got them to leave… And then West Nile happened. For years afterwards, there were no crows, and now there are still only a few. My experience certainly matches with the count numbers.</p>
 <p>The Blue Jays were also affected by West Nile, but they seem to have bounced back with no problem (according to the count numbers and my personal experience). They feed at bird feeders though, so that might be helping them.</p>
@@ -377,27 +380,27 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="snow-bunting" class="section level3">
 <h3>Snow Bunting</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1921</span>,</span>
-<span id="cb20-3"><a href="#cb20-3"></a>               <span class="dt">species_to_plot =</span> <span class="st">&quot;Snow Bunting&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/snow_bunting-1.png" width="672" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1921</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="st">&quot;Snow Bunting&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/snow_bunting-1.png" width="672" /></p>
 <p>I personally have not seen a Snow Bunting yet, but I just think their count numbers are so cool! They are an Arctic bird, so what in the world was happening in the Arctic in the 1970’s to cause such huge spikes!? Ahh, such a great mystery!</p>
 <p>Also, in the 1800’s, Snow Buntings used to be called Snowflakes and there is this fantastic quote by Thomas McIlwraith in 1886 in <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span>, saying, “all our Canadian boys and girls are familiar with the Snowflake, which is frequently the only one they see when out for the first sleigh ride of the season.” 😄</p>
 </div>
 <div id="ruffed-grouse" class="section level3">
 <h3>Ruffed Grouse</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1921</span>, </span>
-<span id="cb21-3"><a href="#cb21-3"></a>               <span class="dt">species_to_plot =</span> <span class="st">&quot;Ruffed Grouse&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/ruffed_grouse-1.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1921</span>, </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="st">&quot;Ruffed Grouse&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/ruffed_grouse-1.png" width="672" /></p>
 <p>I plotted the Ruffed Grouse (aka the partridge) since 1921, and it’s clear that this bird has been pretty much gone from the Hamilton area since the late 1980’s. <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span> says the Ruffed Grouse is a bird of mixed forests, and, due to intensive agriculture, woodlot harvesting and urban sprawl, the Hamilton area no longer has the right habitat for the Ruffed Grouse. 😞</p>
 </div>
 <div id="northern-cardinal" class="section level3">
 <h3>Northern Cardinal</h3>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a><span class="st">  </span><span class="kw">plot_species</span>(<span class="dt">start_year =</span> <span class="dv">1921</span>, </span>
-<span id="cb22-3"><a href="#cb22-3"></a>               <span class="dt">species_to_plot =</span> <span class="st">&quot;Northern Cardinal&quot;</span>)</span></code></pre></div>
-<p><img src="/post/2019-02-24-hamilton-cbc-part-2b/index_files/figure-html/cardinal-1.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_species</span>(<span class="at">start_year =</span> <span class="dv">1921</span>, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">species_to_plot =</span> <span class="st">&quot;Northern Cardinal&quot;</span>)</span></code></pre></div>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/cardinal-1.png" width="672" /></p>
 <p>I also plotted the Northern Cardinal numbers since 1921. Cardinals used to only be in Canada occasionally at Point Pelee (Canada’s most southern point), where the first recorded breeding happened in 1901. According to <span class="citation">O’Neill (<a href="#ref-pp_birds" role="doc-biblioref">2006</a>)</span>, the Point Pelee locals used to call these unusually-coloured birds “war birds”! 🐦</p>
 <p>Now they are quite common in the Hamilton area through the winter, with <span class="citation">Curry (<a href="#ref-hsa_birds" role="doc-biblioref">2006</a>)</span> giving the reasons of climate warming (causing less snow depth), increasing edge habitats where they like to live (due to deforestation), and more bird-feeders. 🌻🌰🌻</p>
 <p>This is another bird I thought had always been common to the Hamilton area!</p>
@@ -409,93 +412,113 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="session-info" class="section level1">
 <h1>Session info</h1>
-<pre><code>- Session info ---------------------------------------------------------------
- setting  value                       
- version  R version 4.0.2 (2020-06-22)
- os       Windows 10 x64              
- system   x86_64, mingw32             
- ui       RTerm                       
- language (EN)                        
- collate  English_Canada.1252         
- ctype    English_Canada.1252         
- tz       America/New_York            
- date     2020-09-04                  
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.3 (2023-03-15 ucrt)
+ os       Windows 10 x64 (build 19045)
+ system   x86_64, mingw32
+ ui       RTerm
+ language (EN)
+ collate  English_Canada.utf8
+ ctype    English_Canada.utf8
+ tz       America/New_York
+ date     2023-04-14
+ pandoc   2.19.2 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
 
-- Packages -------------------------------------------------------------------
- ! package     * version    date       lib source                     
- P assertthat    0.2.1      2019-03-21 [?] CRAN (R 4.0.0)             
- P backports     1.1.8      2020-06-17 [?] CRAN (R 4.0.0)             
- P blogdown      0.20       2020-06-23 [?] CRAN (R 4.0.2)             
- P bookdown      0.20       2020-06-23 [?] CRAN (R 4.0.0)             
- P callr         3.4.3      2020-03-28 [?] CRAN (R 4.0.0)             
- P cli           2.0.2      2020-02-28 [?] CRAN (R 4.0.0)             
- P colorspace    1.4-1      2019-03-18 [?] CRAN (R 4.0.0)             
- P crayon        1.3.4      2017-09-16 [?] CRAN (R 4.0.0)             
- P desc          1.2.0      2018-05-01 [?] CRAN (R 4.0.0)             
- P devtools    * 2.3.1      2020-07-21 [?] CRAN (R 4.0.2)             
- P digest        0.6.25     2020-02-23 [?] CRAN (R 4.0.0)             
- P dplyr       * 1.0.1      2020-07-31 [?] CRAN (R 4.0.2)             
- P ellipsis      0.3.1      2020-05-15 [?] CRAN (R 4.0.2)             
- P emo         * 0.0.0.9000 2020-07-07 [?] Github (hadley/emo@3f03b11)
- P evaluate      0.14       2019-05-28 [?] CRAN (R 4.0.0)             
- P fansi         0.4.1      2020-01-08 [?] CRAN (R 4.0.0)             
- P farver        2.0.3      2020-01-16 [?] CRAN (R 4.0.0)             
- P fs            1.5.0      2020-07-31 [?] CRAN (R 4.0.2)             
- P generics      0.0.2      2018-11-29 [?] CRAN (R 4.0.0)             
- P ggplot2     * 3.3.2      2020-06-19 [?] CRAN (R 4.0.2)             
- P glue          1.4.1      2020-05-13 [?] CRAN (R 4.0.2)             
- P gtable        0.3.0      2019-03-25 [?] CRAN (R 4.0.0)             
- P here        * 0.1        2017-05-28 [?] CRAN (R 4.0.2)             
- P hms           0.5.3      2020-01-08 [?] CRAN (R 4.0.0)             
- P htmltools     0.5.0      2020-06-16 [?] CRAN (R 4.0.2)             
- P knitr         1.29       2020-06-23 [?] CRAN (R 4.0.2)             
- P labeling      0.3        2014-08-23 [?] CRAN (R 4.0.0)             
- P lifecycle     0.2.0      2020-03-06 [?] CRAN (R 4.0.0)             
- P lubridate     1.7.9      2020-06-08 [?] CRAN (R 4.0.2)             
- P magrittr      1.5        2014-11-22 [?] CRAN (R 4.0.0)             
- P memoise       1.1.0      2017-04-21 [?] CRAN (R 4.0.0)             
- P munsell       0.5.0      2018-06-12 [?] CRAN (R 4.0.0)             
- P pillar        1.4.6      2020-07-10 [?] CRAN (R 4.0.2)             
- P pkgbuild      1.1.0      2020-07-13 [?] CRAN (R 4.0.2)             
- P pkgconfig     2.0.3      2019-09-22 [?] CRAN (R 4.0.0)             
- P pkgload       1.1.0      2020-05-29 [?] CRAN (R 4.0.2)             
- P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.0.0)             
- P processx      3.4.3      2020-07-05 [?] CRAN (R 4.0.2)             
- P ps            1.3.4      2020-08-11 [?] CRAN (R 4.0.2)             
- P purrr         0.3.4      2020-04-17 [?] CRAN (R 4.0.0)             
- P R6            2.4.1      2019-11-12 [?] CRAN (R 4.0.0)             
- P Rcpp          1.0.5      2020-07-06 [?] CRAN (R 4.0.2)             
- P readr       * 1.3.1      2018-12-21 [?] CRAN (R 4.0.0)             
- P remotes       2.2.0      2020-07-21 [?] CRAN (R 4.0.2)             
-   renv          0.11.0     2020-06-26 [1] CRAN (R 4.0.2)             
- P rlang         0.4.7      2020-07-09 [?] CRAN (R 4.0.2)             
- P rmarkdown     2.3        2020-06-18 [?] CRAN (R 4.0.2)             
- P rprojroot     1.3-2      2018-01-03 [?] CRAN (R 4.0.0)             
- P scales        1.1.1      2020-05-11 [?] CRAN (R 4.0.2)             
- P sessioninfo   1.1.1      2018-11-05 [?] CRAN (R 4.0.0)             
- P stringi       1.4.6      2020-02-17 [?] CRAN (R 4.0.0)             
- P stringr       1.4.0      2019-02-10 [?] CRAN (R 4.0.0)             
- P testthat      2.3.2      2020-03-02 [?] CRAN (R 4.0.0)             
- P tibble        3.0.3      2020-07-10 [?] CRAN (R 4.0.2)             
- P tidyselect    1.1.0      2020-05-11 [?] CRAN (R 4.0.2)             
- P usethis     * 1.6.1      2020-04-29 [?] CRAN (R 4.0.2)             
- P utf8          1.1.4      2018-05-24 [?] CRAN (R 4.0.0)             
- P vctrs         0.3.2      2020-07-15 [?] CRAN (R 4.0.2)             
- P withr         2.2.0      2020-04-20 [?] CRAN (R 4.0.0)             
- P xfun          0.16       2020-07-24 [?] CRAN (R 4.0.2)             
- P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.0.0)             
+─ Packages ───────────────────────────────────────────────────────────────────
+ ! package     * version    date (UTC) lib source
+   assertthat    0.2.1      2019-03-21 [1] CRAN (R 4.2.3)
+ P blogdown      1.16       2022-12-13 [?] CRAN (R 4.2.3)
+ P bookdown      0.33       2023-03-06 [?] CRAN (R 4.2.3)
+ P bslib         0.4.2      2022-12-16 [?] CRAN (R 4.2.3)
+ P cachem        1.0.7      2023-02-24 [?] CRAN (R 4.2.3)
+ P callr         3.7.3      2022-11-02 [?] CRAN (R 4.2.3)
+ P cli           3.6.1      2023-03-23 [?] CRAN (R 4.2.3)
+ P colorspace    2.1-0      2023-01-23 [?] CRAN (R 4.2.3)
+ P crayon        1.5.2      2022-09-29 [?] CRAN (R 4.2.3)
+ P devtools    * 2.4.5      2022-10-11 [?] CRAN (R 4.2.3)
+ P digest        0.6.31     2022-12-11 [?] CRAN (R 4.2.3)
+ P dplyr       * 1.1.1      2023-03-22 [?] CRAN (R 4.2.3)
+ P ellipsis      0.3.2      2021-04-29 [?] CRAN (R 4.2.3)
+   emo         * 0.0.0.9000 2023-04-13 [1] Github (hadley/emo@3f03b11)
+ P evaluate      0.20       2023-01-17 [?] CRAN (R 4.2.3)
+ P fansi         1.0.4      2023-01-22 [?] CRAN (R 4.2.3)
+ P farver        2.1.1      2022-07-06 [?] CRAN (R 4.2.3)
+ P fastmap       1.1.1      2023-02-24 [?] CRAN (R 4.2.3)
+ P fs            1.6.1      2023-02-06 [?] CRAN (R 4.2.3)
+ P generics      0.1.3      2022-07-05 [?] CRAN (R 4.2.3)
+ P ggplot2     * 3.4.2      2023-04-03 [?] CRAN (R 4.2.3)
+ P glue          1.6.2      2022-02-24 [?] CRAN (R 4.2.3)
+ P gtable        0.3.3      2023-03-21 [?] CRAN (R 4.2.3)
+ P here        * 1.0.1      2020-12-13 [?] CRAN (R 4.2.3)
+ P highr         0.10       2022-12-22 [?] CRAN (R 4.2.3)
+ P hms           1.1.3      2023-03-21 [?] CRAN (R 4.2.3)
+ P htmltools     0.5.5      2023-03-23 [?] CRAN (R 4.2.3)
+ P htmlwidgets   1.6.2      2023-03-17 [?] CRAN (R 4.2.3)
+ P httpuv        1.6.9      2023-02-14 [?] CRAN (R 4.2.3)
+ P jquerylib     0.1.4      2021-04-26 [?] CRAN (R 4.2.3)
+ P jsonlite      1.8.4      2022-12-06 [?] CRAN (R 4.2.3)
+ P knitr         1.42       2023-01-25 [?] CRAN (R 4.2.3)
+ P labeling      0.4.2      2020-10-20 [?] CRAN (R 4.2.0)
+ P later         1.3.0      2021-08-18 [?] CRAN (R 4.2.3)
+ P lifecycle     1.0.3      2022-10-07 [?] CRAN (R 4.2.3)
+ P lubridate     1.9.2      2023-02-10 [?] CRAN (R 4.2.3)
+ P magrittr      2.0.3      2022-03-30 [?] CRAN (R 4.2.3)
+ P memoise       2.0.1      2021-11-26 [?] CRAN (R 4.2.3)
+ P mime          0.12       2021-09-28 [?] CRAN (R 4.2.0)
+ P miniUI        0.1.1.1    2018-05-18 [?] CRAN (R 4.2.3)
+ P munsell       0.5.0      2018-06-12 [?] CRAN (R 4.2.3)
+ P pillar        1.9.0      2023-03-22 [?] CRAN (R 4.2.3)
+ P pkgbuild      1.4.0      2022-11-27 [?] CRAN (R 4.2.3)
+ P pkgconfig     2.0.3      2019-09-22 [?] CRAN (R 4.2.3)
+ P pkgload       1.3.2      2022-11-16 [?] CRAN (R 4.2.3)
+ P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.2.3)
+ P processx      3.8.0      2022-10-26 [?] CRAN (R 4.2.3)
+ P profvis       0.3.7      2020-11-02 [?] CRAN (R 4.2.3)
+ P promises      1.2.0.1    2021-02-11 [?] CRAN (R 4.2.3)
+ P ps            1.7.4      2023-04-02 [?] CRAN (R 4.2.3)
+ P purrr         1.0.1      2023-01-10 [?] CRAN (R 4.2.3)
+ P R6            2.5.1      2021-08-19 [?] CRAN (R 4.2.3)
+ P Rcpp          1.0.10     2023-01-22 [?] CRAN (R 4.2.3)
+ P readr       * 2.1.4      2023-02-10 [?] CRAN (R 4.2.3)
+ P remotes       2.4.2      2021-11-30 [?] CRAN (R 4.2.3)
+   renv          0.11.0     2020-06-26 [1] CRAN (R 4.2.3)
+ P rlang         1.1.0      2023-03-14 [?] CRAN (R 4.2.3)
+ P rmarkdown     2.21       2023-03-26 [?] CRAN (R 4.2.3)
+ P rprojroot     2.0.3      2022-04-02 [?] CRAN (R 4.2.3)
+ P rstudioapi    0.14       2022-08-22 [?] CRAN (R 4.2.3)
+ P sass          0.4.5      2023-01-24 [?] CRAN (R 4.2.3)
+ P scales        1.2.1      2022-08-20 [?] CRAN (R 4.2.3)
+ P sessioninfo   1.2.2      2021-12-06 [?] CRAN (R 4.2.3)
+ P shiny         1.7.4      2022-12-15 [?] CRAN (R 4.2.3)
+ P stringi       1.7.12     2023-01-11 [?] CRAN (R 4.2.2)
+ P stringr       1.5.0      2022-12-02 [?] CRAN (R 4.2.3)
+ P tibble        3.2.1      2023-03-20 [?] CRAN (R 4.2.3)
+ P tidyselect    1.2.0      2022-10-10 [?] CRAN (R 4.2.3)
+ P timechange    0.2.0      2023-01-11 [?] CRAN (R 4.2.3)
+ P tzdb          0.3.0      2022-03-28 [?] CRAN (R 4.2.3)
+ P urlchecker    1.0.1      2021-11-30 [?] CRAN (R 4.2.3)
+ P usethis     * 2.1.6      2022-05-25 [?] CRAN (R 4.2.3)
+ P utf8          1.2.3      2023-01-31 [?] CRAN (R 4.2.3)
+ P vctrs         0.6.1      2023-03-22 [?] CRAN (R 4.2.3)
+ P withr         2.5.0      2022-03-03 [?] CRAN (R 4.2.3)
+ P xfun          0.38       2023-03-24 [?] CRAN (R 4.2.3)
+ P xtable        1.8-4      2019-04-21 [?] CRAN (R 4.2.3)
+ P yaml          2.3.7      2023-01-23 [?] CRAN (R 4.2.3)
 
-[1] C:/Users/shw/Desktop/blog2/renv/library/R-4.0/x86_64-w64-mingw32
-[2] C:/Users/shw/AppData/Local/Temp/RtmpQh4k1o/renv-system-library
+ [1] C:/Users/Randy/Desktop/R Projects/Sharleen Blog/blog2/renv/library/R-4.2/x86_64-w64-mingw32
+ [2] C:/Users/Randy/AppData/Local/Temp/RtmpOw0los/renv-system-library
 
- P -- Loaded and on-disk path mismatch.</code></pre>
+ P ── Loaded and on-disk path mismatch.
+
+──────────────────────────────────────────────────────────────────────────────</code></pre>
 <p>References:</p>
-<div id="refs" class="references">
-<div id="ref-hsa_birds">
-<p>Curry, Robert. 2006. <em>Birds of Hamilton and Surrounding Areas</em>. Heidy Lawrance Associates. <a href="http://hamiltonnature.org/publications/birds-of-hamilton/">http://hamiltonnature.org/publications/birds-of-hamilton/</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-hsa_birds" class="csl-entry">
+Curry, Robert. 2006. <em>Birds of Hamilton and Surrounding Areas</em>. Heidy Lawrance Associates. <a href="http://hamiltonnature.org/publications/birds-of-hamilton/">http://hamiltonnature.org/publications/birds-of-hamilton/</a>.
 </div>
-<div id="ref-pp_birds">
-<p>O’Neill, Henrietta. 2006. <em>Birding at Point Pelee : A Birder’s History of One of Canada’s Most Famous Birding Spots</em>. James Lorimer &amp; Company Ltd.</p>
+<div id="ref-pp_birds" class="csl-entry">
+O’Neill, Henrietta. 2006. <em>Birding at Point Pelee : A Birder’s History of One of Canada’s Most Famous Birding Spots</em>. James Lorimer &amp; Company Ltd.
 </div>
 </div>
 </div>

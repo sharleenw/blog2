@@ -1,4 +1,5 @@
 ---
+title: 'The top 100 cities in Canada'
 output: 
   bookdown::pdf_document2:
     toc: no
@@ -37,8 +38,6 @@ wiki_data_final_table <- readRDS(here::here("content",
                                             "cleaned_wiki_data_for_table.rds"))
 
 ```
-
-# The top 100 cities in Canada
 
 Table \@ref(tab:table-population-by-province) shows the populations of each province and of Canada in total for the years 2011 and 2016 (this data includes only the top 100 largest cities in Canada).
 

@@ -11,9 +11,9 @@ tags:
   - data cleaning
   - birding
 
-twitterImg: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
-coverImage: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
-thumbnailImage: http://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+twitterImg: https://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+coverImage: https://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
+thumbnailImage: https://res.publicdomainfiles.com/pdf_view/119/13962429013391.jpg
 
 coverCaption: "A Northern Cardinal in winter (Source: Public Domain Files)"
 thumbnailImagePosition: left
@@ -21,21 +21,20 @@ autoThumbnailImage: yes
 coverSize: partial
 ---
 
-<script src="/rmarkdown-libs/accessible-code-block/empty-anchor.js"></script>
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -55,7 +54,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {  background-color: #f8f8f8; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -89,11 +88,12 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="TOC">
 <ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#final-cleaning-touches">Final cleaning touches</a><ul>
-<li><a href="#number-of-species-counted-each-year">Number of species counted each year</a></li>
+<li><a href="#introduction" id="toc-introduction">Introduction</a></li>
+<li><a href="#final-cleaning-touches" id="toc-final-cleaning-touches">Final cleaning touches</a>
+<ul>
+<li><a href="#number-of-species-counted-each-year" id="toc-number-of-species-counted-each-year">Number of species counted each year</a></li>
 </ul></li>
-<li><a href="#session-info">Session info</a></li>
+<li><a href="#session-info" id="toc-session-info">Session info</a></li>
 </ul>
 </div>
 
@@ -111,20 +111,21 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <h1>Introduction</h1>
 <p>While I was visualizing the data, I realized I still needed to do a bit more cleaning. So this is a short post outlining my steps to do so.</p>
 <p>To start, we’ll load all of the packages and the data:</p>
-<pre><code># A tibble: 20,868 x 6
-    year species   species_latin  how_many_counted total_hours how_many_counted~
-   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;                     &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
- 1  1921 &quot;Snow Go~ Chen caerules~                0           8                 0
- 2  1922 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 3  1924 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 4  1925 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 5  1926 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 6  1928 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 7  1930 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 8  1931 &quot;Snow Go~ Chen caerules~                0          NA                NA
- 9  1932 &quot;Snow Go~ Chen caerules~                0          NA                NA
-10  1933 &quot;Snow Go~ Chen caerules~                0          NA                NA
-# ... with 20,858 more rows</code></pre>
+<pre><code># A tibble: 20,868 × 6
+    year species        species_latin     how_many_counted total_hours
+   &lt;int&gt; &lt;chr&gt;          &lt;chr&gt;                        &lt;int&gt;       &lt;dbl&gt;
+ 1  1921 &quot;Snow Goose\r&quot; Chen caerulescens                0           8
+ 2  1922 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 3  1924 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 4  1925 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 5  1926 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 6  1928 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 7  1930 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 8  1931 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+ 9  1932 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+10  1933 &quot;Snow Goose\r&quot; Chen caerulescens                0          NA
+# ℹ 20,858 more rows
+# ℹ 1 more variable: how_many_counted_by_hour &lt;dbl&gt;</code></pre>
 </div>
 <div id="final-cleaning-touches" class="section level1">
 <h1>Final cleaning touches</h1>
@@ -134,13 +135,13 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Consolidate the names of some species that had variations in them</p></li>
 </ol>
 <p>Let’s see how many hybrid species we have and remove them:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">species =</span> <span class="kw">str_remove</span>(species, <span class="st">&quot;</span><span class="ch">\r</span><span class="st">&quot;</span>))  <span class="co"># Remove the trailing &quot;\r&quot;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a></span>
-<span id="cb2-4"><a href="#cb2-4"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(species, <span class="st">&quot;hybrid&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="st">  </span><span class="kw">distinct</span>(species)</span></code></pre></div>
-<pre><code># A tibble: 5 x 1
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">str_remove</span>(species, <span class="st">&quot;</span><span class="sc">\r</span><span class="st">&quot;</span>))  <span class="co"># Remove the trailing &quot;\r&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">&quot;hybrid&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(species)</span></code></pre></div>
+<pre><code># A tibble: 5 × 1
   species                                   
   &lt;chr&gt;                                     
 1 Snow x Canada Goose (hybrid)              
@@ -148,35 +149,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 3 Mallard x Northern Pintail (hybrid)       
 4 Herring x Glaucous Gull (hybrid)          
 5 Herring x Great Black-backed Gull (hybrid)</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">str_detect</span>(species, <span class="st">&quot;hybrid&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">str_detect</span>(species, <span class="st">&quot;hybrid&quot;</span>))</span></code></pre></div>
 <p>Now, onto cleaning the trickier stuff. Sometimes, species have sub-species names or groups that have different total counts. For example, the Juncos (where <code>total_counted</code> is the sum of the counts over all years for that species):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(species, <span class="st">&quot;Junco&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw">group_by</span>(species, species_latin) <span class="op">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_counted =</span> <span class="kw">sum</span>(how_many_counted)) <span class="op">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
-<pre><code># A tibble: 4 x 3
-  species                       species_latin                      total_counted
-  &lt;chr&gt;                         &lt;chr&gt;                                      &lt;dbl&gt;
-1 Dark-eyed Junco               Junco hyemalis                             14426
-2 Dark-eyed Junco (Oregon)      Junco hyemalis [oreganus Group                39
-3 Dark-eyed Junco (Slate-color~ Junco hyemalis hyemalis/carolinen~         46764
-4 Dark-eyed Junco (White-winge~ Junco hyemalis aikeni                          1</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">&quot;Junco&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, species_latin) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_counted =</span> <span class="fu">sum</span>(how_many_counted)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<pre><code># A tibble: 4 × 3
+  species                         species_latin                    total_counted
+  &lt;chr&gt;                           &lt;chr&gt;                                    &lt;int&gt;
+1 Dark-eyed Junco                 Junco hyemalis                           14426
+2 Dark-eyed Junco (Oregon)        Junco hyemalis [oreganus Group              39
+3 Dark-eyed Junco (Slate-colored) Junco hyemalis hyemalis/carolin…         46764
+4 Dark-eyed Junco (White-winged)  Junco hyemalis aikeni                        1</code></pre>
 <p>I just want there to be one Dark-eyed Junco species in this dataset, so I am going to consolidate these four sub-species into one species. (Even though people get way more excited about seeing the Oregon sub-species in Hamilton than the Slate-colored 😄.)</p>
 <p>The first step is to only keep the first two words of the <code>species_latin</code> variable:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">species_latin =</span> <span class="kw">word</span>(species_latin, <span class="dt">start =</span> <span class="dv">1</span>, <span class="dt">end =</span> <span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species_latin =</span> <span class="fu">word</span>(species_latin, <span class="at">start =</span> <span class="dv">1</span>, <span class="at">end =</span> <span class="dv">2</span>))</span></code></pre></div>
 <p>We can also see who else is in this list:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">group_by</span>(species_latin) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">n_distinct</span>(species) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="st">  </span><span class="kw">group_by</span>(species, species_latin) <span class="op">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_counted =</span> <span class="kw">sum</span>(how_many_counted)) <span class="op">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
-<pre><code># A tibble: 26 x 3
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species_latin) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n_distinct</span>(species) <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, species_latin) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_counted =</span> <span class="fu">sum</span>(how_many_counted)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<pre><code># A tibble: 26 × 3
    species                         species_latin      total_counted
-   &lt;chr&gt;                           &lt;chr&gt;                      &lt;dbl&gt;
+   &lt;chr&gt;                           &lt;chr&gt;                      &lt;int&gt;
  1 American Kestrel                Falco sparverius            1520
  2 American Kestrel (Northern)     Falco sparverius               4
  3 Brant                           Branta bernicla                8
@@ -187,44 +188,44 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
  8 Dark-eyed Junco (Oregon)        Junco hyemalis                39
  9 Dark-eyed Junco (Slate-colored) Junco hyemalis             46764
 10 Dark-eyed Junco (White-winged)  Junco hyemalis                 1
-# ... with 16 more rows</code></pre>
+# ℹ 16 more rows</code></pre>
 <p>The second step is to sum up the counts for each year across all of the sub-species so the counts are the same, and then filter to only keep the first instance of each <code>species</code> (which, when arranged alphabetically, is the shortest species name):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, species_latin) <span class="op">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">how_many_counted =</span> <span class="kw">sum</span>(how_many_counted)) <span class="op">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">arrange</span>(year, species) <span class="op">%&gt;%</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="st">  </span><span class="kw">ungroup</span>()</span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(species, <span class="st">&quot;Junco&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="st">  </span><span class="kw">group_by</span>(species, species_latin) <span class="op">%&gt;%</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_counted =</span> <span class="kw">sum</span>(how_many_counted)) <span class="op">%&gt;%</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
-<pre><code># A tibble: 1 x 3
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, species_latin) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">how_many_counted =</span> <span class="fu">sum</span>(how_many_counted)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, species) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">&quot;Junco&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, species_latin) <span class="sc">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_counted =</span> <span class="fu">sum</span>(how_many_counted)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<pre><code># A tibble: 1 × 3
   species         species_latin  total_counted
-  &lt;chr&gt;           &lt;chr&gt;                  &lt;dbl&gt;
+  &lt;chr&gt;           &lt;chr&gt;                  &lt;int&gt;
 1 Dark-eyed Junco Junco hyemalis         61230</code></pre>
 <p>Perfect! No more sub-species. The last group of species to deal with is <code>species</code> where the name has either a <code>(</code> or a <code>/</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">group_by</span>(species, species_latin) <span class="op">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total_counted =</span> <span class="kw">sum</span>(how_many_counted)) <span class="op">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">str_detect</span>(species, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">(|/&quot;</span>))  <span class="co"># The &quot;|&quot; is an &quot;or&quot; within the regex</span></span></code></pre></div>
-<pre><code># A tibble: 11 x 3
-   species                             species_latin               total_counted
-   &lt;chr&gt;                               &lt;chr&gt;                               &lt;dbl&gt;
- 1 Barn Owl (American)                 Tyto alba                               1
- 2 Bullock&#39;s/Baltimore Oriole          Icterus bullockii/galbula               1
- 3 Great Blue Heron (Blue form)        Ardea herodias                        362
- 4 Greater/Lesser Scaup                Aythya marila/affinis               26558
- 5 Pacific/Winter Wren                 Troglodytes pacificus/hiem~           498
- 6 Palm Warbler (Western)              Setophaga palmarum                      1
- 7 Rock Pigeon (Feral Pigeon)          Columba livia                       60114
- 8 Spotted/Eastern Towhee (Rufous-sid~ Pipilo maculatus/erythroph~            28
- 9 Western/Eastern Meadowlark          Sturnella neglecta/magna               49
-10 Wilson&#39;s/Common Snipe               Gallinago delicata/gallina~            13
-11 Yellow-rumped Warbler (Myrtle)      Setophaga coronata                     65</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, species_latin) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total_counted =</span> <span class="fu">sum</span>(how_many_counted)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(species, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">(|/&quot;</span>))  <span class="co"># The &quot;|&quot; is an &quot;or&quot; within the regex</span></span></code></pre></div>
+<pre><code># A tibble: 11 × 3
+   species                                      species_latin      total_counted
+   &lt;chr&gt;                                        &lt;chr&gt;                      &lt;int&gt;
+ 1 Barn Owl (American)                          Tyto alba                      1
+ 2 Bullock&#39;s/Baltimore Oriole                   Icterus bullockii…             1
+ 3 Great Blue Heron (Blue form)                 Ardea herodias               362
+ 4 Greater/Lesser Scaup                         Aythya marila/aff…         26558
+ 5 Pacific/Winter Wren                          Troglodytes pacif…           498
+ 6 Palm Warbler (Western)                       Setophaga palmarum             1
+ 7 Rock Pigeon (Feral Pigeon)                   Columba livia              60114
+ 8 Spotted/Eastern Towhee (Rufous-sided Towhee) Pipilo maculatus/…            28
+ 9 Western/Eastern Meadowlark                   Sturnella neglect…            49
+10 Wilson&#39;s/Common Snipe                        Gallinago delicat…            13
+11 Yellow-rumped Warbler (Myrtle)               Setophaga coronata            65</code></pre>
 <p>I am going to make some executive decisions about what to do with these <code>species</code>:</p>
 <ol style="list-style-type: decimal">
 <li>Delete species guess: Greater/Lesser Scaup</li>
@@ -238,46 +239,46 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>Remove parentheses on the remaining species for neatness</li>
 </ol>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(species <span class="op">==</span><span class="st"> &quot;Greater/Lesser Scaup&quot;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">species =</span> <span class="kw">case_when</span>(species <span class="op">==</span><span class="st"> &quot;Bullock&#39;s/Baltimore Oriole&quot;</span> <span class="op">~</span><span class="st"> &quot;Baltimore Oriole&quot;</span>,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>                             species <span class="op">==</span><span class="st"> &quot;Western/Eastern Meadowlark&quot;</span> <span class="op">~</span><span class="st"> &quot;Eastern Meadowlark&quot;</span>,</span>
-<span id="cb14-5"><a href="#cb14-5"></a>                             species <span class="op">==</span><span class="st"> &quot;Wilson&#39;s/Common Snipe&quot;</span> <span class="op">~</span><span class="st"> &quot;Common Snipe&quot;</span>,</span>
-<span id="cb14-6"><a href="#cb14-6"></a>                             species <span class="op">==</span><span class="st"> &quot;Spotted/Eastern Towhee (Rufous-sided Towhee)&quot;</span> <span class="op">~</span><span class="st"> &quot;Eastern Towhee&quot;</span>,</span>
-<span id="cb14-7"><a href="#cb14-7"></a>                             species <span class="op">==</span><span class="st"> &quot;Pacific/Winter Wren&quot;</span> <span class="op">~</span><span class="st"> &quot;Winter Wren&quot;</span>,</span>
-<span id="cb14-8"><a href="#cb14-8"></a>                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>species),</span>
-<span id="cb14-9"><a href="#cb14-9"></a>         <span class="dt">species_latin =</span> <span class="kw">case_when</span>(species_latin <span class="op">==</span><span class="st"> &quot;Icterus bullockii/galbula&quot;</span> <span class="op">~</span><span class="st"> &quot;Icterus galbula&quot;</span>,</span>
-<span id="cb14-10"><a href="#cb14-10"></a>                             species_latin <span class="op">==</span><span class="st"> &quot;Sturnella neglecta/magna&quot;</span> <span class="op">~</span><span class="st"> &quot;Sturnella magna&quot;</span>,</span>
-<span id="cb14-11"><a href="#cb14-11"></a>                             species_latin <span class="op">==</span><span class="st"> &quot;Gallinago delicata/gallinago&quot;</span> <span class="op">~</span><span class="st"> &quot;Gallinago gallinago&quot;</span>,</span>
-<span id="cb14-12"><a href="#cb14-12"></a>                             species_latin <span class="op">==</span><span class="st"> &quot;Pipilo maculatus/erythrophthalmus&quot;</span> <span class="op">~</span><span class="st"> &quot;Pipilo erythrophthalmus&quot;</span>,</span>
-<span id="cb14-13"><a href="#cb14-13"></a>                             species_latin <span class="op">==</span><span class="st"> &quot;Troglodytes pacificus/hiemalis&quot;</span> <span class="op">~</span><span class="st"> &quot;Troglodytes hiemalis&quot;</span>,</span>
-<span id="cb14-14"><a href="#cb14-14"></a>                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>species_latin),</span>
-<span id="cb14-15"><a href="#cb14-15"></a>         <span class="dt">species =</span> <span class="kw">case_when</span>(species <span class="op">==</span><span class="st"> &quot;Barn Owl (American)&quot;</span> <span class="op">~</span><span class="st"> &quot;Barn Owl&quot;</span>,</span>
-<span id="cb14-16"><a href="#cb14-16"></a>                             species <span class="op">==</span><span class="st"> &quot;Great Blue Heron (Blue form)&quot;</span> <span class="op">~</span><span class="st"> &quot;Great Blue Heron&quot;</span>,</span>
-<span id="cb14-17"><a href="#cb14-17"></a>                             species <span class="op">==</span><span class="st"> &quot;Palm Warbler (Western)&quot;</span> <span class="op">~</span><span class="st"> &quot;Palm Warbler&quot;</span>,</span>
-<span id="cb14-18"><a href="#cb14-18"></a>                             species <span class="op">==</span><span class="st"> &quot;Rock Pigeon (Feral Pigeon)&quot;</span> <span class="op">~</span><span class="st"> &quot;Rock Pigeon&quot;</span>,</span>
-<span id="cb14-19"><a href="#cb14-19"></a>                             species <span class="op">==</span><span class="st"> &quot;Yellow-rumped Warbler (Myrtle)&quot;</span> <span class="op">~</span><span class="st"> &quot;Yellow-rumped Warbler&quot;</span>,</span>
-<span id="cb14-20"><a href="#cb14-20"></a>                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>species))</span>
-<span id="cb14-21"><a href="#cb14-21"></a></span>
-<span id="cb14-22"><a href="#cb14-22"></a><span class="co"># Consolidate the counts between the species whose names were just updated</span></span>
-<span id="cb14-23"><a href="#cb14-23"></a><span class="co"># This is the same step as was done in the earlier sub-species section</span></span>
-<span id="cb14-24"><a href="#cb14-24"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb14-25"><a href="#cb14-25"></a><span class="st">  </span><span class="kw">group_by</span>(year, species) <span class="op">%&gt;%</span></span>
-<span id="cb14-26"><a href="#cb14-26"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">how_many_counted =</span> <span class="kw">sum</span>(how_many_counted)) <span class="op">%&gt;%</span></span>
-<span id="cb14-27"><a href="#cb14-27"></a><span class="st">  </span><span class="kw">arrange</span>(year, species) <span class="op">%&gt;%</span></span>
-<span id="cb14-28"><a href="#cb14-28"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">row_number</span>() <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span></span>
-<span id="cb14-29"><a href="#cb14-29"></a><span class="st">  </span><span class="kw">ungroup</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(species <span class="sc">==</span> <span class="st">&quot;Greater/Lesser Scaup&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">case_when</span>(species <span class="sc">==</span> <span class="st">&quot;Bullock&#39;s/Baltimore Oriole&quot;</span> <span class="sc">~</span> <span class="st">&quot;Baltimore Oriole&quot;</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Western/Eastern Meadowlark&quot;</span> <span class="sc">~</span> <span class="st">&quot;Eastern Meadowlark&quot;</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Wilson&#39;s/Common Snipe&quot;</span> <span class="sc">~</span> <span class="st">&quot;Common Snipe&quot;</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Spotted/Eastern Towhee (Rufous-sided Towhee)&quot;</span> <span class="sc">~</span> <span class="st">&quot;Eastern Towhee&quot;</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Pacific/Winter Wren&quot;</span> <span class="sc">~</span> <span class="st">&quot;Winter Wren&quot;</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> species),</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">species_latin =</span> <span class="fu">case_when</span>(species_latin <span class="sc">==</span> <span class="st">&quot;Icterus bullockii/galbula&quot;</span> <span class="sc">~</span> <span class="st">&quot;Icterus galbula&quot;</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>                             species_latin <span class="sc">==</span> <span class="st">&quot;Sturnella neglecta/magna&quot;</span> <span class="sc">~</span> <span class="st">&quot;Sturnella magna&quot;</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>                             species_latin <span class="sc">==</span> <span class="st">&quot;Gallinago delicata/gallinago&quot;</span> <span class="sc">~</span> <span class="st">&quot;Gallinago gallinago&quot;</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>                             species_latin <span class="sc">==</span> <span class="st">&quot;Pipilo maculatus/erythrophthalmus&quot;</span> <span class="sc">~</span> <span class="st">&quot;Pipilo erythrophthalmus&quot;</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>                             species_latin <span class="sc">==</span> <span class="st">&quot;Troglodytes pacificus/hiemalis&quot;</span> <span class="sc">~</span> <span class="st">&quot;Troglodytes hiemalis&quot;</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> species_latin),</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>         <span class="at">species =</span> <span class="fu">case_when</span>(species <span class="sc">==</span> <span class="st">&quot;Barn Owl (American)&quot;</span> <span class="sc">~</span> <span class="st">&quot;Barn Owl&quot;</span>,</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Great Blue Heron (Blue form)&quot;</span> <span class="sc">~</span> <span class="st">&quot;Great Blue Heron&quot;</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Palm Warbler (Western)&quot;</span> <span class="sc">~</span> <span class="st">&quot;Palm Warbler&quot;</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Rock Pigeon (Feral Pigeon)&quot;</span> <span class="sc">~</span> <span class="st">&quot;Rock Pigeon&quot;</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>                             species <span class="sc">==</span> <span class="st">&quot;Yellow-rumped Warbler (Myrtle)&quot;</span> <span class="sc">~</span> <span class="st">&quot;Yellow-rumped Warbler&quot;</span>,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>                             <span class="cn">TRUE</span> <span class="sc">~</span> species))</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Consolidate the counts between the species whose names were just updated</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="co"># This is the same step as was done in the earlier sub-species section</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, species) <span class="sc">%&gt;%</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">how_many_counted =</span> <span class="fu">sum</span>(how_many_counted)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, species) <span class="sc">%&gt;%</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
 <p>Finally, I am going to recalculate the <code>how_many_counted_by_hour</code> variable that depends on <code>how_many_counted</code>:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">how_many_counted_by_hour =</span> <span class="kw">as.double</span>(how_many_counted) <span class="op">/</span><span class="st"> </span>total_hours)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">how_many_counted_by_hour =</span> <span class="fu">as.double</span>(how_many_counted) <span class="sc">/</span> total_hours)</span></code></pre></div>
 <div id="number-of-species-counted-each-year" class="section level2">
 <h2>Number of species counted each year</h2>
 <p>In the course of creating a plot, I believe there was a error in the total hours recorded for 1982, where the total number of hours was only 64, but there was no drop in the number of species counted that year. I think it should have actually been 164 hours, because, in 1981, there were 167 hours, and in 1983, there were 168 hours. So, in the below chunk, I’ve <code>mutate</code>d 1982 to have 164 total hours.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Mutating total_hours and how_many_counted_by_hour that depends on it</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a>hamilton_cbc &lt;-<span class="st"> </span>hamilton_cbc <span class="op">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">total_hours =</span> <span class="kw">ifelse</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">1982</span>, <span class="dv">164</span>, total_hours),</span>
-<span id="cb16-5"><a href="#cb16-5"></a>         <span class="dt">how_many_counted_by_hour =</span> <span class="kw">as.double</span>(how_many_counted) <span class="op">/</span><span class="st"> </span>total_hours)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mutating total_hours and how_many_counted_by_hour that depends on it</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>hamilton_cbc <span class="ot">&lt;-</span> hamilton_cbc <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total_hours =</span> <span class="fu">ifelse</span>(year <span class="sc">==</span> <span class="dv">1982</span>, <span class="dv">164</span>, total_hours),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">how_many_counted_by_hour =</span> <span class="fu">as.double</span>(how_many_counted) <span class="sc">/</span> total_hours)</span></code></pre></div>
 <p>If you would like to download this final, cleaned dataset in <code>.rds</code> format, you can do so <a href="https://github.com/sharleenw/my_blog/blob/master/content/post/hamilton_cbc_part_3/hamilton_cbc_shiny/hamilton_cbc_output_part_2.rds">here</a>.</p>
 <p>We are now ready to visualize! Please look at the next post in this series for the visualizing!</p>
 <p>And thank you to the Christmas Bird Count! The Christmas Bird Count Data was provided by <a href="www.christmasbirdcount.org">National Audubon Society</a> and through the generous efforts of <a href="www.bsc-eoc.org">Bird Studies Canada</a> and countless volunteers across the western hemisphere.</p>
@@ -286,77 +287,95 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="session-info" class="section level1">
 <h1>Session info</h1>
-<pre><code>- Session info ---------------------------------------------------------------
- setting  value                       
- version  R version 4.0.2 (2020-06-22)
- os       Windows 10 x64              
- system   x86_64, mingw32             
- ui       RTerm                       
- language (EN)                        
- collate  English_Canada.1252         
- ctype    English_Canada.1252         
- tz       America/New_York            
- date     2020-09-04                  
+<pre><code>─ Session info ───────────────────────────────────────────────────────────────
+ setting  value
+ version  R version 4.2.3 (2023-03-15 ucrt)
+ os       Windows 10 x64 (build 19045)
+ system   x86_64, mingw32
+ ui       RTerm
+ language (EN)
+ collate  English_Canada.utf8
+ ctype    English_Canada.utf8
+ tz       America/New_York
+ date     2023-04-14
+ pandoc   2.19.2 @ C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools/ (via rmarkdown)
 
-- Packages -------------------------------------------------------------------
- ! package     * version    date       lib source                     
- P assertthat    0.2.1      2019-03-21 [?] CRAN (R 4.0.0)             
- P backports     1.1.8      2020-06-17 [?] CRAN (R 4.0.0)             
- P blogdown      0.20       2020-06-23 [?] CRAN (R 4.0.2)             
- P bookdown      0.20       2020-06-23 [?] CRAN (R 4.0.0)             
- P callr         3.4.3      2020-03-28 [?] CRAN (R 4.0.0)             
- P cli           2.0.2      2020-02-28 [?] CRAN (R 4.0.0)             
- P crayon        1.3.4      2017-09-16 [?] CRAN (R 4.0.0)             
- P desc          1.2.0      2018-05-01 [?] CRAN (R 4.0.0)             
- P devtools    * 2.3.1      2020-07-21 [?] CRAN (R 4.0.2)             
- P digest        0.6.25     2020-02-23 [?] CRAN (R 4.0.0)             
- P dplyr       * 1.0.1      2020-07-31 [?] CRAN (R 4.0.2)             
- P ellipsis      0.3.1      2020-05-15 [?] CRAN (R 4.0.2)             
- P emo         * 0.0.0.9000 2020-07-07 [?] Github (hadley/emo@3f03b11)
- P evaluate      0.14       2019-05-28 [?] CRAN (R 4.0.0)             
- P fansi         0.4.1      2020-01-08 [?] CRAN (R 4.0.0)             
- P fs            1.5.0      2020-07-31 [?] CRAN (R 4.0.2)             
- P generics      0.0.2      2018-11-29 [?] CRAN (R 4.0.0)             
- P glue          1.4.1      2020-05-13 [?] CRAN (R 4.0.2)             
- P here        * 0.1        2017-05-28 [?] CRAN (R 4.0.2)             
- P hms           0.5.3      2020-01-08 [?] CRAN (R 4.0.0)             
- P htmltools     0.5.0      2020-06-16 [?] CRAN (R 4.0.2)             
- P knitr         1.29       2020-06-23 [?] CRAN (R 4.0.2)             
- P lifecycle     0.2.0      2020-03-06 [?] CRAN (R 4.0.0)             
- P lubridate     1.7.9      2020-06-08 [?] CRAN (R 4.0.2)             
- P magrittr      1.5        2014-11-22 [?] CRAN (R 4.0.0)             
- P memoise       1.1.0      2017-04-21 [?] CRAN (R 4.0.0)             
- P pillar        1.4.6      2020-07-10 [?] CRAN (R 4.0.2)             
- P pkgbuild      1.1.0      2020-07-13 [?] CRAN (R 4.0.2)             
- P pkgconfig     2.0.3      2019-09-22 [?] CRAN (R 4.0.0)             
- P pkgload       1.1.0      2020-05-29 [?] CRAN (R 4.0.2)             
- P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.0.0)             
- P processx      3.4.3      2020-07-05 [?] CRAN (R 4.0.2)             
- P ps            1.3.4      2020-08-11 [?] CRAN (R 4.0.2)             
- P purrr         0.3.4      2020-04-17 [?] CRAN (R 4.0.0)             
- P R6            2.4.1      2019-11-12 [?] CRAN (R 4.0.0)             
- P Rcpp          1.0.5      2020-07-06 [?] CRAN (R 4.0.2)             
- P readr       * 1.3.1      2018-12-21 [?] CRAN (R 4.0.0)             
- P remotes       2.2.0      2020-07-21 [?] CRAN (R 4.0.2)             
-   renv          0.11.0     2020-06-26 [1] CRAN (R 4.0.2)             
- P rlang         0.4.7      2020-07-09 [?] CRAN (R 4.0.2)             
- P rmarkdown     2.3        2020-06-18 [?] CRAN (R 4.0.2)             
- P rprojroot     1.3-2      2018-01-03 [?] CRAN (R 4.0.0)             
- P sessioninfo   1.1.1      2018-11-05 [?] CRAN (R 4.0.0)             
- P stringi       1.4.6      2020-02-17 [?] CRAN (R 4.0.0)             
- P stringr     * 1.4.0      2019-02-10 [?] CRAN (R 4.0.0)             
- P testthat      2.3.2      2020-03-02 [?] CRAN (R 4.0.0)             
- P tibble        3.0.3      2020-07-10 [?] CRAN (R 4.0.2)             
- P tidyselect    1.1.0      2020-05-11 [?] CRAN (R 4.0.2)             
- P usethis     * 1.6.1      2020-04-29 [?] CRAN (R 4.0.2)             
- P utf8          1.1.4      2018-05-24 [?] CRAN (R 4.0.0)             
- P vctrs         0.3.2      2020-07-15 [?] CRAN (R 4.0.2)             
- P withr         2.2.0      2020-04-20 [?] CRAN (R 4.0.0)             
- P xfun          0.16       2020-07-24 [?] CRAN (R 4.0.2)             
- P yaml          2.2.1      2020-02-01 [?] CRAN (R 4.0.0)             
+─ Packages ───────────────────────────────────────────────────────────────────
+ ! package     * version    date (UTC) lib source
+   assertthat    0.2.1      2019-03-21 [1] CRAN (R 4.2.3)
+ P blogdown      1.16       2022-12-13 [?] CRAN (R 4.2.3)
+ P bookdown      0.33       2023-03-06 [?] CRAN (R 4.2.3)
+ P bslib         0.4.2      2022-12-16 [?] CRAN (R 4.2.3)
+ P cachem        1.0.7      2023-02-24 [?] CRAN (R 4.2.3)
+ P callr         3.7.3      2022-11-02 [?] CRAN (R 4.2.3)
+ P cli           3.6.1      2023-03-23 [?] CRAN (R 4.2.3)
+ P crayon        1.5.2      2022-09-29 [?] CRAN (R 4.2.3)
+ P devtools    * 2.4.5      2022-10-11 [?] CRAN (R 4.2.3)
+ P digest        0.6.31     2022-12-11 [?] CRAN (R 4.2.3)
+ P dplyr       * 1.1.1      2023-03-22 [?] CRAN (R 4.2.3)
+ P ellipsis      0.3.2      2021-04-29 [?] CRAN (R 4.2.3)
+   emo         * 0.0.0.9000 2023-04-13 [1] Github (hadley/emo@3f03b11)
+ P evaluate      0.20       2023-01-17 [?] CRAN (R 4.2.3)
+ P fansi         1.0.4      2023-01-22 [?] CRAN (R 4.2.3)
+ P fastmap       1.1.1      2023-02-24 [?] CRAN (R 4.2.3)
+ P fs            1.6.1      2023-02-06 [?] CRAN (R 4.2.3)
+ P generics      0.1.3      2022-07-05 [?] CRAN (R 4.2.3)
+ P glue          1.6.2      2022-02-24 [?] CRAN (R 4.2.3)
+ P here        * 1.0.1      2020-12-13 [?] CRAN (R 4.2.3)
+ P hms           1.1.3      2023-03-21 [?] CRAN (R 4.2.3)
+ P htmltools     0.5.5      2023-03-23 [?] CRAN (R 4.2.3)
+ P htmlwidgets   1.6.2      2023-03-17 [?] CRAN (R 4.2.3)
+ P httpuv        1.6.9      2023-02-14 [?] CRAN (R 4.2.3)
+ P jquerylib     0.1.4      2021-04-26 [?] CRAN (R 4.2.3)
+ P jsonlite      1.8.4      2022-12-06 [?] CRAN (R 4.2.3)
+ P knitr         1.42       2023-01-25 [?] CRAN (R 4.2.3)
+ P later         1.3.0      2021-08-18 [?] CRAN (R 4.2.3)
+ P lifecycle     1.0.3      2022-10-07 [?] CRAN (R 4.2.3)
+ P lubridate     1.9.2      2023-02-10 [?] CRAN (R 4.2.3)
+ P magrittr      2.0.3      2022-03-30 [?] CRAN (R 4.2.3)
+ P memoise       2.0.1      2021-11-26 [?] CRAN (R 4.2.3)
+ P mime          0.12       2021-09-28 [?] CRAN (R 4.2.0)
+ P miniUI        0.1.1.1    2018-05-18 [?] CRAN (R 4.2.3)
+ P pillar        1.9.0      2023-03-22 [?] CRAN (R 4.2.3)
+ P pkgbuild      1.4.0      2022-11-27 [?] CRAN (R 4.2.3)
+ P pkgconfig     2.0.3      2019-09-22 [?] CRAN (R 4.2.3)
+ P pkgload       1.3.2      2022-11-16 [?] CRAN (R 4.2.3)
+ P prettyunits   1.1.1      2020-01-24 [?] CRAN (R 4.2.3)
+ P processx      3.8.0      2022-10-26 [?] CRAN (R 4.2.3)
+ P profvis       0.3.7      2020-11-02 [?] CRAN (R 4.2.3)
+ P promises      1.2.0.1    2021-02-11 [?] CRAN (R 4.2.3)
+ P ps            1.7.4      2023-04-02 [?] CRAN (R 4.2.3)
+ P purrr         1.0.1      2023-01-10 [?] CRAN (R 4.2.3)
+ P R6            2.5.1      2021-08-19 [?] CRAN (R 4.2.3)
+ P Rcpp          1.0.10     2023-01-22 [?] CRAN (R 4.2.3)
+ P readr       * 2.1.4      2023-02-10 [?] CRAN (R 4.2.3)
+ P remotes       2.4.2      2021-11-30 [?] CRAN (R 4.2.3)
+   renv          0.11.0     2020-06-26 [1] CRAN (R 4.2.3)
+ P rlang         1.1.0      2023-03-14 [?] CRAN (R 4.2.3)
+ P rmarkdown     2.21       2023-03-26 [?] CRAN (R 4.2.3)
+ P rprojroot     2.0.3      2022-04-02 [?] CRAN (R 4.2.3)
+ P rstudioapi    0.14       2022-08-22 [?] CRAN (R 4.2.3)
+ P sass          0.4.5      2023-01-24 [?] CRAN (R 4.2.3)
+ P sessioninfo   1.2.2      2021-12-06 [?] CRAN (R 4.2.3)
+ P shiny         1.7.4      2022-12-15 [?] CRAN (R 4.2.3)
+ P stringi       1.7.12     2023-01-11 [?] CRAN (R 4.2.2)
+ P stringr     * 1.5.0      2022-12-02 [?] CRAN (R 4.2.3)
+ P tibble        3.2.1      2023-03-20 [?] CRAN (R 4.2.3)
+ P tidyselect    1.2.0      2022-10-10 [?] CRAN (R 4.2.3)
+ P timechange    0.2.0      2023-01-11 [?] CRAN (R 4.2.3)
+ P tzdb          0.3.0      2022-03-28 [?] CRAN (R 4.2.3)
+ P urlchecker    1.0.1      2021-11-30 [?] CRAN (R 4.2.3)
+ P usethis     * 2.1.6      2022-05-25 [?] CRAN (R 4.2.3)
+ P utf8          1.2.3      2023-01-31 [?] CRAN (R 4.2.3)
+ P vctrs         0.6.1      2023-03-22 [?] CRAN (R 4.2.3)
+ P xfun          0.38       2023-03-24 [?] CRAN (R 4.2.3)
+ P xtable        1.8-4      2019-04-21 [?] CRAN (R 4.2.3)
+ P yaml          2.3.7      2023-01-23 [?] CRAN (R 4.2.3)
 
-[1] C:/Users/shw/Desktop/blog2/renv/library/R-4.0/x86_64-w64-mingw32
-[2] C:/Users/shw/AppData/Local/Temp/Rtmp6dkm3x/renv-system-library
+ [1] C:/Users/Randy/Desktop/R Projects/Sharleen Blog/blog2/renv/library/R-4.2/x86_64-w64-mingw32
+ [2] C:/Users/Randy/AppData/Local/Temp/RtmpykvqRN/renv-system-library
 
- P -- Loaded and on-disk path mismatch.</code></pre>
+ P ── Loaded and on-disk path mismatch.
+
+──────────────────────────────────────────────────────────────────────────────</code></pre>
 </div>

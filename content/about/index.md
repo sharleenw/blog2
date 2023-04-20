@@ -9,13 +9,11 @@ showActions: false
 
 I am a Data Scientist living in British Columbia who uses R, R Markdown, git, LaTeX, SQL, and Shiny to create data analyses and reports.
 
-My current favourite packages are `pointblank`, `drake` and `renv`.
-
 In 2015, I graduated with an M.Sc. in Statistics from McMaster University in Hamilton, Canada.
 
 In 2011, I graduated from McMaster University's Chemical Engineering and Bioengineering program.
 
-When not programming, I like to go birding, rafting, hiking, cycling, running, sailing, or practice my handstands and aerial arts.
+When not programming, I like to go birding, hiking, cycling, or sailing.
 
 # Contact me
 
